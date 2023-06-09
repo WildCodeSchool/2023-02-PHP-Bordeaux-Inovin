@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=EB+Garamond&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
         <title>
             {% block title %}Projet 3 Name{% endblock %}
         </title>
@@ -17,6 +21,8 @@
         {% endblock %}
     </head>
     <body>
+    {% include "includes/navbar.html.twig" %}
         {% block body %}{% endblock %}
+    <input  class="iv-btn" type="submit">Search</input>
     </body>
 </html>

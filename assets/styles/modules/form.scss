@@ -1,0 +1,63 @@
+.iv-form-input {
+    background: $iv-main-white;
+    border: 1px solid $iv-goldBM;
+    border-radius: $iv-border-radius;
+    font-family: $iv-text-font-family;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    ::placeholder {
+        padding-left: 10px;
+    }
+}
+
+.iv-form-checkbox-label input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.iv-form-checkmark {
+    background: $iv-main-white;
+    border: $iv-border-form;
+    border-radius: $iv-border-radius;
+    width: 30px;
+    height: 30px;
+
+}
+.iv-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.iv-container input {
+
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.iv-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $iv-main-white;
+    border: $iv-border-form;
+    border-radius: $iv-border-radius-check;
+    height: 25px;
+    width: 25px;
+
+}
+.iv-container input:checked ~ .iv-checkmark {
+    background-color: $iv-taupe;
+}
