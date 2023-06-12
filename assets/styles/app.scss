@@ -1,10 +1,12 @@
 @import "~bootstrap";
+
 @import "modules/main.scss";
 @import "modules/variables.scss";
 @import "modules/form.scss";
 @import "modules/button.scss";
 @import "modules/card.scss";
 @import "modules/goutIndex.scss";
+@import "modules/home.scss";
 
 body {
     background-color: $iv-background-color;
