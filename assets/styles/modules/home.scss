@@ -1,20 +1,15 @@
 
 /*accueil*/
 
-.logo-accueil {
+.iv-logo-accueil {
     width: 30%;
     padding: 40px;
-}
-
-
-h2 {
-    font-family: $iv-title-font-family;
 }
 
 .iv-carousel {
     background: $iv-background-color url('../../images/FeuilleDeVigneBnW.png') no-repeat top right;
     background-size: cover;
-    padding: 10px 50px 40px;
+    padding: 10px 50px 0;
     width: 100%;
     margin: 0 auto
 }
@@ -57,7 +52,7 @@ hr {
     right: -70px;
 }
 
-.block-carousel {
+.iv-block-carousel {
     min-height: 340px;
     height: 460px;
     max-height: 460px;
@@ -68,13 +63,13 @@ hr {
     color: $iv-taupe
 }
 
-.list-carousel {
+.iv-list-carousel {
     list-style: none;
     margin: 0;
     padding: 0
 }
 
-.list-carousel li {
+.iv-list-carousel li {
     line-height: 2rem;
     padding: 10px;
     font-family: $iv-text-font-family;
@@ -113,7 +108,7 @@ hr {
     .iv-img-carousel {
         display: none
     }
-    .block-carousel {
+    .iv-block-carousel {
         width: 100%;
         margin-left: 0;
         max-height: max-content
