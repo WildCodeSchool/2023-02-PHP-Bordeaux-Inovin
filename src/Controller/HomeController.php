@@ -13,4 +13,10 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/gout', name: 'app_gout')]
+    public function gout(): Response
+    {
+        return $this->render('gout/index.html.twig');
+    }
 }
