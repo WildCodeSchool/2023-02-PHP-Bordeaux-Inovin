@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
 $iv-main-white: #FFFAF0;
 $iv-background-color: #F4EDDB;
 $iv-main-darkgrey: #323232;
@@ -23,10 +21,6 @@ $iv-check-background: $iv-main-white;
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
 
 .iv-title{
     font-family: $iv-title-font-family;
