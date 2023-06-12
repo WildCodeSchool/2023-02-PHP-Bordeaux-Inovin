@@ -1,0 +1,33 @@
+$iv-main-white: #FFFAF0;
+$iv-background-color: #F4EDDB;
+$iv-main-darkgrey: #323232;
+$iv-goldBM: #B58654;
+$iv-taupe: #D3BDA5;
+$iv-box-shadow: 6px 6px 15px $iv-taupe;
+$iv-border-form: 2px solid $iv-goldBM;
+$iv-border-radius: 0.625rem;
+$iv-border-radius-check: 0.5rem;
+$iv-text-font-size: 1.75rem;
+/*$iv-mobile-text-font-size: 2rem;*/
+$iv-text-font-family: 'Crimson Text', serif;
+$iv-title-font-family: 'Playfair Display', serif;
+$iv-title-size: 3.75rem;
+/*--iv-mobile-title-font-size:*/
+$iv-check-border: 2px solid $iv-goldBM;
+$iv-check-background: $iv-main-white;
+/*$iv-mobile-assembly-card-name-font-size: 20px;*/
+
+* {
+    box-sizing: border-box;
+}
+
+
+.iv-title{
+    font-family: $iv-title-font-family;
+    font-size: 48px;
+    line-height: 64px;
+    font-weight: 400;
+}
+
+
+
