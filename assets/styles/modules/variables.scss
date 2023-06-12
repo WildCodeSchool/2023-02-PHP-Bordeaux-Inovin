@@ -24,10 +24,19 @@ $iv-check-background: $iv-main-white;
 
 .iv-title{
     font-family: $iv-title-font-family;
+    color: $iv-goldBM;
     font-size: 48px;
     line-height: 64px;
     font-weight: 400;
+    text-align: center;
+}
+.iv-color {
+    color: $iv-goldBM;
 }
 
-
-
+h4, h2{
+    font-family: $iv-text-font-family;
+}
+h4 {
+    font-size: $iv-text-font-size;
+}
