@@ -16,13 +16,20 @@
 .iv-nav-ul {
     list-style-type: none;
 }
-
+#offcanvasExample{
+    width: 50vw;
+}
 .iv-nav-width {
     width: 50vw;
 }
 
 .iv-inline {
     display: inline;
+}
+
+.iv-nav-display-flex {
+    display: flex;
+    align-items: center;
 }
 
 /* cell phone max width portrait */
