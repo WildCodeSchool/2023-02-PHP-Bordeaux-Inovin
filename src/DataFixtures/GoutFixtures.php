@@ -22,9 +22,8 @@ class GoutFixtures extends Fixture
         foreach (self::AROME as $aromeName) {
             $arome = new Arome();
             $arome->setName($aromeName);
-
-
             $manager->persist($arome);
+            $this->addReference('arome_' . $aromeName, $arome);
         }
         $manager->flush();
 
@@ -32,18 +31,16 @@ class GoutFixtures extends Fixture
         foreach (self::COLOR as $colorName) {
             $color = new Color();
             $color->setName($colorName);
-
-
             $manager->persist($color);
+            $this->addReference('color_' . $colorName, $color);
         }
 
         $manager->flush();
         foreach (self::REGION as $regionName) {
             $region = new Region();
             $region->setName($regionName);
-
-
             $manager->persist($region);
+            $this->addReference('region_' . $regionName, $region);
         }
         $manager->flush();
     }
