@@ -32,6 +32,14 @@
     align-items: center;
 }
 
+.dropdown-toggle {
+    color: $iv-goldBM !important;
+}
+
+.dark-grey {
+    color: $iv-main-darkgrey;
+}
+
 /* cell phone max width portrait */
 @media screen and (max-width: 430px) {
     .iv-nav-width {
