@@ -1,0 +1,38 @@
+.iv-burger {
+    width: 80px;
+    height: auto;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.iv-nav-bg {
+    background-color: $iv-main-white;
+}
+
+.iv-center {
+    text-align: center;
+}
+
+.iv-nav-ul {
+    list-style-type: none;
+}
+
+.iv-nav-width {
+    width: 50vw;
+}
+
+.iv-inline {
+    display: inline;
+}
+
+/* cell phone max width portrait */
+@media screen and (max-width: 430px) {
+    .iv-nav-width {
+        width: 100vw;
+    }
+}
+
+/* tablet max width portrait cell phone landscape 768 */
+
+
+/* tablet max width landscape 1024 */
