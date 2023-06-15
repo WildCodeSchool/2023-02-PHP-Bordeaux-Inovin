@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Atelier{% endblock %}
+
+    {% block body %}
+
+        <h1 class="iv-title">INO VIN Dégustation</h1>
+        <p class="iv-center">Bonjour <span class="iv-name-User">Paul</span>, </p>
+        <p class="iv-center">Pour accéder à l’atelier, merci d’entrer le code remis par votre hôte</p>
+
+        <form action="" class="">
+            <input class="iv-form-input input m-auto my-3 " type="text" name="code" id="code"
+                   placeholder="Code de l'atelier">
+            <input class="iv-btn m-auto" type="submit" value="Valider">
+        </form>
+        <div class="w-100 pt-5 iv-atelier-img">
+            <img class="w-100" src="{{ asset('build/images/atelier.be6c9977.jpg') }}" alt="Atelier">
+        </div>
+    {% endblock %}
