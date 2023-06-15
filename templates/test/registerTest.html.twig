@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+    <form action="">
+        <div class="d-flex justify-content-center">
+            <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register">
+                <div class="iv-form-container-inputs">
+                    <h2 class="iv-title">S'inscrire</h2>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control iv-form-input" placeholder="Nom">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control iv-form-input" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control iv-form-input" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="date" class="form-control iv-form-input">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control iv-form-input" placeholder="Code postal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control iv-form-input" placeholder="Téléphone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" class="form-control iv-form-input" placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" class="form-control iv-form-input" placeholder="Confirmer le mot de passe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="iv-container fs-5" style="width: initial">J'accepte les conditions d'utilisation
+                                <input type="checkbox" checked="">
+                                <span class="iv-checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <input class="iv-btn" type="submit" value="S'inscrire">
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
