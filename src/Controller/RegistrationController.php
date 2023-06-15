@@ -35,12 +35,16 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        /*if ($form->isSubmitted() && ($form->get('plainPassword')->getData() !== $_POST['confirmPassword'])) {
+            $this->addFlash('danger', 'Les mots de passe ne correspondent pas');
+        }*/
+
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
             $user->setRoles(['ROLE_USER']);
