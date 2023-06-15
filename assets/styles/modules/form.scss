@@ -14,6 +14,23 @@
     }
 }
 
+#iv-form-container-register {
+    width: 50% !important;
+}
+
+.iv-form-container-inputs {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.iv-form-container-inputs * {
+    margin-bottom: 0.3rem;
+}
+
+.iv-form-container-inputs .iv-btn {
+    margin: 0.3rem auto;
+}
+
 .iv-form-checkbox-label input{
     opacity: 0;
     width: 0;

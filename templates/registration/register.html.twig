@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    {% for flash_error in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    {#<h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+
+    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.birthday) }}
+    {{ form_row(registrationForm.zipcode) }}
+    {{ form_row(registrationForm.phoneNumber) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}#}
+    {{ form_start(registrationForm) }}
+    {{ form_errors(registrationForm) }}
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+    {#<form action="">#}
+        <div class="d-flex justify-content-center">
+            <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register">
+                <div class="iv-form-container-inputs">
+                    <h2 class="iv-title">S'inscrire</h2>
+
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.lastname) }}"
+                                type="text" class="form-control iv-form-input" placeholder="Nom">
+                        </div>
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.firstname) }}"
+                                type="text" class="form-control iv-form-input" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.email) }}"
+                                type="text" class="form-control iv-form-input" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.birthday) }}"
+                                type="date" class="form-control iv-form-input">
+                        </div>
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.zipcode) }} }}"
+                                type="text" class="form-control iv-form-input" placeholder="Code postal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.phoneNumber) }}"
+                                type="text" class="form-control iv-form-input" placeholder="Téléphone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.password.first) }}"
+                                type="password" class="form-control iv-form-input" placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.password.second) }}"
+                                type="password" class="form-control iv-form-input" placeholder="Confirmer le mot de passe">
+                            {#<span>{{ field_errors(registrationForm.password.second) }}</span>#}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="iv-container fs-5" style="width: initial">J'accepte les conditions d'utilisation
+                                <input
+                                    name="{{ field_name(registrationForm.agreeTerms) }}"
+                                    type="checkbox" checked="">
+                                <span class="iv-checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <input class="iv-btn" type="submit" value="S'inscrire">
+                </div>
+            </div>
+        </div>
+    {{ form_end(registrationForm) }}
+    {#</form>#}
+{% endblock %}
