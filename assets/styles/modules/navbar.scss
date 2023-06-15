@@ -9,6 +9,19 @@
     background-color: $iv-main-white;
 }
 
+.iv-nav-degustations {
+    display: none;
+
+}
+
+.iv-nav-assemblages {
+    display: none;
+}
+
+.iv-nav-profil {
+    display: none;
+}
+
 .iv-center {
     text-align: center;
 }
@@ -33,6 +46,10 @@
     color: $iv-goldBM !important;
 }
 
+.btn-close {
+    color: $iv-goldBM;
+}
+
 .dark-grey {
     color: $iv-main-darkgrey;
 }
@@ -40,6 +57,9 @@
 /* cell phone max width portrait */
 @media screen and (max-width: 430px) {
     .iv-nav-width {
+        width: 100vw;
+    }
+    #offcanvasExample{
         width: 100vw;
     }
 }

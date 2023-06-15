@@ -4,55 +4,98 @@
 
 <div class="offcanvas offcanvas-start pb-0 iv-nav-width" tabindex="-1" id="offcanvasExample"
      aria-labelledby="offcanvasExampleLabel">
+
     <div class="offcanvas-header iv-nav-bg iv-nav-width">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" onclick="closeMenu()"></button>
     </div>
+
     <div class="offcanvas-body iv-nav-bg iv-center mt-0 iv-nav-width">
+
         <img class="iv-burger m-0" src="{{ asset('build/images/logoinovin.f33bd3fc.png') }}" alt="Logo Link to menu">
+
         <h2 class="iv-color mt-5">Accès atelier</h2>
-        </ul>
 
-        <div class="dropdown mt-5">
-            <li class="nav-item dropdown iv-nav-ul">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    <h2 class="iv-color mt-5 iv-inline">Mes dégustations</h2>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                </ul>
-            </li>
+        <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverDegustations()">Mes dégustations</h2>
+        <div class="iv-nav-degustations">
+            <p class="iv-color">Cépage 1 - 2022 - Château X</p>
+            <p class="iv-color">Cépage 2 - 2022 - Château Y</p>
+            <p class="iv-color">Cépage 3 - 2022 - Château Z</p>
+            <p class="iv-color">Cépage 4 - 2022 - Château W</p>
         </div>
 
-        <div class="dropdown mt-5">
-            <li class="nav-item dropdown iv-nav-ul">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    <h2 class="iv-color mt-5 iv-inline">Mes assemblages</h2>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                </ul>
-            </li>
+        <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverAssemblages()">Mes assemblages</h2>
+        <div class="iv-nav-assemblages">
+            <p class="iv-color">Petit BBQ entre amis - juin 2023</p>
+            <p class="iv-color">La Camargue ca vous gagne - mai 2022</p>
+            <p class="iv-color">Lozère et bien plus - juillet 2021</p>
+            <p class="iv-color">Le plus bel atelier de ma vie - décembre 2021</p>
         </div>
 
-        <div class="dropdown mt-5">
-            <li class="nav-item dropdown iv-nav-ul">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    <h2 class="iv-color mt-5 iv-inline">Mon profil</h2>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Mes informations</a></li>
-                    <li><a class="dropdown-item" href="#">Mes goûts</a></li>
-                </ul>
-            </li>
+        <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
+        <div class="iv-nav-profil">
+            <p class="iv-color">Mon profil</p>
+            <p class="iv-color">Mes goûts</p>
         </div>
 
         <h2 class="mt-5 dark-grey">Me déconnecter</h2>
         <p class="m-0 dark-grey">Mentions Légales</p>
         <p class="m-0 dark-grey">Politique de confidentialité</p>
+
     </div>
+
 </div>
+
+<script>
+    let degustationsTitle = document.querySelector('.iv-nav-degustations');
+    let checkDegustations = false
+function closeMenu() {
+    checkDegustations = false
+    checkAssemblages = false
+    checkProfil= false
+    degustationsTitle.style.display = 'none';
+    assemblagesTitle.style.display = 'none';
+    profilTitle.style.display = 'none';
+}
+    function onOverDegustations() {
+
+        if (checkDegustations === false) {
+            checkDegustations = true
+            degustationsTitle.style.display = 'block';
+            console.log(checkDegustations)
+        } else {
+            checkDegustations = false
+            degustationsTitle.style.display = 'none';
+        }
+    }
+
+    let assemblagesTitle = document.querySelector('.iv-nav-assemblages');
+    let checkAssemblages = false
+
+    function onOverAssemblages() {
+
+        if (checkAssemblages === false) {
+            checkAssemblages = true
+            assemblagesTitle.style.display = 'block';
+            console.log(checkAssemblages)
+        } else {
+            checkAssemblages = false
+            assemblagesTitle.style.display = 'none';
+        }
+    }
+
+    let profilTitle = document.querySelector('.iv-nav-profil');
+    let checkProfil = false
+
+    function onOverProfil() {
+
+        if (checkProfil === false) {
+            checkProfil = true
+            profilTitle.style.display = 'block';
+            console.log(checkProfil)
+        } else {
+            checkProfil = false
+            profilTitle.style.display = 'none';
+        }
+    }
+
+</script>
