@@ -23,4 +23,10 @@ class HomeController extends AbstractController
     {
         return $this->render('gout/index.html.twig');
     }
+
+    #[Route('/atelier', name: 'app_atelier')]
+    public function atelier(): Response
+    {
+        return $this->render('atelier/welcome.html.twig');
+    }
 }
