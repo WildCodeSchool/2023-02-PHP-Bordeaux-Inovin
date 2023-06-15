@@ -108,31 +108,73 @@
                         {% endfor %}
                     </div>
                     <h4 class="mb-4">Mes Arômes préféres</h4>
-                    <div class="d-flex flex-wrap justify-content-between">
+
+
+
+                    <div class="d-flex flex-wrap justify-content-around">
+                        {% set aromeCount = registrationForm.arome|length %}
+                        {% set columns = 2 %}
+                        {% set itemsPerColumn = (aromeCount / columns)|round(0, 'ceil') %}
+
+                        {% set columnCounter = 0 %}
+
                         {% for arome in registrationForm.arome %}
+                            {% if loop.index % itemsPerColumn == 1 %}
+                                <div class="column">
+                            {% endif %}
+
                             <div class="row">
                                 <div class="col">
                                     <label class="iv-container fs-5" style="width: initial">
-                                        <input name="{{ field_name(arome) }}" type="checkbox" checked="">
-                                        {{ arome.vars.label }}
+                                        {{ form_widget(arome, {'checked': true}) }}
+                                        {{ form_label(arome) }}
                                         <span class="iv-checkmark"></span>
                                     </label>
                                 </div>
                             </div>
+
+                            {% if loop.index % itemsPerColumn == 0 or loop.last %}
+                                </div>
+                            {% endif %}
+
+                            {% set columnCounter = columnCounter + 1 %}
+                            {% if columnCounter == columns %}
+                                {% set columnCounter = 0 %}
+                            {% endif %}
                         {% endfor %}
                     </div>
+
                     <h4 class="mb-4">Mes Régions préférée</h4>
-                    <div class="d-flex flex-wrap justify-content-between">
+                    <div class="d-flex flex-wrap justify-content-around">
+                        {% set regionCount = registrationForm.region|length %}
+                        {% set columns = 2 %}
+                        {% set itemsPerColumn = (regionCount / columns)|round(0, 'ceil') %}
+
+                        {% set columnCounter = 0 %}
+
                         {% for region in registrationForm.region %}
+                            {% if loop.index % itemsPerColumn == 1 %}
+                                <div class="column">
+                            {% endif %}
+
                             <div class="row">
                                 <div class="col">
                                     <label class="iv-container fs-5" style="width: initial">
-                                        <input name="{{ field_name(region) }}" type="checkbox" checked="">
-                                        {{ region.vars.label }}
+                                        {{ form_widget(region, {'checked': true}) }}
+                                        {{ form_label(region) }}
                                         <span class="iv-checkmark"></span>
                                     </label>
                                 </div>
                             </div>
+
+                            {% if loop.index % itemsPerColumn == 0 or loop.last %}
+                                </div>
+                            {% endif %}
+
+                            {% set columnCounter = columnCounter + 1 %}
+                            {% if columnCounter == columns %}
+                                {% set columnCounter = 0 %}
+                            {% endif %}
                         {% endfor %}
                     </div>
                     <div class="row">
