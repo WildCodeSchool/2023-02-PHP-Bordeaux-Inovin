@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Arome;
+use App\Entity\Color;
+use App\Entity\Region;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -63,6 +67,27 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
+            ])
+            ->add('color', EntityType::class, [
+                'class' => Color::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ])
+            ->add('arome', EntityType::class, [
+                'class' => Arome::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ])
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
             ])
         ;
     }
