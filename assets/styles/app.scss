@@ -1,5 +1,4 @@
 @import "~bootstrap";
-
 @import "modules/main.scss";
 @import "modules/variables.scss";
 @import "modules/form.scss";
@@ -8,8 +7,8 @@
 @import "modules/goutIndex.scss";
 @import "modules/home.scss";
 @import "modules/navbar.scss";
+@import "modules/_login.scss";
 @import "modules/atelier.scss";
-
 body {
     background-color: $iv-background-color;
     margin: 0;
