@@ -1,0 +1,22 @@
+.iv-btn-login {
+    Border-radius: $iv-border-radius;
+    Color: $iv-main-white;
+    background: $iv-goldBM;
+    font-family: $iv-title-font-family;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    line-height: 1.625rem;
+    justify-content: center;
+    width: 14.75rem;
+    height: 2.125rem;
+    margin-top: 50px;
+}
+
+.iv-form-container-login {
+    height: 400px;
+    border: $iv-border-form;
+    border-radius: $iv-border-radius;
+}
