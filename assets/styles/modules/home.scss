@@ -7,11 +7,13 @@
 }
 
 .iv-carousel {
-    background: $iv-background-color url('../../images/FeuilleDeVigneBnW.png') no-repeat top right;
+    background: $iv-background-vigne;
     background-size: cover;
     padding: 10px 50px 0;
     width: 100%;
-    margin: 0 auto
+    margin: 0 auto;
+    height: 100vh;
+
 }
 
 hr {
@@ -68,10 +70,11 @@ hr {
     margin: 0;
     padding: 0
 }
+.iv-carousel a{height:100vh}
 
 .iv-list-carousel li {
     line-height: 2rem;
-    padding: 10px;
+    padding: 10px 5px;
     font-family: $iv-text-font-family;
     font-size: 1rem;
 }
@@ -104,7 +107,7 @@ hr {
     border-bottom: 0;
 }
 
-@media screen and (max-width: 763px) {
+@media screen and (max-width: 768px) {
     .iv-img-carousel {
         display: none
     }
@@ -112,6 +115,10 @@ hr {
         width: 100%;
         margin-left: 0;
         max-height: max-content
+    }
+    .iv-carousel h1 {
+
+        font-size: $iv-mobile-title-font-size;
     }
     .carousel-control-next-icon {
         right: -90%;background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F4EDDB'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
@@ -124,14 +131,34 @@ hr {
     }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 430px) {
     .iv-carousel {
         padding: 10px 10px 40px;
     }
+    .iv-carousel h1 {
+
+        font-size: 1.5rem
+    }
     .carousel-control-next-icon {
-        right: 0;
+        right: -4%;
     }
     .carousel-control-prev-icon {
-        left: 0;
+        left: -4%;
     }
+    .iv-burger {
+        width: 50px;
+    }
+    .iv-block-carousel {
+        padding: 20px;
+        min-height: 325px;
+        height: 325px;
+        max-height: 360px;
+    }
+
+    .iv-list-carousel li {
+        line-height: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+
 }

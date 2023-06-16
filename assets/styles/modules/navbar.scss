@@ -3,7 +3,10 @@
     height: auto;
     margin-top: 10px;
     margin-left: 10px;
+    position: absolute;
 }
+
+.offcanvas-start .iv-burger{position: relative;}
 
 .iv-nav-bg {
     background-color: $iv-main-white;
