@@ -1,8 +1,14 @@
-<h1>Bonjour {{ firstname }} !</h1>
+<h1>Vous y êtes presque !</h1>
 
 <p>
-    Vous venez de créer un compte sur Inovin Atelier. Avant de pouvoir accéder à l'atelier, vous devez vérifier que cette adresse e-mail est bien la vôtre en cliquant ici : <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
+    Bonjour {{ firstname }},
+</p>
+<p>
+    Vous venez de créer un compte sur Inovin Atelier.
+</p>
+<p>
+    Avant de pouvoir accéder à l'atelier, <b>vous devez vérifier que cette adresse e-mail est bien la vôtre</b> en cliquant ici : <br><br>
+    <a href="{{ signedUrl|raw }}">Confirmer mon Email</a>.
     <br><br>
     Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
 </p>

@@ -57,13 +57,14 @@ class RegistrationController extends AbstractController
                 new TemplatedEmail())
                     ->from(new Address('contact@inovin.com', 'Equipe Inovin'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Merci De Confirmer Votre Email')
+                    ->context([
+                        'firstname' => $user->getFirstname(),
+                    ])
                     ->htmlTemplate('registration/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
 
-            $firstname = $user->getFirstname();
-            return $this->redirectToRoute('app_home', [
-            'firstname' => $firstname]);
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -86,7 +87,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre email a bien été vérifié.');
 
         return $this->redirectToRoute('app_register');
     }
