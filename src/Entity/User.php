@@ -62,11 +62,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Gout::class)]
+    private Collection $gouts;
+
     public function __construct()
     {
         $this->color = new ArrayCollection();
         $this->arome = new ArrayCollection();
         $this->region = new ArrayCollection();
+        $this->gouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -279,6 +283,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gout>
+     */
+    public function getGouts(): Collection
+    {
+        return $this->gouts;
+    }
+
+    public function addGout(Gout $gout): static
+    {
+        if (!$this->gouts->contains($gout)) {
+            $this->gouts->add($gout);
+            $gout->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGout(Gout $gout): static
+    {
+        if ($this->gouts->removeElement($gout)) {
+            // set the owning side to null (unless already changed)
+            if ($gout->getUser() === $this) {
+                $gout->setUser(null);
+            }
+        }
 
         return $this;
     }

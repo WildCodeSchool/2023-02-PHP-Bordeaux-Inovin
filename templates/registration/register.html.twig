@@ -91,7 +91,7 @@
                         {# <span>{{ field_errors(registrationForm.password.second) }}</span> #}
                     </div>
                 </div>
-             {#   <div>
+              <div>
                     <h2 class="iv-title">Mes gouts</h2>
                     <h4 class="mb-4">Mes couleurs de vin préferées</h4>
                     <div class="d-flex flex-wrap justify-content-between">
@@ -99,7 +99,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="iv-container fs-5" style="width: initial">
-                                        <input name="{{ field_name(color) }}" type="checkbox" checked="">
+                                        <input name="{{ field_name(color) }}" type="checkbox">
                                         {{ color.vars.label }}
                                         <span class="iv-checkmark"></span>
                                     </label>
@@ -126,7 +126,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="iv-container fs-5" style="width: initial">
-                                        {{ form_widget(arome, {'checked': true}) }}
+                                        {{ form_widget(arome) }}
                                         {{ form_label(arome) }}
                                         <span class="iv-checkmark"></span>
                                     </label>
@@ -160,7 +160,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="iv-container fs-5" style="width: initial">
-                                        {{ form_widget(region, {'checked': true}) }}
+                                        {{ form_widget(region) }}
                                         {{ form_label(region) }}
                                         <span class="iv-checkmark"></span>
                                     </label>
@@ -183,11 +183,11 @@
                                 d'utilisation
                                 <input
                                     name="{{ field_name(registrationForm.agreeTerms) }}"
-                                    type="checkbox" checked="">
+                                    type="checkbox">
                                 <span class="iv-checkmark"></span>
                             </label>
                         </div>
-                    </div>#}
+                    </div>
                 <input class="iv-btn" type="submit" value="S'inscrire">
                 </div>
             </div>

@@ -7,11 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use EntityTrait;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 class Region
 {
-    use TimestampableEntity;
+    use TimestampableEntity, EntityTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,9 +25,13 @@ class Region
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'region')]
     private Collection $users;
 
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'region')]
+    private Collection $gouts;
+/*
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->gouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -48,7 +53,7 @@ class Region
 
     /**
      * @return Collection<int, User>
-     */
+     *
     public function getUsers(): Collection
     {
         return $this->users;
@@ -68,6 +73,33 @@ class Region
     {
         if ($this->users->removeElement($user)) {
             $user->removeRegion($this);
+        }
+
+        return $this;
+    }
+*/
+    /**
+     * @return Collection<int, Gout>
+     */
+    public function getGouts(): Collection
+    {
+        return $this->gouts;
+    }
+
+    public function addGout(Gout $gout): static
+    {
+        if (!$this->gouts->contains($gout)) {
+            $this->gouts->add($gout);
+            $gout->addRegion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGout(Gout $gout): static
+    {
+        if ($this->gouts->removeElement($gout)) {
+            $gout->removeRegion($this);
         }
 
         return $this;
