@@ -7,35 +7,41 @@
     {% endif %}
 
     <h1 class="iv-title">INO VIN DEGUSTATION</h1>
+    <div class="iv-form-container-login">
+        <div class="d-flex justify-content-center">
+            <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register">
+                <div class="iv-form-container-inputs">
 
+                    <form class="" style="max-width: 600px" action="{{ path('app_login') }}"
+                          method="post">
+                        <h2 class="iv-title">Connexion</h2>
 
-    <form class="  iv-form-container-login mx-auto" style="max-width: 600px" action="{{ path('app_login') }}"
-          method="post">
-        <h2 class="iv-center">CONNEXION</h2>
+                        <div class="">
+                            <input type="text" id="username" name="_username" value="{{ last_username }}"
+                                   class="form-control iv-form-input"
+                                   placeholder="Mail"/>
+                            <label class="form-label" for="username"></label>
+                        </div>
 
-        <div class="form-outline mb-4 col-10 col-sm-8 mx-auto iv-form-input d-flex justify-content-center mt-5">
-            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control h-100 "
-                   placeholder="Mail"/>
-            <label class="form-label" for="username"></label>
+                        <div class="">
+                            <input type="password" id="password" name="_password" class="form-control iv-form-input"
+                                   placeholder="Mot de passe"/>
+                            <label class="form-label" for="password"></label>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <input type="hidden" name="_target_path" value="/gout">
+                        <button type="submit" class="iv-btn">Valider</button>
+                </div>
+            </div>
         </div>
-
-
-        <div class="form-outline mb-4 col-10 col-sm-8 mx-auto iv-form-input d-flex justify-content-center mt-5">
-            <input type="password" id="password" name="_password" class="form-control h-100"
-                   placeholder="Mot de passe"/>
-            <label class="form-label" for="password"></label>
-        </div>
-
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <input type="hidden" name="_target_path" value="/gout">
-        <button type="submit" class="iv-btn-login mx-auto">Valider</button>
         <br>
 
-    </form>
-    <div class="text-center ">
-        <p class="$iv-main-darkgrey">Première fois ? <a href="/register">Inscrivez-vous !</a></p>
-        <p class="$iv-main-darkgrey"><a href="/"> J’ai oublié mon mot de passe ?</a></p>
+        </form>
+        <div class="text-center ">
+            <p class="$iv-main-darkgrey">Première fois ? <a href="/register">Inscrivez-vous !</a></p>
+            <p class="$iv-main-darkgrey"><a href="/"> J’ai oublié mon mot de passe ?</a></p>
 
+        </div>
     </div>
-
 {% endblock %}
