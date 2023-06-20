@@ -27,19 +27,27 @@ class RegistrationController extends AbstractController
 
     #[Route('/register', name: 'app_register')]
     public function register(
-        Request $request,
+        Request                     $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager
-    ): Response {
+        EntityManagerInterface      $entityManager,
+    ): Response
+    {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+
+        // verify if the email is already used - does not work so far - no flashMessage
+        $userExist = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+        if ($userExist) {
+            $this->addFlash('danger', "Cet email est déjà utilisé. Rendez-vous sur la page de connexion pour réinitialiser votre mot de passe.");
+        }
 
         /*if ($form->isSubmitted() && ($form->get('plainPassword')->getData() !== $_POST['confirmPassword'])) {
             $this->addFlash('danger', 'Les mots de passe ne correspondent pas');
         }*/
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -54,15 +62,17 @@ class RegistrationController extends AbstractController
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (
-                new TemplatedEmail())
-                    ->from(new Address('contact@inovin.com', 'Equipe Inovin'))
-                    ->to($user->getEmail())
-                    ->subject('Merci De Confirmer Votre Email')
-                    ->context([
-                        'firstname' => $user->getFirstname(),
-                    ])
-                    ->htmlTemplate('registration/confirmation_email.html.twig'));
+            new TemplatedEmail())
+                ->from(new Address('contact@inovin.com', 'Equipe Inovin'))
+                ->to($user->getEmail())
+                ->subject('Merci De Confirmer Votre Email')
+                ->context([
+                    'firstname' => $user->getFirstname(),
+                ])
+                ->htmlTemplate('registration/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
+
+            $this->addFlash('success', 'Votre profil a bien été créé. rendez-vous sur votre boite mail pour vérifier votre compte');
 
             return $this->redirectToRoute('app_home');
         }
