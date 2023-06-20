@@ -15,7 +15,7 @@
 }
 
 #iv-form-container-register {
-    width: 50% !important;
+    width: 50% ;
 }
 
 .iv-form-container-inputs {
@@ -85,5 +85,14 @@
     border: $iv-border-form;
     border-radius: $iv-border-radius;
 }
+
+@media screen and (max-width: 430px) {
+
+    #iv-form-container-register{
+        width: 95%;
+    }
+
+}
+
 
 

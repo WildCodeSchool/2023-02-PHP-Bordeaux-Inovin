@@ -22,13 +22,6 @@ hr {
     width: 125%
 }
 
-.iv-carousel h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-family: $iv-title-font-family;
-    font-size: $iv-title-size
-}
-
 .iv-carousel_fond-app > div {
     width: 100%;
     display: flex;
@@ -116,10 +109,7 @@ hr {
         margin-left: 0;
         max-height: max-content
     }
-    .iv-carousel h1 {
 
-        font-size: $iv-mobile-title-font-size;
-    }
     .carousel-control-next-icon {
         right: -90%;background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F4EDDB'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
 
@@ -135,19 +125,14 @@ hr {
     .iv-carousel {
         padding: 10px 10px 40px;
     }
-    .iv-carousel h1 {
 
-        font-size: 1.5rem
-    }
     .carousel-control-next-icon {
         right: -4%;
     }
     .carousel-control-prev-icon {
         left: -4%;
     }
-    .iv-burger {
-        width: 50px;
-    }
+
     .iv-block-carousel {
         padding: 20px;
         min-height: 325px;
@@ -159,6 +144,9 @@ hr {
         line-height: 1.5rem;
         font-size: 0.8rem;
     }
+    .iv-logo-accueil{
+        width: 75%;
 
+    }
 
 }
