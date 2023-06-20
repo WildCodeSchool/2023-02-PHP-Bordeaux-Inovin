@@ -18,16 +18,16 @@ class Workshop
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name_workshop = null;
+    private ?string $nameWorkshop = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $date_workshop = null;
+    private ?\DateTimeInterface $dateWorkshop = null;
 
     #[ORM\Column(length: 20, nullable: true)]
-    private ?string $code_workshop = null;
+    private ?string $codeWorkshop = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $place_workshop = null;
+    private ?string $placeWorkshop = null;
 
     public function getId(): ?int
     {
@@ -36,48 +36,48 @@ class Workshop
 
     public function getNameWorkshop(): ?string
     {
-        return $this->name_workshop;
+        return $this->nameWorkshop;
     }
 
-    public function setNameWorkshop(?string $name_workshop): static
+    public function setNameWorkshop(?string $nameWorkshop): static
     {
-        $this->name_workshop = $name_workshop;
+        $this->nameWorkshop = $nameWorkshop;
 
         return $this;
     }
 
     public function getDateWorkshop(): ?\DateTimeInterface
     {
-        return $this->date_workshop;
+        return $this->dateWorkshop;
     }
 
-    public function setDateWorkshop(?\DateTimeInterface $date_workshop): static
+    public function setDateWorkshop(?\DateTimeInterface $dateWorkshop): static
     {
-        $this->date_workshop = $date_workshop;
+        $this->dateWorkshop = $dateWorkshop;
 
         return $this;
     }
 
     public function getCodeWorkshop(): ?string
     {
-        return $this->code_workshop;
+        return $this->codeWorkshop;
     }
 
-    public function setCodeWorkshop(?string $code_workshop): static
+    public function setCodeWorkshop(?string $codeWorkshop): static
     {
-        $this->code_workshop = $code_workshop;
+        $this->codeWorkshop = $codeWorkshop;
 
         return $this;
     }
 
     public function getPlaceWorkshop(): ?string
     {
-        return $this->place_workshop;
+        return $this->placeWorkshop;
     }
 
-    public function setPlaceWorkshop(?string $place_workshop): static
+    public function setPlaceWorkshop(?string $placeWorkshop): static
     {
-        $this->place_workshop = $place_workshop;
+        $this->placeWorkshop = $placeWorkshop;
 
         return $this;
     }
