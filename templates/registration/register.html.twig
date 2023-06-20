@@ -32,12 +32,10 @@
     {{ form_start(registrationForm) }}
     {{ form_errors(registrationForm) }}
     <h1 class="iv-title">INO VIN Dégustation</h1>
-    {# <form action=""> #}
-    <div class="d-flex justify-content-center">
+    <div class="iv-form-container-login align-items-center">
         <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register">
             <div class="iv-form-container-inputs">
                 <h2 class="iv-title">S'inscrire</h2>
-
                 <div class="row">
                     <div class="col">
                         <input
@@ -91,7 +89,7 @@
                         {# <span>{{ field_errors(registrationForm.password.second) }}</span> #}
                     </div>
                 </div>
-             {#   <div>
+                {#   <div>
                     <h2 class="iv-title">Mes gouts</h2>
                     <h4 class="mb-4">Mes couleurs de vin préferées</h4>
                     <div class="d-flex flex-wrap justify-content-between">
@@ -176,22 +174,22 @@
                                 {% set columnCounter = 0 %}
                             {% endif %}
                         {% endfor %}
-                    </div>#}
-                    <div class="row">
-                        <div class="col mx-auto">
-                            <label class="iv-container fs-5 " style="width: initial">J'accepte les conditions
-                                d'utilisation
-                                <input
-                                    name="{{ field_name(registrationForm.agreeTerms) }}"
-                                    type="checkbox">
-                                <span class="iv-checkmark"></span>
-                            </label>
-                        </div>
+                    </div> #}
+                <div class="row">
+                    <div class="col mx-auto">
+                        <label class="iv-container fs-5 " style="width: initial">J'accepte les conditions
+                            d'utilisation
+                            <input
+                                name="{{ field_name(registrationForm.agreeTerms) }}"
+                                type="checkbox">
+                            <span class="iv-checkmark"></span>
+                        </label>
                     </div>
-                <input class="iv-btn" type="submit" value="S'inscrire">
                 </div>
+                <input class="iv-btn" type="submit" value="S'inscrire">
             </div>
         </div>
+    </div>
     </div>
 
     {{ form_end(registrationForm) }}
