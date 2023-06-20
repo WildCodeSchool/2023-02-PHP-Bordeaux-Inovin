@@ -50,24 +50,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phoneNumber = null;
 
-    #[ORM\ManyToMany(targetEntity: Color::class, inversedBy: 'users')]
-    private Collection $color;
-
-    #[ORM\ManyToMany(targetEntity: Arome::class, inversedBy: 'users')]
-    private Collection $arome;
-
-    #[ORM\ManyToMany(targetEntity: Region::class, inversedBy: 'users')]
-    private Collection $region;
-
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
-    public function __construct()
-    {
-        $this->color = new ArrayCollection();
-        $this->arome = new ArrayCollection();
-        $this->region = new ArrayCollection();
-    }
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Gout $gout = null;
+
 
     public function getId(): ?int
     {
@@ -93,7 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -199,78 +187,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Color>
-     */
-    public function getColor(): Collection
-    {
-        return $this->color;
-    }
-
-    public function addColor(Color $color): self
-    {
-        if (!$this->color->contains($color)) {
-            $this->color->add($color);
-        }
-
-        return $this;
-    }
-
-    public function removeColor(Color $color): self
-    {
-        $this->color->removeElement($color);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Arome>
-     */
-    public function getArome(): Collection
-    {
-        return $this->arome;
-    }
-
-    public function addArome(Arome $arome): self
-    {
-        if (!$this->arome->contains($arome)) {
-            $this->arome->add($arome);
-        }
-
-        return $this;
-    }
-
-    public function removeArome(Arome $arome): self
-    {
-        $this->arome->removeElement($arome);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Region>
-     */
-    public function getRegion(): Collection
-    {
-        return $this->region;
-    }
-
-    public function addRegion(Region $region): self
-    {
-        if (!$this->region->contains($region)) {
-            $this->region->add($region);
-        }
-
-        return $this;
-    }
-
-    public function removeRegion(Region $region): self
-    {
-        $this->region->removeElement($region);
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -282,4 +198,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getGout(): ?Gout
+    {
+        return $this->gout;
+    }
+
+    public function setGout(?Gout $gout): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($gout === null && $this->gout !== null) {
+            $this->gout->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($gout !== null && $gout->getUser() !== $this) {
+            $gout->setUser($this);
+        }
+
+        $this->gout = $gout;
+
+        return $this;
+    }
+
 }
