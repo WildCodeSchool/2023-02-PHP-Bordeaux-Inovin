@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos goûts{% endblock %}
+
+{% block body %}
+
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+
+            {{ include('gout/_form.html.twig', {'button_label': 'Valider'}) }}
+
+{% endblock %}
