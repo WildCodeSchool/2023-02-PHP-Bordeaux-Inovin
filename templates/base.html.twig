@@ -18,14 +18,12 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 
-<<<<<<< HEAD
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body>
-{% include "includes/_navbar.html.twig" %}
 
+<body>
 {% for category, messages in app.flashes %}
     {% for message in messages %}
         <div class="alert alert-{{ category }}">
@@ -33,6 +31,8 @@
         </div>
     {% endfor %}
 {% endfor %}
+
+{% include "includes/_navbar.html.twig" %}
 
 {% block body %}{% endblock %}
 
