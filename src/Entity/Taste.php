@@ -17,7 +17,7 @@ class Taste
     private ?int $id = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $name_taste = null;
+    private ?string $nameTaste = null;
 
     public function getId(): ?int
     {
@@ -26,12 +26,12 @@ class Taste
 
     public function getNameTaste(): ?string
     {
-        return $this->name_taste;
+        return $this->nameTaste;
     }
 
-    public function setNameTaste(?string $name_taste): static
+    public function setNameTaste(?string $nameTaste): static
     {
-        $this->name_taste = $name_taste;
+        $this->nameTaste = $nameTaste;
 
         return $this;
     }
