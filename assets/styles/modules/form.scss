@@ -85,13 +85,35 @@
     border: $iv-border-form;
     border-radius: $iv-border-radius;
 }
+.w-80 {
+    width: 80%;
+}
 
 @media screen and (max-width: 430px) {
 
     #iv-form-container-register{
         width: 95%;
     }
+    .iv-form-tel-gout{
+        align-items: center;
+        flex-direction: column;
+    }
+    .iv-form-tel-container-gout{
+        flex-direction: column;
+    }
+    .iv-mx-0{
+        margin: 0 !important;
+    }
+    .iv-w-100{
+        width: 100%;
+    }
+    .iv-w-95{
+        width: 95% !important;
+    }
 
+    .iv-w-75{
+        width: 75% ;
+    }
 }
 
 
