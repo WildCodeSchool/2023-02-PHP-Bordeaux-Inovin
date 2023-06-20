@@ -62,13 +62,23 @@ class RegistrationFormType extends AbstractType
             ])*/
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passes doivent correspondre.',
+                'invalid_message' => 'Les mots de passe doivent correspondre.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
-            ])
-          /*  ->add('color', EntityType::class, [
+                'first_options' => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci de renseigner un mot de passe',
+                    ]),
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => "Votre mot de passe doit être constitué d'au moins {{ limit }} caractères",
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ]]);
+            /*  ->add('color', EntityType::class, [
                 'class' => Color::class,
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -88,8 +98,7 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
-            ]) */
-        ;
+            ]) */;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

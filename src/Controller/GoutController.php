@@ -2,11 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Gout;
+
+use App\Form\GoutType;
+
 use App\Repository\AromeRepository;
 use App\Repository\ColorRepository;
+use App\Repository\GoutRepository;
 use App\Repository\RegionRepository;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/gout', name: 'gout_')]
@@ -37,15 +46,73 @@ class GoutController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(): Response
+    public function new(Request $request,GoutRepository $goutRepository): Response
     {
+        $gout = new Gout();
+        $form = $this->createForm(GoutType::class, $gout);
+        $form->handleRequest($request);
+        $user = $this->getUser();
 
-        return $this->render('gout/new.html.twig');
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gout->setUser($this->getUser());
+            $selectedColors = $form->get('color')->getData();
+            $selectedAromes = $form->get('arome')->getData();
+            $selectedRegions = $form->get('region')->getData();
+            foreach ($selectedColors as $color) {
+                $gout->addColor($color);
+                $color->addGout($gout);
+            }
+            foreach ($selectedAromes as $arome) {
+                $gout->addArome($arome);
+                $arome->addGout($gout);
+            }
+            foreach ($selectedRegions as $region) {
+                $gout->addRegion($region);
+                $region->addGout($gout);
+            }
+            $goutRepository->save($gout, true);
+
+            return $this->redirectToRoute('gout_edit', ['id' => $gout->getId()]);
+        }
+
+
+        return $this->render('gout/new.html.twig', [
+            'form' => $form->createView(), 'gout'=>$gout,
+        ]);
     }
 
     #[Route('/show', name: 'show')]
     public function show(): response
     {
         return $this->render('gout/show.html.twig');
+    }
+
+
+    #[Route('/edit/{id}', name: 'edit')]
+    #[IsGranted('ROLE_USER')]
+    public function edit(Request $request, GoutRepository $goutRepository, Gout $gout): Response
+    {
+        if ($this->getUser() !== $gout->getUser()) {
+            // If not the owner, throws a 403 Access Denied exception
+            throw $this->createAccessDeniedException('Only the owner can edit your gout!');
+        }
+
+        $form = $this->createForm(GoutType::class, $gout);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Supprimer les boucles foreach inutiles pour les relations ManyToMany (couleur, arôme, région)
+            $goutRepository->save($gout, true);
+            // ...
+
+            return $this->redirectToRoute('gout_edit', ['id' => $gout->getId()]);
+        }
+
+        return $this->render('gout/edit.html.twig', [
+            'form' => $form->createView(),
+            'gout' => $gout,
+        ]);
     }
 }
