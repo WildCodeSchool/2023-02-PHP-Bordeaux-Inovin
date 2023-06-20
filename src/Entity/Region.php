@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
+
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 class Region
 {
@@ -19,14 +20,14 @@ class Region
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    private ?string $nameRegion = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'region')]
-    private Collection $users;
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'region')]
+    private Collection $gouts;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->gouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,40 +35,40 @@ class Region
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNameRegion(): ?string
     {
-        return $this->name;
+        return $this->nameRegion;
     }
 
-    public function setName(string $name): self
+    public function setNameRegion(string $nameRegion): self
     {
-        $this->name = $name;
+        $this->nameRegion = $nameRegion;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, Gout>
      */
-    public function getUsers(): Collection
+    public function getGouts(): Collection
     {
-        return $this->users;
+        return $this->gouts;
     }
 
-    public function addUser(User $user): self
+    public function addGout(Gout $gout): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addRegion($this);
+        if (!$this->gouts->contains($gout)) {
+            $this->gouts->add($gout);
+            $gout->addRegion($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeGout(Gout $gout): static
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeRegion($this);
+        if ($this->gouts->removeElement($gout)) {
+            $gout->removeRegion($this);
         }
 
         return $this;

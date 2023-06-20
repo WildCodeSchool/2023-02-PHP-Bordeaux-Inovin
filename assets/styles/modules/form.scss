@@ -55,7 +55,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 255px;
+    width: 47%;
 }
 .iv-container input {
 
@@ -69,7 +69,7 @@
     position: absolute;
     top: 3px;
     left: 0;
-    background: $iv-taupe;
+    background-color: $iv-main-white;
     border: $iv-border-form;
     border-radius: $iv-border-radius-check;
     height: 25px;
@@ -77,10 +77,12 @@
 
 }
 .iv-container input:checked ~ .iv-checkmark {
-    background-color: $iv-main-white;
+    background-color: $iv-taupe;
 }
 
 .iv-form-container {
     border: $iv-border-form;
     border-radius: $iv-border-radius;
 }
+
+
