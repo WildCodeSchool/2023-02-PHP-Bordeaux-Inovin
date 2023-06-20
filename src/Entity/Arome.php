@@ -19,14 +19,14 @@ class Arome
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    private ?string $nameArome = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'arome')]
-    private Collection $users;
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'arome')]
+    private Collection $gouts;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->gouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,40 +34,40 @@ class Arome
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNameArome(): ?string
     {
-        return $this->name;
+        return $this->nameArome;
     }
 
-    public function setName(string $name): self
+    public function setNameArome(string $nameArome): self
     {
-        $this->name = $name;
+        $this->nameArome = $nameArome;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, Gout>
      */
-    public function getUsers(): Collection
+    public function getGouts(): Collection
     {
-        return $this->users;
+        return $this->gouts;
     }
 
-    public function addUser(User $user): self
+    public function addGout(Gout $gout): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addArome($this);
+        if (!$this->gouts->contains($gout)) {
+            $this->gouts->add($gout);
+            $gout->addArome($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeGout(Gout $gout): static
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeArome($this);
+        if ($this->gouts->removeElement($gout)) {
+            $gout->removeArome($this);
         }
 
         return $this;
