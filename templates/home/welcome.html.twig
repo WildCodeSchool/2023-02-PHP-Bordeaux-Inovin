@@ -4,7 +4,7 @@
 
 {% block body %}
     <section class="iv-carousel">
-        <h1>INO VIN Dégustation</h1>
+        <h1 class="iv-title">INO VIN Dégustation</h1>
         <div id="carouselExampleCaptions" class="carousel slide m-auto;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -24,7 +24,7 @@
                             <div class="iv-block-carousel">
                                 <h2>Bienvenue à l’Atelier</h2>
                                 <hr>
-                                <ul class="list-carousel">
+                                <ul class="iv-list-carousel">
                                     <li>2 heures pour créer ton vin</li>
                                     <li>4 cépages a tester</li>
                                     <li>1 assemblage par participant</li>
@@ -88,7 +88,7 @@
             </button>
         </div>
 
-        <input  class="iv-btn my-5 m-auto" value="Connexion" type="submit">
+        <a class="iv-connexionHref" href="{{ path("app_login") }}"><input  class="iv-btn my-4 m-auto" value="Connexion" type="submit"></a>
 
     </section>
 
