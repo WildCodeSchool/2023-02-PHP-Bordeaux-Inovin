@@ -71,6 +71,7 @@ class CepageFixtures extends Fixture
             $color = $this->getReference('color_' . self::COLOR[array_rand(self::COLOR)]);
             $wine->setColor($color);
             $manager->persist($wine);
+            $this->addReference('wine_' . $i, $wine);
         }
 
         $manager->flush();
