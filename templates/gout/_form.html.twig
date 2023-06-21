@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mb-4">
-    <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register1">
+    <div class="iv-form-container py-3 my-1 iv-w-95 w-75" id="iv-form-container-register1">
         <div class="iv-form-container-inputs w-100">
 
             {{ form_start(form) }}
@@ -7,12 +7,12 @@
                 <h2 class="iv-title mb-4">Mes gouts</h2>
 
                 <div class="d-flex justify-content-center">
-                    <div class="iv-form-container py-3 my-1 w-75">
-                        <div class="d-flex align-items-center">
-                            <div class="col-4">
-                                <h4 class="col-4 mx-5 iv-color">J'aime</h4>
+                    <div class="iv-form-container py-3 my-1 w-80">
+                        <div class="iv-form-tel-container-gout d-flex  align-items-center">
+                            <div class=" col-4 ">
+                                <h4 class="col-4  mx-5 iv-mx-0 iv-color">J'aime</h4>
                             </div>
-                            <div class="col-8 d-flex">
+                            <div class="iv-form-tel-gout col-8 d-flex">
 
                                 {% for color in form.color %}
 
@@ -29,12 +29,12 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <div class="iv-form-container py-3 my-1 w-75">
-                        <div class="d-flex align-items-center flex-wrap">
-                            <div class="col-4">
-                                <h4 class="col-4 mx-5 iv-color">Mes arômes préférées</h4>
+                    <div class="iv-form-container py-3 my-1 w-80">
+                        <div class="iv-form-tel-container-gout d-flex align-items-center flex-wrap iv-form-gout justify-content-sm-between">
+                            <div class="col-4 iv-w-100">
+                                <h4 class="col-4 iv-w-100 mx-5 iv-mx-0 iv-color text-center">Mes arômes préférées</h4>
                             </div>
-                            <div class="col-8 d-flex flex-wrap">
+                            <div class=" iv-form-tel-gout col-8  d-flex flex-wrap justify-content-center">
 
                                 {% for arome in form.arome %}
 
@@ -51,16 +51,16 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mb-4">
-                    <div class="iv-form-container py-3 my-1 w-75">
-                        <div class="d-flex align-items-center flex-wrap">
-                            <div class="col-4">
-                                <h4 class="col-4 mx-5 iv-color">Mes Régions préférées</h4>
+                    <div class="iv-form-container py-3 my-1 w-80">
+                        <div class="iv-form-tel-container-gout d-flex align-items-center flex-wrap iv-form-gout justify-content-sm-between">
+                            <div class="col-4 iv-w-100">
+                                <h4 class="col-4 iv-w-100 mx-5 iv-mx-0 iv-color text-center">Mes régions préférées</h4>
                             </div>
-                            <div class="col-8 d-flex flex-wrap">
+                            <div class=" iv-form-tel-gout iv-w-90 col-8  d-flex flex-wrap justify-content-center">
 
                                 {% for region in form.region %}
 
-                                        <label class="iv-container fs-5">
+                                        <label class="iv-container iv-w-75 fs-5">
                                             {{ form_widget(region) }}
                                             {{ region.vars.label }}
                                             <span class="iv-checkmark"></span>
