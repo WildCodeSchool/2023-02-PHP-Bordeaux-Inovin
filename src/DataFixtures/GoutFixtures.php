@@ -27,8 +27,6 @@ class GoutFixtures extends Fixture
         }
         $manager->flush();
 
-
-
         foreach (self::REGION as $regionName) {
             $region = new Region();
             $region->setNameRegion($regionName);

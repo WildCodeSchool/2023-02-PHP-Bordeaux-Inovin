@@ -49,7 +49,7 @@ class CepageFixtures extends Fixture
             $manager->persist($cepage);
             $this->addReference('cepage_' . $cepageName, $cepage);
         }
-         $manager->flush();
+        $manager->flush();
 
         foreach (self::COLOR as $colorName) {
             $color = new Color();
