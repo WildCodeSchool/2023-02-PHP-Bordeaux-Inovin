@@ -12,7 +12,7 @@ class GoutFixtures extends Fixture
 {
     public const AROME = ['Florale', 'Végétale', 'Fruité', 'Epicé', 'Sucré',
         'Animal', 'Chimique', 'Boisée'];
-    public const COLOR = ['blanc', 'Rouge', 'Rosé'];
+    public const COLOR = ['Blanc', 'Rouge', 'Rosé'];
 
     public const REGION = ['Val de loire', 'Sud-ouest', 'Bourgogne', 'Provence-Corse', 'Charentais',
         'Jura-Savoie', 'Languedoc-Rousillon', 'Bordeaux', 'Rhone', 'Alsace-Loraine'];
@@ -28,14 +28,7 @@ class GoutFixtures extends Fixture
         $manager->flush();
 
 
-        foreach (self::COLOR as $colorName) {
-            $color = new Color();
-            $color->setNameColor($colorName);
-            $manager->persist($color);
-            $this->addReference('color_' . $colorName, $color);
-        }
 
-        $manager->flush();
         foreach (self::REGION as $regionName) {
             $region = new Region();
             $region->setNameRegion($regionName);
