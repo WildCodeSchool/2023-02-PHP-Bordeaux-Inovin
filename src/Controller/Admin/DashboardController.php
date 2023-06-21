@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Arome;
 use App\Entity\Cepage;
 use App\Entity\Color;
+use App\Entity\Region;
+use App\Entity\Smell;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -79,8 +81,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Régions');
 
         yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
-            MenuItem::linkToCrud('Ajouter une régions', 'fas fa-plus-circle', Color::class)->setAction(crud::PAGE_NEW),
-            MenuItem::linkToCrud('liste des régions', 'fas fa-list', Color::class)]);
+            MenuItem::linkToCrud('Ajouter une régions', 'fas fa-plus-circle', Region::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des régions', 'fas fa-list', Region::class)]);
+
+        yield MenuItem::section('Arômes de la fiche de dégustation');
+
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Smell::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des arômes', 'fas fa-list', Smell::class)]);
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
