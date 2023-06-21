@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center mb-4">
+    <div class="iv-form-container py-3 my-1 w-75" id="iv-form-container-register1">
+        <div class="iv-form-container-inputs w-100">
+
+            {{ form_start(form) }}
+            <div>
+                <h2 class="iv-title mb-4">Mes gouts</h2>
+
+                <div class="d-flex justify-content-center">
+                    <div class="iv-form-container py-3 my-1 w-75">
+                        <div class="d-flex align-items-center">
+                            <div class="col-4">
+                                <h4 class="col-4 mx-5 iv-color">J'aime</h4>
+                            </div>
+                            <div class="col-8 d-flex">
+
+                                {% for color in form.color %}
+
+                                        <label class="iv-container fs-5">
+                                            {{ form_widget(color) }}
+                                            {{ color.vars.label }}
+                                            <span class="iv-checkmark"></span>
+                                        </label>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="iv-form-container py-3 my-1 w-75">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <div class="col-4">
+                                <h4 class="col-4 mx-5 iv-color">Mes arômes préférées</h4>
+                            </div>
+                            <div class="col-8 d-flex flex-wrap">
+
+                                {% for arome in form.arome %}
+
+                                        <label class="iv-container fs-5">
+                                            {{ form_widget(arome) }}
+                                            {{ arome.vars.label }}
+                                            <span class="iv-checkmark"></span>
+                                        </label>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="iv-form-container py-3 my-1 w-75">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <div class="col-4">
+                                <h4 class="col-4 mx-5 iv-color">Mes Régions préférées</h4>
+                            </div>
+                            <div class="col-8 d-flex flex-wrap">
+
+                                {% for region in form.region %}
+
+                                        <label class="iv-container fs-5">
+                                            {{ form_widget(region) }}
+                                            {{ region.vars.label }}
+                                            <span class="iv-checkmark"></span>
+                                        </label>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="iv-btn">{{ button_label|default('Valider') }}</button>
+
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

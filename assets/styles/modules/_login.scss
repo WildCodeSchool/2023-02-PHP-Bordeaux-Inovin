@@ -16,7 +16,8 @@
 }
 
 .iv-form-container-login {
-    height: 400px;
-    border: $iv-border-form;
-    border-radius: $iv-border-radius;
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
