@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TastingSheetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -23,6 +25,27 @@ class TastingSheet
 
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $intensity = null;
+
+    #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets')]
+    private Collection $taste;
+
+    #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets')]
+    private Collection $smell;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Comment $comment = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?Wine $wine = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?Workshop $workshop = null;
+
+    public function __construct()
+    {
+        $this->taste = new ArrayCollection();
+        $this->smell = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,6 +84,90 @@ class TastingSheet
     public function setIntensity(?string $intensity): static
     {
         $this->intensity = $intensity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Taste>
+     */
+    public function getTaste(): Collection
+    {
+        return $this->taste;
+    }
+
+    public function addTaste(Taste $taste): static
+    {
+        if (!$this->taste->contains($taste)) {
+            $this->taste->add($taste);
+        }
+
+        return $this;
+    }
+
+    public function removeTaste(Taste $taste): static
+    {
+        $this->taste->removeElement($taste);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Smell>
+     */
+    public function getSmell(): Collection
+    {
+        return $this->smell;
+    }
+
+    public function addSmell(Smell $smell): static
+    {
+        if (!$this->smell->contains($smell)) {
+            $this->smell->add($smell);
+        }
+
+        return $this;
+    }
+
+    public function removeSmell(Smell $smell): static
+    {
+        $this->smell->removeElement($smell);
+
+        return $this;
+    }
+
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comment $comment): static
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getWine(): ?Wine
+    {
+        return $this->wine;
+    }
+
+    public function setWine(?Wine $wine): static
+    {
+        $this->wine = $wine;
+
+        return $this;
+    }
+
+    public function getWorkshop(): ?Workshop
+    {
+        return $this->workshop;
+    }
+
+    public function setWorkshop(?Workshop $workshop): static
+    {
+        $this->workshop = $workshop;
 
         return $this;
     }
