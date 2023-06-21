@@ -61,34 +61,27 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::section('Arômes');
+        yield MenuItem::section('Fiche de Gout client');
 
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Arome::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('Liste des arômes', 'fas fa-list', Arome::class)]);
 
-
-        yield MenuItem::section('Couleurs');
-
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::submenu('Couleurs', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter une couleur', 'fas fa-plus-circle', Color::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des couleurs', 'fas fa-list', Color::class)]);
 
-        yield MenuItem::section('Régions');
-
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::submenu('Régions', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter une régions', 'fas fa-plus-circle', Region::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des régions', 'fas fa-list', Region::class)]);
 
-        yield MenuItem::section('Arômes de la fiche de dégustation');
+        yield MenuItem::section('Fiche de dégustation');
 
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Smell::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des arômes', 'fas fa-list', Smell::class)]);
 
-        yield MenuItem::section('Saveur de la fiche de dégustation');
-
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::submenu('Saveurs', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter une saveur', 'fas fa-plus-circle', Taste::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des saveur', 'fas fa-list', Taste::class)]);
 
