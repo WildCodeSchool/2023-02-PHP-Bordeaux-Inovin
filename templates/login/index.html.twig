@@ -35,12 +35,24 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div class="form-outline mb-4 col-10 col-sm-8 mx-auto iv-form-input d-flex justify-content-center mt-5">
+            <input type="password" id="password" name="_password" class="form-control h-100"
+                   placeholder="Mot de passe"/>
+            <label class="form-label" for="password"></label>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <button type="submit" class="iv-btn-login mx-auto">Valider</button>
         <br>
 
-        </form>
-        <div class="text-center ">
-            <p class="$iv-main-darkgrey">Première fois ? <a href="/register">Inscrivez-vous !</a></p>
-            <p class="$iv-main-darkgrey"><a href="/"> J’ai oublié mon mot de passe ?</a></p>
+    </form>
+    <div class="text-center ">
+        <p class="$iv-main-darkgrey" >Première fois ? <a href="{{ path('app_register') }}">Inscrivez-vous !</a></p>
+        <p class="$iv-main-darkgrey"><a href="{{ path('app_forgot_password_request') }}"> J’ai oublié mon mot de passe ?</a></p>
+
 
         </div>
     </div>
