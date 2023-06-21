@@ -8,6 +8,7 @@ use App\Entity\Color;
 use App\Entity\Region;
 use App\Entity\Smell;
 use App\Entity\Taste;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -61,6 +62,8 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
+        yield    MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
+
         yield MenuItem::section('Fiche de Gout client');
 
         yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
@@ -90,6 +93,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
+
+
 
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
