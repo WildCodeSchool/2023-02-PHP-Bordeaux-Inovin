@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WorkshopRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -28,6 +30,14 @@ class Workshop
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $placeWorkshop = null;
+
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
+    public function __construct()
+    {
+        $this->tastingSheets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,6 +88,36 @@ class Workshop
     public function setPlaceWorkshop(?string $placeWorkshop): static
     {
         $this->placeWorkshop = $placeWorkshop;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setWorkshop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getWorkshop() === $this) {
+                $tastingSheet->setWorkshop(null);
+            }
+        }
 
         return $this;
     }
