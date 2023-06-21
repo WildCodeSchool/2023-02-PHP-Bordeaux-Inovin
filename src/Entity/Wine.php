@@ -33,9 +33,13 @@ class Wine
     #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
+    #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'wines')]
+    private Collection $workshops;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
+        $this->workshops = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +120,33 @@ class Wine
             if ($tastingSheet->getWine() === $this) {
                 $tastingSheet->setWine(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Workshop>
+     */
+    public function getWorkshops(): Collection
+    {
+        return $this->workshops;
+    }
+
+    public function addWorkshop(Workshop $workshop): static
+    {
+        if (!$this->workshops->contains($workshop)) {
+            $this->workshops->add($workshop);
+            $workshop->addWine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkshop(Workshop $workshop): static
+    {
+        if ($this->workshops->removeElement($workshop)) {
+            $workshop->removeWine($this);
         }
 
         return $this;
