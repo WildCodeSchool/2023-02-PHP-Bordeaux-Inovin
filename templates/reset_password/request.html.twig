@@ -3,20 +3,30 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
+<div class="d-flex justify-content-center">
+    <div class="iv-form-container py-10 my-1 w-50" id="iv-form-container-request">
+        <div class="iv-form-container-inputs">
+
+
+      {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
 
+
+        <h2 class="iv-center">réinitialisez votre mot de passe</h2>
     {{ form_start(requestForm) }}
         {{ form_row(requestForm.email) }}
+
         <div>
             <small>
-                Enter your email address and we will send you a
-                link to reset your password.
+                Entrez votre adresse e-mail et nous vous enverrons un
+                lien pour réinitialiser votre mot de passe.
             </small>
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
+        <button style="background-color: #B58654;" class="btn">Envoyer un e-mail de réinitialisation du mot de passe</button>
     {{ form_end(requestForm) }}
+    </div>
+    </div>
+</div>
 {% endblock %}

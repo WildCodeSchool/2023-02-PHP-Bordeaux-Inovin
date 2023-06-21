@@ -27,13 +27,13 @@
         </div>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <button type="button" class="iv-btn-login mx-auto">Valider</button>
+        <button type="submit" class="iv-btn-login mx-auto">Valider</button>
         <br>
 
     </form>
     <div class="text-center ">
-        <p class="$iv-main-darkgrey">Première fois ? <a href="/">Inscrivez-vous !</a></p>
-        <p class="$iv-main-darkgrey"><a href="/reset-password"> J’ai oublié mon mot de passe ?</a></p>
+        <p class="$iv-main-darkgrey" >Première fois ? <a href="{{ path('app_register') }}">Inscrivez-vous !</a></p>
+        <p class="$iv-main-darkgrey"><a href="{{ path('app_forgot_password_request') }}"> J’ai oublié mon mot de passe ?</a></p>
 
     </div>
 
