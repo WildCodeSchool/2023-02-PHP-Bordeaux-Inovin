@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    {% for flash_error in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    {{ dump(user) }}
+
+    {{ form_start(registrationForm) }}
+    {{ form_errors(registrationForm) }}
+    <h1 class="iv-title">{{ page_title|default("INO VIN Dégustation") }}</h1>
+    <div class="iv-form-container-login align-items-center">
+        <div class="iv-form-container py-3 my-1" id="iv-form-container-register">
+            <div class="iv-form-container-inputs">
+                <h2 class="iv-title">{{ form_title }}</h2>
+                <div class="row">
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.lastname) }}"
+                            type="text" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.lastname }}"
+                            {% else %}
+                                placeholder="Nom"
+                            {% endif %}>
+                    </div>
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.firstname) }}"
+                            type="text" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.firstname }}"
+                            {% else %}
+                                placeholder="Prénom"
+                            {% endif %}>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.email) }}"
+                            type="text" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.email }}"
+                            {% else %}
+                                placeholder="Email"
+                            {% endif %}>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.birthday) }}"
+                            type="date" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.birthday|date('Y-m-d') }}"
+                            {% endif %}>
+                    </div>
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.zipcode) }} }}"
+                            type="text" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.zipcode }}"
+                            {% else %}
+                                placeholder="Code postal"
+                            {% endif %}>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input
+                            name="{{ field_name(registrationForm.phoneNumber) }}"
+                            type="text" class="form-control iv-form-input"
+                            {% if form_title == "Mes informations" %}
+                                value="{{ user.phoneNumber }}"
+                            {% else %}
+                                placeholder="Téléphone"
+                            {% endif %}>
+                    </div>
+                </div>
+                {% if form_title == "S'inscrire" %}
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.password.first) }}"
+                                type="password" class="form-control iv-form-input" placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                name="{{ field_name(registrationForm.password.second) }}"
+                                type="password" class="form-control iv-form-input" placeholder="Confirmer le mot de passe">
+                            {# <span>{{ field_errors(registrationForm.password.second) }}</span> #}
+                        </div>
+                    </div>
+                {% endif %}
+                {#   <div>
+                    <h2 class="iv-title">Mes gouts</h2>
+                    <h4 class="mb-4">Mes couleurs de vin préferées</h4>
+                    <div class="d-flex flex-wrap justify-content-between">
+                        {% for color in registrationForm.color %}
+                            <div class="row">
+                                <div class="col">
+                                    <label class="iv-container fs-5" style="width: initial">
+                                        <input name="{{ field_name(color) }}" type="checkbox" checked="">
+                                        {{ color.vars.label }}
+                                        <span class="iv-checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <h4 class="mb-4">Mes Arômes préféres</h4>
+
+
+
+                    <div class="d-flex flex-wrap justify-content-around">
+                        {% set aromeCount = registrationForm.arome|length %}
+                        {% set columns = 2 %}
+                        {% set itemsPerColumn = (aromeCount / columns)|round(0, 'ceil') %}
+
+                        {% set columnCounter = 0 %}
+
+                        {% for arome in registrationForm.arome %}
+                            {% if loop.index % itemsPerColumn == 1 %}
+                                <div class="column">
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col">
+                                    <label class="iv-container fs-5" style="width: initial">
+                                        {{ form_widget(arome, {'checked': true}) }}
+                                        {{ form_label(arome) }}
+                                        <span class="iv-checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            {% if loop.index % itemsPerColumn == 0 or loop.last %}
+                                </div>
+                            {% endif %}
+
+                            {% set columnCounter = columnCounter + 1 %}
+                            {% if columnCounter == columns %}
+                                {% set columnCounter = 0 %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <h4 class="mb-4">Mes Régions préférée</h4>
+                    <div class="d-flex flex-wrap justify-content-around">
+                        {% set regionCount = registrationForm.region|length %}
+                        {% set columns = 2 %}
+                        {% set itemsPerColumn = (regionCount / columns)|round(0, 'ceil') %}
+
+                        {% set columnCounter = 0 %}
+
+                        {% for region in registrationForm.region %}
+                            {% if loop.index % itemsPerColumn == 1 %}
+                                <div class="column">
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col">
+                                    <label class="iv-container fs-5" style="width: initial">
+                                        {{ form_widget(region, {'checked': true}) }}
+                                        {{ form_label(region) }}
+                                        <span class="iv-checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            {% if loop.index % itemsPerColumn == 0 or loop.last %}
+                                </div>
+                            {% endif %}
+
+                            {% set columnCounter = columnCounter + 1 %}
+                            {% if columnCounter == columns %}
+                                {% set columnCounter = 0 %}
+                            {% endif %}
+                        {% endfor %}
+                    </div> #}
+                {% if form_title == "S'inscrire" %}
+                    <div class="row">
+                        <div class="col mx-auto">
+                            <label class="iv-container fs-5 " style="width: initial">J'accepte les conditions
+                                d'utilisation
+                                <input
+                                    name="{{ field_name(registrationForm.agreeTerms) }}"
+                                    type="checkbox">
+                                <span class="iv-checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col mx-auto">
+                        <input class="iv-btn" type="submit" value="{{ button_label|default("S'inscrire") }}">
+                    </div>
+                    {% if form_title == "Mes informations" %}
+                        <div class="col mx-auto">
+                            <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="iv-btn">Supprimer</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{ form_end(registrationForm, {'render_rest': false}) }}
+    {# </form> #}
+{% endblock %}
