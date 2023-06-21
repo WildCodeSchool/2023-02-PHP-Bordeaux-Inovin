@@ -33,7 +33,9 @@
     {% endfor %}
 {% endfor %}
 
+{% if app.user %}
 {% include "includes/_navbar.html.twig" %}
+{% endif %}
 
 {% block body %}{% endblock %}
 
