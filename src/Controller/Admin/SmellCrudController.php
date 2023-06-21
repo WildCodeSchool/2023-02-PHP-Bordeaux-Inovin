@@ -18,11 +18,13 @@ class SmellCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name_smell'),
-            DateTimeField::new('updated_at')->hideOnForm(),
-            DateTimeField::new('created_at')->hideOnForm(),
-        ];
+
+        yield IdField::new('id')->hideOnForm();
+
+        yield TextField::new('name_smell');
+
+        yield DateTimeField::new('updated_at')->hideOnForm();
+
+        yield DateTimeField::new('created_at')->hideOnForm();
     }
 }

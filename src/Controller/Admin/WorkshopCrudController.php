@@ -21,12 +21,18 @@ class WorkshopCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
 
-        yield    IdField::new('id')->hideOnForm();
-        yield    TextField::new('name_workshop');
-        yield    IntegerField::new('code_workshop');
-        yield    TextField::new('place_workshop');
-        yield    DateTimeField::new('created_at')->hideOnForm();
-        yield    DateTimeField::new('updated_at')->hideOnForm();
+        yield IdField::new('id')->hideOnForm();
+
+        yield TextField::new('name_workshop');
+
+        yield IntegerField::new('code_workshop');
+
+        yield TextField::new('place_workshop');
+
+        yield DateTimeField::new('created_at')->hideOnForm();
+
+        yield DateTimeField::new('updated_at')->hideOnForm();
+
         yield AssociationField::new('wines')
             ->setFormTypeOptions([
                 'multiple' => true,

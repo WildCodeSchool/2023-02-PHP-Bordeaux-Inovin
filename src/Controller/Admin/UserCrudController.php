@@ -22,24 +22,34 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('firstname'),
-            TextField::new('lastname'),
-            EmailField::new('email'),
-            ChoiceField::new('roles')
+
+        yield    IdField::new('id')->hideOnForm();
+
+        yield    TextField::new('firstname');
+
+        yield    TextField::new('lastname');
+
+        yield    EmailField::new('email');
+
+        yield       ChoiceField::new('roles')
                 ->allowMultipleChoices()
                 ->setChoices([
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                     'ROLE_USER' => 'ROLE_USER',
-                ]),
-            TextField::new('password'),
-            DateField::new('birthday'),
-            IntegerField::new('zipcode'),
-            TextField::new('phone_number'),
-            BooleanField::new('isVerified')->hideOnForm(),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
-        ];
+                ]);
+
+        yield    TextField::new('password');
+
+        yield    DateField::new('birthday');
+
+        yield    IntegerField::new('zipcode');
+
+        yield    TextField::new('phone_number');
+
+        yield    BooleanField::new('isVerified')->hideOnForm();
+
+        yield    DateTimeField::new('createdAt')->hideOnForm();
+
+        yield    DateTimeField::new('updatedAt')->hideOnForm();
     }
 }
