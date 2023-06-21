@@ -25,9 +25,13 @@ class Color
     #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'color')]
     private Collection $gouts;
 
+    #[ORM\OneToMany(mappedBy: 'color', targetEntity: Wine::class)]
+    private Collection $wines;
+
     public function __construct()
     {
         $this->gouts = new ArrayCollection();
+        $this->wines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,6 +73,36 @@ class Color
     {
         if ($this->gouts->removeElement($gout)) {
             $gout->removeColor($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Wine>
+     */
+    public function getWines(): Collection
+    {
+        return $this->wines;
+    }
+
+    public function addWine(Wine $wine): static
+    {
+        if (!$this->wines->contains($wine)) {
+            $this->wines->add($wine);
+            $wine->setColor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWine(Wine $wine): static
+    {
+        if ($this->wines->removeElement($wine)) {
+            // set the owning side to null (unless already changed)
+            if ($wine->getColor() === $this) {
+                $wine->setColor(null);
+            }
         }
 
         return $this;
