@@ -7,6 +7,7 @@ use App\Entity\Cepage;
 use App\Entity\Color;
 use App\Entity\Region;
 use App\Entity\Smell;
+use App\Entity\Taste;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -66,11 +67,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Arome::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('Liste des arômes', 'fas fa-list', Arome::class)]);
 
-        yield MenuItem::section('Cépages');
-
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
-            MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
-            MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
 
         yield MenuItem::section('Couleurs');
 
@@ -89,6 +85,19 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Smell::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des arômes', 'fas fa-list', Smell::class)]);
+
+        yield MenuItem::section('Saveur de la fiche de dégustation');
+
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une saveur', 'fas fa-plus-circle', Taste::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des saveur', 'fas fa-list', Taste::class)]);
+
+        yield MenuItem::section('Cépages');
+
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
+
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
