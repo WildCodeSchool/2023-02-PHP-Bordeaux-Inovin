@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Workshop;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -19,13 +20,17 @@ class WorkshopCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name_workshop'),
-            IntegerField::new('code_workshop'),
-            TextField::new('place_workshop'),
-            DateTimeField::new('created_at')->hideOnForm(),
-            DateTimeField::new('updated_at')->hideOnForm(),
-        ];
+
+        yield    IdField::new('id')->hideOnForm();
+        yield    TextField::new('name_workshop');
+        yield    IntegerField::new('code_workshop');
+        yield    TextField::new('place_workshop');
+        yield    DateTimeField::new('created_at')->hideOnForm();
+        yield    DateTimeField::new('updated_at')->hideOnForm();
+        yield AssociationField::new('wines')
+            ->setFormTypeOptions([
+                'multiple' => true,
+                'by_reference' => false,])
+            ->setHelp('Choisissez 4 vins');
     }
 }

@@ -151,4 +151,11 @@ class Wine
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getProducer() . ' ' .
+                $this->getColor() . ' ' .
+                $this->getCepage() . ' ' .
+                $this->getProductionYear();
+    }
 }
