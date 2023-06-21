@@ -9,6 +9,7 @@ use App\Entity\Region;
 use App\Entity\Smell;
 use App\Entity\Taste;
 use App\Entity\User;
+use App\Entity\Workshop;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -94,6 +95,12 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
 
+        yield MenuItem::section('Ateliers');
+
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un atelier', 'fas fa-plus-circle', Workshop::class)
+                ->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des ateliers', 'fas fa-list', Workshop::class)]);
 
 
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
