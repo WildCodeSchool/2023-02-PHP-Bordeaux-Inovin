@@ -3,18 +3,34 @@
 {% block title %}Hello TastingSheetController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Wild Code School/PhpstormProjects/2023-02-PHP-Bordeaux-Inovin/src/Controller/TastingSheetController.php'|file_link(0) }}">src/Controller/TastingSheetController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Wild Code School/PhpstormProjects/2023-02-PHP-Bordeaux-Inovin/templates/tasting_sheet/index.html.twig'|file_link(0) }}">templates/tasting_sheet/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="example-wrapper">
+        <h1 class="iv-title">Atelier Name ABC</h1>
+        <section>
+            <ul>
+                <li><a id="iv-ilAtelier1" href="#"><img src="{{ asset('build/images/inovin-tasting1.9fd778b6.jpg') }}"
+                                                        alt=""></a></li>
+                <li><a id="iv-ilAtelier2" href="#"><img src="{{ asset('build/images/inovin-tasting2.18bf3234.jpg') }}"
+                                                        alt=""></a></li>
+                <li><a id="iv-ilAtelier3" href="#"><img src="{{ asset('build/images/inovin-tasting3.fe708ea0.jpg') }}"
+                                                        alt=""></a></li>
+                <li><a id="iv-ilAtelier4" href="#"><img src="{{ asset('build/images/inovin-tasting4.e79c3ea3.jpg') }}"
+                                                        alt=""></a></li>
+            </ul>
+
+        </section>
+    </div>
 {% endblock %}
