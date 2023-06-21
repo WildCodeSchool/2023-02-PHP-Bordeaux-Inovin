@@ -16,7 +16,15 @@
 
 @media screen and (max-width: 430px) {
 
-    .iv-btn{
-        width:14rem;
+    .iv-btn {
+        width: 14rem;
+    }
+}
+
+@media screen and (max-width: 322px) {
+    .iv-btn {
+        height: 2.125rem;
+        width: 10rem;
+        font-size: 1rem;
     }
 }
