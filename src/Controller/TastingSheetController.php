@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TastingSheetController extends AbstractController
 {
-    #[Route('/tasting/sheet', name: 'app_tasting_sheet')]
+    #[Route('/tastingSheet', name: 'app_tasting_sheet')]
     public function index(): Response
     {
         return $this->render('tasting_sheet/index.html.twig', [

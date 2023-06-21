@@ -5,6 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Arome;
 use App\Entity\Cepage;
 use App\Entity\Color;
+use App\Entity\Region;
+use App\Entity\Smell;
+use App\Entity\Taste;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -58,11 +62,31 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::section('Arômes');
+        yield    MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
 
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::section('Fiche de Gout client');
+
+        yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Arome::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('Liste des arômes', 'fas fa-list', Arome::class)]);
+
+        yield MenuItem::submenu('Couleurs', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une couleur', 'fas fa-plus-circle', Color::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des couleurs', 'fas fa-list', Color::class)]);
+
+        yield MenuItem::submenu('Régions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une régions', 'fas fa-plus-circle', Region::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des régions', 'fas fa-list', Region::class)]);
+
+        yield MenuItem::section('Fiche de dégustation');
+
+        yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Smell::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des arômes', 'fas fa-list', Smell::class)]);
+
+        yield MenuItem::submenu('Saveurs', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une saveur', 'fas fa-plus-circle', Taste::class)->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des saveur', 'fas fa-list', Taste::class)]);
 
         yield MenuItem::section('Cépages');
 
@@ -70,11 +94,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
 
-        yield MenuItem::section('Couleurs');
 
-        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
-            MenuItem::linkToCrud('Ajouter une couleur', 'fas fa-plus-circle', Color::class)->setAction(crud::PAGE_NEW),
-            MenuItem::linkToCrud('liste des couleurs', 'fas fa-list', Color::class)]);
 
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
