@@ -9,3 +9,26 @@
     bottom: 0px;
 
 }
+
+.iv-title-workshop {
+    margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 430px) {
+    .iv-atelier-img {
+        height: auto;
+    }
+
+    .iv-title-workshop {
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+
+    .iv-title-workshop {
+        margin-bottom: 2rem;
+    }
+
+}

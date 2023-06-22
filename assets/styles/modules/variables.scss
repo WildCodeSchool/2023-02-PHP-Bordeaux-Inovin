@@ -3,6 +3,7 @@
 $iv-main-white: #FFFAF0;
 $iv-background-color: #F4EDDB;
 $iv-main-darkgrey: #323232;
+$iv-med-grey: #5e5b5b;
 $iv-goldBM: #B58654;
 $iv-taupe: #D3BDA5;
 $iv-box-shadow: 6px 6px 15px $iv-taupe;
@@ -39,6 +40,7 @@ body {
     line-height: 64px;
     font-weight: 400;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .iv-sub-title {
@@ -48,14 +50,19 @@ body {
     line-height: 55px;
     font-weight: 400;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
 }
+
 .iv-color {
     color: $iv-goldBM;
 }
 
 .iv-dk-grey {
     color: $iv-main-darkgrey;
+}
+
+.iv-med-grey {
+    color: $iv-med-grey;
 }
 
 h4, h2{
@@ -90,12 +97,20 @@ a:hover {
     text-decoration: underline;
 }
 
+::placeholder {
+    color: $iv-med-grey;
+}
+
+input[type="date" i] {
+    color: $iv-med-grey;
+}
+
 @media screen and (max-width: 430px) {
     .iv-title{
-        font-size: 30px;
+        font-size: 25px;
     }
     .iv-sub-title {
-        font-size: 25px;
-        margin-bottom: 5px;
+        font-size: 22px;
+        margin-bottom: 5px !important;
     }
 }
