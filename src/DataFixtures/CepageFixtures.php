@@ -62,7 +62,7 @@ class CepageFixtures extends Fixture
 
 
         $faker = Factory::create();
-        for ($i = 1; $i < 50; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $wine = new Wine();
             $wine->setProducer('Château ' . $faker->lastName);
             $wine->setProductionYear($faker->year());

@@ -15,7 +15,12 @@
             </form>
         </div>
 
+        <form action="{{ path('app_tasting_sheet') }}" method="POST" class="">
 
+            <input class="iv-form-input input m-auto my-3 " type="text" name="code" id="code"
+                   placeholder="Code de l'atelier">
+            <input class="iv-btn m-auto" type="submit" value="Valider">
+        </form>
         <div class="w-100 pt-5 iv-atelier-img">
             <img class="w-100" src="{{ asset('build/images/atelier.be6c9977.jpg') }}" alt="Atelier">
         </div>
