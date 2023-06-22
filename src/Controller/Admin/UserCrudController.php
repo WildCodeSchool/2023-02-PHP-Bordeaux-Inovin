@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -19,37 +20,42 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Liste des utilisateurs');
+    }
 
     public function configureFields(string $pageName): iterable
     {
 
         yield    IdField::new('id')->hideOnForm();
 
-        yield    TextField::new('firstname');
+        yield    TextField::new('firstname', 'Prénom');
 
-        yield    TextField::new('lastname');
+        yield    TextField::new('lastname', 'Nom');
 
-        yield    EmailField::new('email');
+        yield    EmailField::new('email', 'Email');
 
-        yield       ChoiceField::new('roles')
+        yield       ChoiceField::new('roles', 'Rôles')
                 ->allowMultipleChoices()
                 ->setChoices([
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                     'ROLE_USER' => 'ROLE_USER',
                 ]);
 
-        yield    TextField::new('password');
+        yield    TextField::new('password', 'Mot de passe')->hideOnIndex();
 
-        yield    DateField::new('birthday');
+        yield    DateField::new('birthday', 'Date de naissance');
 
-        yield    IntegerField::new('zipcode');
+        yield    IntegerField::new('zipcode', 'Code postal');
 
-        yield    TextField::new('phone_number');
+        yield    TextField::new('phone_number', 'Numéro de téléphone');
 
-        yield    BooleanField::new('isVerified')->hideOnForm();
+        yield    BooleanField::new('isVerified', 'Vérifier')->hideOnForm();
 
-        yield    DateTimeField::new('createdAt')->hideOnForm();
+        yield    DateTimeField::new('createdAt', 'Créer')->hideOnForm();
 
-        yield    DateTimeField::new('updatedAt')->hideOnForm();
+        yield    DateTimeField::new('updatedAt', 'Modifier')->hideOnForm();
     }
 }
