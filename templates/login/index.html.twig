@@ -8,22 +8,22 @@
 
     <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-form-container-login">
-        <div class="d-flex justify-content-center">
-            <div class="iv-form-container py-3 my-1" id="iv-form-container-register">
+        <div class="d-flex justify-content-center iv-margin-top-322">
+            <div class="py-3 my-3 iv-form-container" id="iv-form-container-register">
                 <div class="iv-form-container-inputs">
 
                     <form class="" style="max-width: 600px" action="{{ path('app_login') }}"
                           method="post">
-                        <h2 class="iv-title">Connexion</h2>
+                        <h2 class="iv-sub-title">Connexion</h2>
 
-                        <div class="">
+                        <div class="iv-322">
                             <input type="text" id="username" name="_username" value="{{ last_username }}"
                                    class="form-control iv-form-input"
                                    placeholder="Mail"/>
                             <label class="form-label" for="username"></label>
                         </div>
 
-                        <div class="">
+                        <div class="iv-322">
                             <input type="password" id="password" name="_password" class="form-control iv-form-input"
                                    placeholder="Mot de passe"/>
                             <label class="form-label" for="password"></label>
@@ -50,7 +50,7 @@
 #}
     </form>
     <div class="text-center ">
-        <p class="$iv-main-darkgrey" >Première fois ? <a href="{{ path('app_register') }}">Inscrivez-vous !</a></p>
+        <p class="$iv-main-darkgrey" >Première fois ? <a href="{{ path('app_register') }}" class="iv-color">Inscrivez-vous !</a></p>
         <p class="$iv-main-darkgrey"><a href="{{ path('app_forgot_password_request') }}"> J’ai oublié mon mot de passe ?</a></p>
 
 
