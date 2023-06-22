@@ -28,3 +28,17 @@
         height: calc(100vh - 10rem);
     }
 }
+
+@media screen and (max-width: 322px) {
+    .iv-322 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .iv-margin-top-322 {
+        margin-top: 60px;
+    }
+    .iv-form-input {
+        font-size: 15px;
+        line-height: 20px;
+    }
+}

@@ -18,13 +18,19 @@ $iv-mobile-title-font-size:2rem;
 $iv-check-border: 2px solid $iv-goldBM;
 $iv-check-background: $iv-main-white;
 /*$iv-mobile-assembly-card-name-font-size: 20px;*/
-$iv-background-vigne: $iv-background-color url('../../images/FeuilleDeVigneBnW.png') no-repeat top right;
+
 
 
 * {
     box-sizing: border-box;
 }
 
+body {
+    background-image: url('../../images/FeuilleDeVigneBnW.png');
+    width: auto;
+    background-repeat: no-repeat;
+    background-position: top right;
+}
 
 .iv-title{
     font-family: $iv-title-font-family;
@@ -34,8 +40,22 @@ $iv-background-vigne: $iv-background-color url('../../images/FeuilleDeVigneBnW.p
     font-weight: 400;
     text-align: center;
 }
+
+.iv-sub-title {
+    font-family: $iv-title-font-family;
+    color: $iv-main-darkgrey;
+    font-size: 40px;
+    line-height: 55px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 30px;
+}
 .iv-color {
     color: $iv-goldBM;
+}
+
+.iv-dk-grey {
+    color: $iv-main-darkgrey;
 }
 
 h4, h2{
@@ -50,4 +70,32 @@ p {
 }
 h1{
     margin:0;
+}
+
+a:link {
+    color: $iv-goldBM;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: $iv-goldBM;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $iv-goldBM;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 430px) {
+    .iv-title{
+        font-size: 30px;
+    }
+    .iv-sub-title {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
 }

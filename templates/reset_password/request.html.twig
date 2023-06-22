@@ -3,19 +3,16 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-<div class="d-flex justify-content-center">
-    <div class="iv-form-container py-10 my-1 w-50" id="iv-form-container-request">
-        <div class="iv-form-container-inputs">
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+<div class="request-form">
 
-
-      {% for flash_error in app.flashes('reset_password_error') %}
+    {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
+        <h2 class="iv-center">Réinitialisez votre mot de passe</h2>
 
-
-        <h2 class="iv-center">réinitialisez votre mot de passe</h2>
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
+        {{ form_start(requestForm) }}
+        {{ form_row(requestForm.email,{'attr':{'class':'form form-control'}}) }}
 
         <div>
             <small>
@@ -24,9 +21,12 @@
             </small>
         </div>
 
-        <button style="background-color: #B58654;" class="btn">Envoyer un e-mail de réinitialisation du mot de passe</button>
+        <button style="background-color: #B58654;" class="request-btn sm m-1">Envoyer un e-mail de réinitialisation du mot de passe</button>
+
     {{ form_end(requestForm) }}
-    </div>
-    </div>
+
 </div>
 {% endblock %}
+
+
+
