@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Gout;
-
 use App\Form\GoutType;
-
 use App\Repository\AromeRepository;
 use App\Repository\ColorRepository;
 use App\Repository\GoutRepository;
 use App\Repository\RegionRepository;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,12 +43,11 @@ class GoutController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(Request $request,GoutRepository $goutRepository): Response
+    public function new(Request $request, GoutRepository $goutRepository): Response
     {
         $gout = new Gout();
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
-        $user = $this->getUser();
 
 
 
@@ -79,16 +75,22 @@ class GoutController extends AbstractController
 
 
         return $this->render('gout/new.html.twig', [
-            'form' => $form->createView(), 'gout'=>$gout,
+            'form' => $form->createView(), 'gout' => $gout,
         ]);
     }
 
     #[Route('/show', name: 'show')]
-    public function show(): response
+    public function show(GoutRepository $goutRepository, Request $request): response
     {
-        return $this->render('gout/show.html.twig');
-    }
+        $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
+        $form = $this->createForm(GoutType::class, $gout);
+        $form->handleRequest($request);
 
+        return $this->render('gout/show.html.twig', [
+            'gout' => $gout,
+            'form' => $form->createView()
+        ]);
+    }
 
     #[Route('/edit/{id}', name: 'edit')]
     #[IsGranted('ROLE_USER')]
