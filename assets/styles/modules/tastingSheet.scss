@@ -1,5 +1,5 @@
-.iv-tasting-cards{
-    width:74%;
+.iv-tasting-cards {
+    width: 58%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,22 +11,24 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80VH;
+
 }
 
-#wine1{background:url("../../images/inovin-tasting1.jpg") no-repeat center center;
-    background-size: 90% 90%;
+#wine1 {
+    background: url("../../images/inovin-tasting1.jpg") no-repeat center center;
+    background-size: 100% auto;
     background-position: center center;
-    animation: shrink 1s ease-out;}
+    animation: shrink 1s ease-out;
+}
+
 @keyframes shrink {
     0% {
-        background-size: 50% 50%;
+        background-size: 50% auto;
     }
     100% {
-        background-size: 90% 90%;
+        background-size: 100% auto;
     }
 }
-.iv-btn-none{border: none;}
 
 .iv-tasting-cards ul {
     list-style: none;
@@ -57,3 +59,9 @@ ul li img:hover {
     transition: 0.5s;
 }
 
+@media creen and (max-width: 1024px) {
+    .iv-tasting-cards {
+        width: 80%;
+
+    }
+}
