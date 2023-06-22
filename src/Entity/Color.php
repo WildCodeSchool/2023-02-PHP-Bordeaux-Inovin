@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-
 #[ORM\Entity(repositoryClass: ColorRepository::class)]
 class Color
 {
@@ -106,5 +105,9 @@ class Color
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->getNameColor();
     }
 }
