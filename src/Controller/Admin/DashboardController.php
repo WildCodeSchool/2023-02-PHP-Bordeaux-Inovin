@@ -31,7 +31,7 @@ class DashboardController extends AbstractDashboardController
     {
         $url = $this->adminUrlGenerator
             ->
-            setController(AromeCrudController::class)
+            setController(UserCrudController::class)
             ->generateUrl();
         return $this->redirect($url);
 
