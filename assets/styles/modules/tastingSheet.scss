@@ -58,10 +58,52 @@ ul li img:hover {
     zoom: 0.98;
     transition: 0.5s;
 }
+/* form tastingSheet */
+.iv-form-tastingSheet > div{justify-content: flex-end; background-color :#F4EDDB;
+}
+#tasting_sheet_intensity, #tasting_sheet_clarity, #tasting_sheet_color {
+    background: #FFFAF0;
+    border: 1px solid #B58654;
+    border-radius: 0.625rem;
+    font-family: "Crimson Text", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+}
+#tasting_sheet_intensity, #tasting_sheet_clarity{
+    padding :5px 10px; margin: 5px auto
+}
+.iv-form-tastingSheet{max-width:80%}
+.container-tastingSheet{width:30%}
+.iv-form-check-tastingSheet {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 45%;
+}
+.iv-form-check-tastingSheet  input {
+
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/*camembert*/
+pie-chart{width:150px; height:150px; margin :10px auto}
 
 @media creen and (max-width: 1024px) {
     .iv-tasting-cards {
         width: 80%;
-
     }
 }
