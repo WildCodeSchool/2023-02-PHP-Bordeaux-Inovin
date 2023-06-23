@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Gout;
-
 use App\Form\GoutType;
-
 use App\Repository\AromeRepository;
 use App\Repository\ColorRepository;
 use App\Repository\GoutRepository;
 use App\Repository\RegionRepository;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +43,7 @@ class GoutController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(Request $request,GoutRepository $goutRepository): Response
+    public function new(Request $request, GoutRepository $goutRepository): Response
     {
         $gout = new Gout();
         $form = $this->createForm(GoutType::class, $gout);
@@ -79,7 +76,7 @@ class GoutController extends AbstractController
 
 
         return $this->render('gout/new.html.twig', [
-            'form' => $form->createView(), 'gout'=>$gout,
+            'form' => $form->createView(), 'gout' => $gout,
         ]);
     }
 
