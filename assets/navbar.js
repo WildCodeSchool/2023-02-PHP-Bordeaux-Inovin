@@ -17,10 +17,8 @@ function onOverDegustations() {
         degustationsTitle.style.display = 'none'
     }
 }
-
 let assemblagesTitle = document.querySelector('.iv-nav-assemblages')
 let checkAssemblages = false
-
 function onOverAssemblages() {
     if (checkAssemblages === false) {
         checkAssemblages = true
@@ -30,10 +28,8 @@ function onOverAssemblages() {
         assemblagesTitle.style.display = 'none'
     }
 }
-
 let profilTitle = document.querySelector('.iv-nav-profil')
 let checkProfil = false
-
 function onOverProfil() {
     if (checkProfil === false) {
         checkProfil = true
