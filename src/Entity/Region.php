@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 class Region
 {
@@ -72,5 +71,9 @@ class Region
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->getNameRegion();
     }
 }
