@@ -58,7 +58,6 @@ class TastingSheetType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => TastingSheet::class,
-
         ]);
     }
 }
