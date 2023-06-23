@@ -80,11 +80,17 @@ class GoutController extends AbstractController
     }
 
     #[Route('/show', name: 'show')]
-    public function show(): response
+    public function show(GoutRepository $goutRepository, Request $request): response
     {
-        return $this->render('gout/show.html.twig');
-    }
+        $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
+        $form = $this->createForm(GoutType::class, $gout);
+        $form->handleRequest($request);
 
+        return $this->render('gout/show.html.twig', [
+            'gout' => $gout,
+            'form' => $form->createView()
+        ]);
+    }
 
     #[Route('/edit/{id}', name: 'edit')]
     #[IsGranted('ROLE_USER')]

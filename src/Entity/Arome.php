@@ -72,4 +72,8 @@ class Arome
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getNameArome();
+    }
 }

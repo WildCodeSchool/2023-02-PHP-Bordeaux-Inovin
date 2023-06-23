@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
@@ -27,11 +28,10 @@ class RegistrationController extends AbstractController
 
     #[Route('/register', name: 'app_register')]
     public function register(
-        Request                     $request,
+        Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface      $entityManager,
-    ): Response
-    {
+        EntityManagerInterface $entityManager,
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -39,7 +39,9 @@ class RegistrationController extends AbstractController
         // verify if the email is already used - does not work so far - no flashMessage
         $userExist = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
         if ($userExist) {
-            $this->addFlash('danger', "Cet email est déjà utilisé. Rendez-vous sur la page de connexion pour réinitialiser votre mot de passe.");
+            $this->addFlash(
+                'danger',
+                "Cet email est déjà utilisé. Rendez-vous sur la page de connexion pour réinitialiser votre mot de passe.");
         }
 
         /*if ($form->isSubmitted() && ($form->get('plainPassword')->getData() !== $_POST['confirmPassword'])) {
@@ -47,7 +49,6 @@ class RegistrationController extends AbstractController
         }*/
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -72,9 +73,11 @@ class RegistrationController extends AbstractController
                 ->htmlTemplate('registration/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
 
-            $this->addFlash('success', 'Votre profil a bien été créé. rendez-vous sur votre boite mail pour vérifier votre compte');
-
-            return $this->redirectToRoute('app_home');
+            $this->addFlash(
+                'success',
+                'Votre profil a bien été créé. Rendez-vous sur votre boite mail pour vérifier votre compte');
+                $this->authenticateUser($user);
+            return $this->redirectToRoute('gout_new');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -100,5 +103,12 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Votre email a bien été vérifié.');
 
         return $this->redirectToRoute('app_register');
+    }
+
+    public function authenticateUser(User $user): void
+    {
+        $providerKey = 'main';
+        $token = new UsernamePasswordToken($user, $providerKey, $user->getRoles());
+        $this->container->get('security.token_storage')->setToken($token);
     }
 }
