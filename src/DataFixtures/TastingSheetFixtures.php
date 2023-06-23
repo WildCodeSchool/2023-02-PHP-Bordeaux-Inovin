@@ -37,10 +37,11 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
                 ->setColor($faker->word)
                 ->setClarity($faker->word)
                 ->setIntensity($faker->word)
-                ->setWine($this->getReference('wine_' . rand(1, 49)))
-                ->setComment($this->getReference('comment_' . rand(0, 49)))
+                ->setWine($this->getReference('wine_' . rand(0, 49)))
+                ->setComment($this->getReference('comment_' . $i))
                 ->addTaste($this->getReference('taste_' . self::TASTES[rand(0, 5)]))
-                ->addSmell($this->getReference('smell_' . self::SMELLS[rand(0, 5)]));
+                ->addSmell($this->getReference('smell_' . self::SMELLS[rand(0, 5)]))
+                ->setWorkshop($this->getReference('workshop_' . rand(0, 9)));
             $manager->persist($tastingSheet);
             $this->addReference('tastingSheet_' . $i, $tastingSheet);
         }
@@ -55,6 +56,7 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
             CommentFixtures::class,
             TasteFixtures::class,
             SmellFixtures::class,
+            WorkshopFixtures::class,
         ];
     }
 }

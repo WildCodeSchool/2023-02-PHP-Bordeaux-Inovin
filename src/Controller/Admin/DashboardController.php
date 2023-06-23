@@ -5,10 +5,13 @@ namespace App\Controller\Admin;
 use App\Entity\Arome;
 use App\Entity\Cepage;
 use App\Entity\Color;
+use App\Entity\Gout;
 use App\Entity\Region;
 use App\Entity\Smell;
 use App\Entity\Taste;
 use App\Entity\User;
+use App\Entity\Wine;
+use App\Entity\Workshop;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -29,7 +32,7 @@ class DashboardController extends AbstractDashboardController
     {
         $url = $this->adminUrlGenerator
             ->
-            setController(AromeCrudController::class)
+            setController(UserCrudController::class)
             ->generateUrl();
         return $this->redirect($url);
 
@@ -62,7 +65,9 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield    MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
+
+        yield MenuItem::linkToCrud('liste des Goûts par utilisateur', 'fas fa-list', Gout::class);
 
         yield MenuItem::section('Fiche de Gout client');
 
@@ -94,8 +99,19 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un cépage', 'fas fa-plus-circle', Cepage::class)->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des cépages', 'fas fa-list', Cepage::class)]);
 
+        yield MenuItem::section('Ateliers');
 
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un atelier', 'fas fa-plus-circle', Workshop::class)
+                ->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des ateliers', 'fas fa-list', Workshop::class)]);
 
+        yield MenuItem::section('Vin');
+
+        yield MenuItem::submenu('Actions', 'fas fa-bar')->setSubItems([
+            MenuItem::linkToCrud('Ajouter un vin', 'fas fa-plus-circle', Wine::class)
+                ->setAction(crud::PAGE_NEW),
+            MenuItem::linkToCrud('liste des Vin', 'fas fa-list', Wine::class)]);
 // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

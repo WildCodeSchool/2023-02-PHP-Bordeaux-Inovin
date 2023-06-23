@@ -15,6 +15,10 @@
     }
 }
 
+.iv-form-input-workshop {
+    padding: 0.375rem 0.75rem;
+}
+
 #iv-form-container-register {
     width: 50%;
 }
@@ -96,10 +100,19 @@
     width: 80%;
 }
 
-@media screen and (max-width: 430px) {
+.iv-hidden-mediascreen{
+    display: none;
+}
 
-    #iv-form-container-register {
-        width: 95%;
+@media screen and (max-width: 850px) {
+    #iv-form-container-register{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    #iv-form-container-register{
+        width: 90%;
     }
     .iv-form-tel-gout {
         align-items: center;
@@ -120,6 +133,14 @@
 
     .iv-w-75 {
         width: 75%;
+    }
+
+    .iv-hidden-mediascreen{
+        display: block;
+    }
+
+    .iv-s-text-mediascreen{
+        font-size: 0.9rem !important;
     }
 }
 
