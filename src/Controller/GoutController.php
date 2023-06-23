@@ -48,7 +48,6 @@ class GoutController extends AbstractController
         $gout = new Gout();
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
-        $user = $this->getUser();
 
 
 
