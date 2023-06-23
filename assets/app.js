@@ -16,3 +16,4 @@ require('bootstrap');
 // start the Stimulus application
 import './bootstrap';
 import './scripts/navbar.js';
+import './scriptColor.js';

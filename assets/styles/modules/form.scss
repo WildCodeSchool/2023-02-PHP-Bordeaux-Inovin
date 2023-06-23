@@ -9,6 +9,7 @@
     line-height: 36px;
     display: flex;
     align-items: center;
+
     ::placeholder {
         padding-left: 10px;
     }
@@ -35,11 +36,12 @@
     margin: 0.3rem auto;
 }
 
-.iv-form-checkbox-label input{
+.iv-form-checkbox-label input {
     opacity: 0;
     width: 0;
     height: 0;
 }
+
 .iv-form-checkmark {
     background: $iv-main-white;
     border: $iv-border-form;
@@ -48,6 +50,7 @@
     height: 30px;
 
 }
+
 .iv-container {
     display: block;
     position: relative;
@@ -70,6 +73,7 @@
     height: 0;
     width: 0;
 }
+
 .iv-checkmark {
     position: absolute;
     top: 3px;
@@ -81,6 +85,7 @@
     width: 25px;
 
 }
+
 .iv-container input:checked ~ .iv-checkmark {
     background-color: $iv-taupe;
 }
@@ -90,6 +95,7 @@
     border-radius: $iv-border-radius;
     background-color: $iv-background-color;
 }
+
 .w-80 {
     width: 80%;
 }
@@ -109,25 +115,25 @@
     #iv-form-container-register{
         width: 90%;
     }
-    .iv-form-tel-gout{
+    .iv-form-tel-gout {
         align-items: center;
         flex-direction: column;
     }
-    .iv-form-tel-container-gout{
+    .iv-form-tel-container-gout {
         flex-direction: column;
     }
-    .iv-mx-0{
+    .iv-mx-0 {
         margin: 0 !important;
     }
-    .iv-w-100{
+    .iv-w-100 {
         width: 100%;
     }
-    .iv-w-95{
+    .iv-w-95 {
         width: 95% !important;
     }
 
-    .iv-w-75{
-        width: 75% ;
+    .iv-w-75 {
+        width: 75%;
     }
 
     .iv-hidden-mediascreen{
