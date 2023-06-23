@@ -9,7 +9,6 @@
     {% for flash_error in app.flashes('danger') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-   {# {{ dump(user) }} #}
 
     {{ form_start(registrationForm) }}
     {{ form_errors(registrationForm) }}
@@ -201,12 +200,16 @@
                     </div>
                 {% endif %}
                 <div class="row">
-                    <div class="col mx-auto">
-                        <input class="iv-btn" type="submit" value="{{ button_label|default("S'inscrire") }}">
-                    </div>
                     {% if form_title == "Mes informations" %}
                         <div class="col mx-auto">
+                            <input type="submit" class="iv-btn" value="Modifier">{#  href="{{ path('app_user_edit', {'id': user.id}) }}" #}
+                        </div>
+                        <div class="col mx-auto">
                             <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="iv-btn">Supprimer</a>
+                        </div>
+                    {% else %}
+                        <div class="col mx-auto">
+                            <input class="iv-btn" type="submit" value="{{ button_label|default("S'inscrire") }}">
                         </div>
                     {% endif %}
                 </div>
@@ -215,6 +218,9 @@
     </div>
 
 
-    {{ form_end(registrationForm, {'render_rest': false}) }}
+
+
+
+    {{ form_end(registrationForm) }}
     {# </form> #}
 {% endblock %}
