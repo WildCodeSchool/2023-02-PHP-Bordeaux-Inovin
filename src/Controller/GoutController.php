@@ -86,6 +86,14 @@ class GoutController extends AbstractController
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Supprimer les boucles foreach inutiles pour les relations ManyToMany (couleur, arôme, région)
+            $goutRepository->save($gout, true);
+            // ...
+
+            return $this->redirectToRoute('app_atelier');
+        }
+
         return $this->render('gout/show.html.twig', [
             'gout' => $gout,
             'form' => $form->createView()
@@ -109,10 +117,10 @@ class GoutController extends AbstractController
             $goutRepository->save($gout, true);
             // ...
 
-            return $this->redirectToRoute('gout_edit', ['id' => $gout->getId()]);
+            return $this->redirectToRoute('app_atelier');
         }
 
-        return $this->render('gout/edit.html.twig', [
+        return $this->render('atlier/welcome.html.twig', [
             'form' => $form->createView(),
             'gout' => $gout,
         ]);
