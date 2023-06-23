@@ -24,8 +24,11 @@ class GoutCrudController extends AbstractCrudController
 
         yield CollectionField::new('color', 'Couleur');
 
+
         yield CollectionField::new('region', 'Régions');
 
+
         yield CollectionField::new('arome', 'Arômes');
+            ;
     }
 }
