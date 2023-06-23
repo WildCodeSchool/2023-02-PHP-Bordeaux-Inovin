@@ -9,7 +9,7 @@
     {% for flash_error in app.flashes('danger') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    {{ dump(user) }}
+   {# {{ dump(user) }} #}
 
     {{ form_start(registrationForm) }}
     {{ form_errors(registrationForm) }}
