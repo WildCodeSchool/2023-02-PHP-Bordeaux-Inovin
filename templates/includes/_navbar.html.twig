@@ -13,7 +13,11 @@
 
         <img class="iv-burger m-0" src="{{ asset('build/images/logoinovin.f33bd3fc.png') }}" alt="Logo Link to menu">
 
-        <h2 class="iv-color mt-5">Accès atelier</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin') }}"><h2 class="iv-dk-grey mt-5">Accès Admin</h2></a>
+        {% endif %}
+
+        <a href="{{ path('app_atelier') }}" class="iv-color"><h2 class="iv-color mt-5">Accès atelier</h2></a>
 
         <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverDegustations()">Mes dégustations</h2>
         <div class="iv-nav-degustations">
@@ -33,11 +37,11 @@
 
         <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
         <div class="iv-nav-profil">
-            <p class="iv-color">Mon profil</p>
-            <a href="/gout/show"><p class="iv-color">Mes goûts</p></a>
+            <a href="{{ path('app_user_edit', {id: app.user.id})}}"><p class="iv-color">Mon profil</p></a>
+            <a href="{{ path('gout_edit', {id: app.user.gout.id})}}"><p class="iv-color">Mes goûts</p></a>
         </div>
 
-        <a href="/logout"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>
+        <a href="/logout" class="iv-link-navbar"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>
         <p class="m-0 dark-grey">Mentions Légales</p>
         <p class="m-0 dark-grey">Politique de confidentialité</p>
 
@@ -46,55 +50,48 @@
 </div>
 
 <script>
-    let degustationsTitle = document.querySelector('.iv-nav-degustations');
+    let degustationsTitle = document.querySelector('.iv-nav-degustations')
     let checkDegustations = false
-function closeMenu() {
-    checkDegustations = false
-    checkAssemblages = false
-    checkProfil= false
-    degustationsTitle.style.display = 'none';
-    assemblagesTitle.style.display = 'none';
-    profilTitle.style.display = 'none';
-}
-    function onOverDegustations() {
 
+    function closeMenu() {
+        // eslint-disable-next-line no-console
+        console.log('closeMenu')
+        checkDegustations = false
+        checkAssemblages = false
+        checkProfil= false
+        degustationsTitle.style.display = 'none'
+        assemblagesTitle.style.display = 'none'
+        profilTitle.style.display = 'none'
+    }
+    function onOverDegustations() {
         if (checkDegustations === false) {
             checkDegustations = true
-            degustationsTitle.style.display = 'block';
-            console.log(checkDegustations)
+            degustationsTitle.style.display = 'block'
         } else {
             checkDegustations = false
-            degustationsTitle.style.display = 'none';
+            degustationsTitle.style.display = 'none'
         }
     }
-
-    let assemblagesTitle = document.querySelector('.iv-nav-assemblages');
+    let assemblagesTitle = document.querySelector('.iv-nav-assemblages')
     let checkAssemblages = false
-
     function onOverAssemblages() {
-
         if (checkAssemblages === false) {
             checkAssemblages = true
-            assemblagesTitle.style.display = 'block';
-            console.log(checkAssemblages)
+            assemblagesTitle.style.display = 'block'
         } else {
             checkAssemblages = false
-            assemblagesTitle.style.display = 'none';
+            assemblagesTitle.style.display = 'none'
         }
     }
-
-    let profilTitle = document.querySelector('.iv-nav-profil');
+    let profilTitle = document.querySelector('.iv-nav-profil')
     let checkProfil = false
-
     function onOverProfil() {
-
         if (checkProfil === false) {
             checkProfil = true
-            profilTitle.style.display = 'block';
-            console.log(checkProfil)
+            profilTitle.style.display = 'block'
         } else {
             checkProfil = false
-            profilTitle.style.display = 'none';
+            profilTitle.style.display = 'none'
         }
     }
 

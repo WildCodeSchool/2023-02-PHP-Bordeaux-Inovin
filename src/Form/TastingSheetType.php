@@ -22,16 +22,17 @@ class TastingSheetType extends AbstractType
         $builder
             ->add('intensity', ChoiceType::class, [
                 'choices' => [
-                    'limpide' => 'Limpide',
-                    'opalescence' => 'Opalescence',
-                    'voilee' => 'Voilée',
+                    'Limpide' => 'limpide',
+                    'Opalescence' => 'opalescence',
+                    'Voilee' => 'voilee',
+                    'Trouble' => 'trouble',
                 ],
             ])
             ->add('clarity', ChoiceType::class, [
                 'choices' => [
-                    'etincelance' => 'Etincelance',
-                    'eclatante' => 'Eclatante',
-                    'brillance' => 'Brillance',
+                    'Etincelance' => 'etincelance',
+                    'Eclatante' => 'eclatante',
+                    'Brillance' => 'brillance',
                 ],
             ])
             ->add('color', TextType::class)
@@ -48,10 +49,9 @@ class TastingSheetType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
-            ])
-            ->add('comment', TextareaType::class)
-            ->add('wine', TextType::class)
-            ->add('workshop', TextType::class);
+            ]);
+           /*  //->add('wine', TextType::class)
+            //->add('workshop', TextType::class);*/
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="iv-form-container container-tastingSheet py-3 my-1">
-                    <h2 class="iv-title mb-4">Vue</h2>
+                    <h2 class="iv-title mb-4">Nez</h2>
                     <div class="iv-form-tel-gout d-flex flex-wrap justify-content-center">
 
                      {% for smell in form.smell %}
@@ -59,13 +59,9 @@
                     {{ form_widget(formComment.content) }}
             </div>
             <div class="modal-footer">{{ form_end(formComment) }}#}
-
-
-
             </div>
                 <button class="iv-btn my-4" type="submit" data-bs-dismiss="modal">{{ button_label|default('Valider') }}</button>
 
                 {{ form_end(form) }}  </div>
-
     </div>
 </div>
