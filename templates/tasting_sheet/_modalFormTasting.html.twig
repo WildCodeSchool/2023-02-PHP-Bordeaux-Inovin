@@ -2,19 +2,68 @@
 
 <div class="modal fade" id="wine1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered iv-form-tastingSheet">
+        <div class="modal-content iv-background-none w-100">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                {{ form_start(form) }}
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Atelier ABC</h1>
+
+                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body d-flex w-100 justify-content-lg-around flex-wrap">
+                <div class="iv-form-container container-tastingSheet py-3 my-1">
+                    <div class="d-flex  align-items-center flex-column">
+                        <div class="  ">
+                            <h2 class="iv-title mb-4">Visuel</h2>
+                            <div>vin : <span class="colorCepage">rouge</span></div>
+                        </div>
+                        <div class="iv-form-tel-gout d-flex">
+                            {{ form_widget(form.intensity) }}
+                        </div>
+                        <div class="iv-form-tel-gout">
+                            {{ form_widget(form.clarity) }}
+                        </div>
+                        <div class="iv-form-tel-gout">
+                            <pie-chart data="22;22;22;22;22"></pie-chart>
+                            {{ form_widget(form.color) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="iv-form-container container-tastingSheet py-3 my-1">
+                    <h2 class="iv-title mb-4">Vue</h2>
+                    <div class="iv-form-tel-gout d-flex flex-wrap justify-content-center">
+
+                     {% for smell in form.smell %}
+                            <label class="iv-container fs-5">
+                                {{ form_widget(smell) }}
+                                {{ smell.vars.label }}
+                                <span class="iv-checkmark"></span>
+                            </label>
+                     {% endfor %}
+                    </div>
+                </div>
+                <div class="iv-form-container container-tastingSheet py-3 my-1">
+                    <h2 class="iv-title mb-4">Bouche</h2>
+                    <div class=" iv-form-tel-gout d-flex flex-wrap justify-content-center">
+                        {% for taste in form.taste %}
+                            <label class="iv-container fs-5">
+                                {{ form_widget(taste) }}
+                                {{ taste.vars.label }}
+                                <span class="iv-checkmark"></span>
+                            </label>
+                        {% endfor %}
+                    </div></div>
+                  {#    {{ form_start(formComment) }}
+                    {{ form_widget(formComment.content) }}
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn iv-btn" data-bs-dismiss="modal">valide</button>
+            <div class="modal-footer">{{ form_end(formComment) }}#}
+
+
 
             </div>
-        </div>
+                <button class="iv-btn my-4" type="submit" data-bs-dismiss="modal">{{ button_label|default('Valider') }}</button>
+
+                {{ form_end(form) }}  </div>
     </div>
 </div>
