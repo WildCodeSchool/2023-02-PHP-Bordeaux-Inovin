@@ -81,20 +81,17 @@ h1{
 
 a:link {
     color: $iv-goldBM;
-    background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
     color: $iv-goldBM;
-    background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
     color: $iv-goldBM;
-    background-color: transparent;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 ::placeholder {

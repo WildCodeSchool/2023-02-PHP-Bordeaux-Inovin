@@ -23,7 +23,8 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', 'Liste des utilisateurs');
+            ->setPageTitle('index', 'Liste des utilisateurs')
+            ->showEntityActionsInlined();
     }
 
     public function configureFields(string $pageName): iterable
