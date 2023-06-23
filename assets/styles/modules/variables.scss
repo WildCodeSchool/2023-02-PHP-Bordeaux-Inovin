@@ -81,20 +81,17 @@ h1{
 
 .iv-link-navbar:link {
     color: $iv-goldBM;
-    background-color: transparent;
     text-decoration: none;
 }
 
 .iv-link-navbar:visited {
     color: $iv-goldBM;
-    background-color: transparent;
     text-decoration: none;
 }
 
 .iv-link-navbar:hover {
     color: $iv-goldBM;
-    background-color: transparent;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 ::placeholder {
