@@ -38,7 +38,7 @@
         <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
         <div class="iv-nav-profil">
             <a href="{{ path('app_user_edit', {id: app.user.id})}}"><p class="iv-color">Mon profil</p></a>
-            <a href="{{ path('gout_show', {id: app.user.id})}}"><p class="iv-color">Mes goûts</p></a>
+            <a href="{{ path('gout_edit', {id: app.user.gout.id})}}"><p class="iv-color">Mes goûts</p></a>
         </div>
 
         <a href="/logout"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>
@@ -48,58 +48,3 @@
     </div>
 
 </div>
-
-<script>
-    let degustationsTitle = document.querySelector('.iv-nav-degustations')
-    let checkDegustations = false
-function closeMenu() {
-    checkDegustations = false
-    checkAssemblages = false
-    checkProfil= false
-    degustationsTitle.style.display = 'none'
-    assemblagesTitle.style.display = 'none'
-    profilTitle.style.display = 'none'
-}
-    function onOverDegustations() {
-
-        if (checkDegustations === false) {
-            checkDegustations = true
-            degustationsTitle.style.display = 'block'
-            console.log(checkDegustations)
-        } else {
-            checkDegustations = false
-            degustationsTitle.style.display = 'none'
-        }
-    }
-
-    let assemblagesTitle = document.querySelector('.iv-nav-assemblages')
-    let checkAssemblages = false
-
-    function onOverAssemblages() {
-
-        if (checkAssemblages === false) {
-            checkAssemblages = true
-            assemblagesTitle.style.display = 'block'
-            console.log(checkAssemblages)
-        } else {
-            checkAssemblages = false
-            assemblagesTitle.style.display = 'none'
-        }
-    }
-
-    let profilTitle = document.querySelector('.iv-nav-profil')
-    let checkProfil = false
-
-    function onOverProfil() {
-
-        if (checkProfil === false) {
-            checkProfil = true
-            profilTitle.style.display = 'block'
-            console.log(checkProfil)
-        } else {
-            checkProfil = false
-            profilTitle.style.display = 'none'
-        }
-    }
-
-</script>
