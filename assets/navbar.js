@@ -1,6 +1,9 @@
 let degustationsTitle = document.querySelector('.iv-nav-degustations')
 let checkDegustations = false
+
 function closeMenu() {
+    // eslint-disable-next-line no-console
+    console.log('closeMenu')
     checkDegustations = false
     checkAssemblages = false
     checkProfil= false
