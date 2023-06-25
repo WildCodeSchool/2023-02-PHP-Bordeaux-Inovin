@@ -3,24 +3,21 @@
 {% block title %}Hello TastingSheetController!{% endblock %}
 
 {% block body %}
-
-
-<div class="iv-tasting-cards">
-    <h1 class="iv-title">Atelier Name ABC</h1>
-    <section>
-        <ul>
-            {% for wine in workshop.wines %}
-                <li>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
-                        <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
-                             alt="{{ wine.producer }}">
-                    </a>
-                </li>
-
-            {% endfor %}
-        </ul>
-    </section>
-</div>
+    <div class="iv-tasting-cards">
+        <h1 class="iv-title">Atelier Name ABC</h1>
+        <section>
+            <ul>
+                {% for wine in workshop.wines %}
+                    <li>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
+                            <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
+                                 alt="{{ wine.producer }}">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
     {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
 {% endblock %}

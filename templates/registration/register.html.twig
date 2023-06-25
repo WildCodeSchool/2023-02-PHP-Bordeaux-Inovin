@@ -3,12 +3,6 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    {% for flash_error in app.flashes('danger') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
 
     {{ form_start(registrationForm) }}
     {{ form_errors(registrationForm) }}
@@ -23,8 +17,8 @@
                             name="{{ field_name(registrationForm.lastname) }}"
                             type="text" class="form-control iv-form-input" placeholder="Nom">
                     </div>
-                <div class="iv-hidden-mediascreen">
-                </div>
+                    <div class="iv-hidden-mediascreen">
+                    </div>
                     <div class="col">
                         <input
                             name="{{ field_name(registrationForm.firstname) }}"
@@ -76,7 +70,8 @@
                 </div>
                 <div class="row">
                     <div class="col mx-auto">
-                        <label class="iv-container fs-5 iv-s-text-mediascreen" style="width: initial">J'accepte les conditions
+                        <label class="iv-container fs-5 iv-s-text-mediascreen" style="width: initial">J'accepte les
+                            conditions
                             d'utilisation
                             <input
                                 name="{{ field_name(registrationForm.agreeTerms) }}"
@@ -89,8 +84,6 @@
             </div>
         </div>
     </div>
-    </div>
 
     {{ form_end(registrationForm) }}
-    {# </form> #}
 {% endblock %}
