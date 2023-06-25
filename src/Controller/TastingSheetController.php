@@ -21,8 +21,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class TastingSheetController extends AbstractController
 {
     #[Route('/tastingSheet/{codeWorkshop}', name: 'app_tasting_sheet', methods: ['GET', 'POST'])]
-    public function index(Workshop $workshop, Request $request, WorkshopRepository $workshopRepository, TastingSheetRepository $tastingSheetRepository): Response
-    {
+    public function index(
+        Workshop $workshop,
+        Request $request,
+        WorkshopRepository $workshopRepository,
+        TastingSheetRepository $tastingSheetRepository
+    ): Response {
      // $comment = new Comment();
      //   $formComment = $this->createForm(CommentType::class, $comment);
      //   $formComment->handleRequest($request);
