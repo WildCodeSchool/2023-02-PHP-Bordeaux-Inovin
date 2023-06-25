@@ -3,48 +3,24 @@
 {% block title %}Hello TastingSheetController!{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
 
-    <div class="iv-tasting-cards">
-        <h1 class="iv-title">Atelier Name ABC</h1>
-        <section>
-            <ul>
+<div class="iv-tasting-cards">
+    <h1 class="iv-title">Atelier Name ABC</h1>
+    <section>
+        <ul>
+            {% for wine in workshop.wines %}
                 <li>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine1">
-                        <img src="{{ asset('build/images/inovin-tasting1.9fd778b6.jpg') }}" alt="">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
+                        <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
+                             alt="{{ wine.producer }}">
                     </a>
                 </li>
-                <li>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine2">
-                        <img src="{{ asset('build/images/inovin-tasting2.18bf3234.jpg') }}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine3">
-                        <img src="{{ asset('build/images/inovin-tasting3.fe708ea0.jpg') }}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#wine4">
-                        <img src="{{ asset('build/images/inovin-tasting4.e79c3ea3.jpg') }}" alt="">
-                    </a>
-                </li>
-            </ul>
 
-        </section>
-    </div>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
     {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
 {% endblock %}
