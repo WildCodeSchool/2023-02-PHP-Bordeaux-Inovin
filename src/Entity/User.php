@@ -59,6 +59,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Gout $gout = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
+    private Collection $wineBlends;
+
+    public function __construct()
+    {
+        $this->wineBlends = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -226,5 +234,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, WineBlend>
+     */
+    public function getWineBlends(): Collection
+    {
+        return $this->wineBlends;
+    }
+
+    public function addWineBlend(WineBlend $wineBlend): static
+    {
+        if (!$this->wineBlends->contains($wineBlend)) {
+            $this->wineBlends->add($wineBlend);
+            $wineBlend->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWineBlend(WineBlend $wineBlend): static
+    {
+        if ($this->wineBlends->removeElement($wineBlend)) {
+            // set the owning side to null (unless already changed)
+            if ($wineBlend->getUser() === $this) {
+                $wineBlend->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
