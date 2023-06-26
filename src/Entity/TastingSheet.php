@@ -50,6 +50,9 @@ class TastingSheet
     #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?WineBlend $wineBlend = null;
+
     public function __construct()
     {
         $this->taste = new ArrayCollection();
@@ -213,6 +216,18 @@ class TastingSheet
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getWineBlend(): ?WineBlend
+    {
+        return $this->wineBlend;
+    }
+
+    public function setWineBlend(?WineBlend $wineBlend): static
+    {
+        $this->wineBlend = $wineBlend;
 
         return $this;
     }

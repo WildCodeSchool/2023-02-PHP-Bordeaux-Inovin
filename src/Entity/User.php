@@ -31,9 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -44,7 +41,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
- //   #[Assert\LessThanOrEqual("today - 18 years", message: "Vous devez avoir au moins 18 ans pour participer à un atelier.")]
+ // #[Assert\LessThanOrEqual("today - 18 years", message : "Vous devez avoir au moins
+ //      18 ans pour participer à un atelier.")]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(nullable: true)]
@@ -62,8 +60,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
+    private Collection $wineBlends;
+
     public function __construct()
     {
+        $this->wineBlends = new ArrayCollection();
         $this->tastingSheets = new ArrayCollection();
     }
 
@@ -250,7 +252,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->tastingSheets->add($tastingSheet);
             $tastingSheet->setUser($this);
         }
+        return $this;
+    }
 
+    /**
+     * @return Collection<int, WineBlend>
+     */
+    public function getWineBlends(): Collection
+    {
+        return $this->wineBlends;
+    }
+
+    public function addWineBlend(WineBlend $wineBlend): static
+    {
+        if (!$this->wineBlends->contains($wineBlend)) {
+            $this->wineBlends->add($wineBlend);
+            $wineBlend->setUser($this);
+
+        }
         return $this;
     }
 
@@ -262,7 +281,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $tastingSheet->setUser(null);
             }
         }
+        return $this;
+    }
 
+    public function removeWineBlend(WineBlend $wineBlend): static
+    {
+        if ($this->wineBlends->removeElement($wineBlend)) {
+            // set the owning side to null (unless already changed)
+            if ($wineBlend->getUser() === $this) {
+                $wineBlend->setUser(null);
+            }
+        }
         return $this;
     }
 }
