@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Workshop;
 use App\Form\WorkshopCodeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
