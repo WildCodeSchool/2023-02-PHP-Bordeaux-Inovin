@@ -44,7 +44,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
- //   #[Assert\LessThanOrEqual("today - 18 years", message: "Vous devez avoir au moins 18 ans pour participer à un atelier.")]
+ // #[Assert\LessThanOrEqual("today - 18 years", message: "Vous devez avoir au moins
+ //      18 ans pour participer à un atelier.")]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(nullable: true)]

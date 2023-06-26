@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\WineBlendRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+
 #[ORM\Entity(repositoryClass: WineBlendRepository::class)]
 class WineBlend
 {
     use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
