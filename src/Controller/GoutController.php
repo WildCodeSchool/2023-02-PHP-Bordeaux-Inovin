@@ -121,6 +121,7 @@ class GoutController extends AbstractController
         }
 
         return $this->render('atelier/welcome.html.twig', [
+
             'form' => $form->createView(),
             'gout' => $gout,
         ]);
