@@ -31,9 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -44,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
- // #[Assert\LessThanOrEqual("today - 18 years", message: "Vous devez avoir au moins
+ // #[Assert\LessThanOrEqual("today - 18 years", message : "Vous devez avoir au moins
  //      18 ans pour participer à un atelier.")]
     private ?\DateTimeInterface $birthday = null;
 
@@ -60,12 +57,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Gout $gout = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
     private Collection $wineBlends;
 
     public function __construct()
     {
         $this->wineBlends = new ArrayCollection();
+        $this->tastingSheets = new ArrayCollection();
     }
 
 
@@ -238,6 +239,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setUser($this);
+        }
+        return $this;
+    }
+
+    /**
      * @return Collection<int, WineBlend>
      */
     public function getWineBlends(): Collection
@@ -250,8 +268,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->wineBlends->contains($wineBlend)) {
             $this->wineBlends->add($wineBlend);
             $wineBlend->setUser($this);
-        }
 
+        }
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getUser() === $this) {
+                $tastingSheet->setUser(null);
+            }
+        }
         return $this;
     }
 
@@ -263,7 +292,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $wineBlend->setUser(null);
             }
         }
-
         return $this;
     }
 }

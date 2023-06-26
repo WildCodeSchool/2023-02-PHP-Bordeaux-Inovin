@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WineBlendRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -29,6 +31,14 @@ class WineBlend
     #[ORM\ManyToOne(inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Workshop $workshop = null;
+
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
+    public function __construct()
+    {
+        $this->tastingSheets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -79,6 +89,36 @@ class WineBlend
     public function setWorkshop(?Workshop $workshop): static
     {
         $this->workshop = $workshop;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setWineBlend($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getWineBlend() === $this) {
+                $tastingSheet->setWineBlend(null);
+            }
+        }
 
         return $this;
     }
