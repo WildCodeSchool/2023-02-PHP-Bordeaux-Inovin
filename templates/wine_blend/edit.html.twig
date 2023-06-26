@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit WineBlend{% endblock %}
+
+{% block body %}
+    <h1>Edit WineBlend</h1>
+
+    {{ include('wine_blend/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_wine_blend_index') }}">back to list</a>
+
+    {{ include('wine_blend/_delete_form.html.twig') }}
+{% endblock %}
