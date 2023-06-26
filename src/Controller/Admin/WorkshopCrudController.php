@@ -35,6 +35,8 @@ class WorkshopCrudController extends AbstractCrudController
 
         yield TextField::new('place_workshop', 'Lieu de l\'atelier');
 
+        yield DateTimeField::new('date_workshop', 'Date de l\'atelier');
+
         yield DateTimeField::new('created_at', 'Créer')->hideOnForm();
 
         yield DateTimeField::new('updated_at', 'Modifier')->hideOnForm();
