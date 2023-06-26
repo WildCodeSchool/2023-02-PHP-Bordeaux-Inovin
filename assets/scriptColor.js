@@ -31,10 +31,13 @@ class Piechart extends HTMLElement {
         super();
         const shadow = this.attachShadow({mode: 'open'});
         let colors;
-        if (document.querySelector('.colorCepage').innerText === "blanc") {
-            colors = [vert, blanc, dore, paille, roux];
-        } else {
-            colors = [pourpre, cerise, grenat, tuile, ambre];
+        for (let i = 1; i <= 4; i++) {
+            if (document.querySelector('.colorCepage' +i).innerText === "blanc") {
+                colors = [vert, blanc, dore, paille, roux];
+            } else {
+                colors = [pourpre, cerise, grenat, tuile, ambre];
+            }
+
         }
 
         this.data = this.getAttribute('data').split(';').map(v => parseFloat(v));
@@ -124,10 +127,22 @@ class Piechart extends HTMLElement {
 
     handleClick(event) {
         const color = event.target.getAttribute('data-color');
-        const input = document.getElementById('tasting_sheet_color');
+        const input = document.querySelector('.tasting_sheet_color1');
         if (input) {
             input.value = color; // Remplir le champ de saisie avec la couleur
         }
+        const input2 = document.querySelector('.tasting_sheet_color2');
+        if (input2) {
+            input2.value = color; // Remplir le champ de saisie avec la couleur
+        }
+        const input3 = document.querySelector('.tasting_sheet_color3');
+        if (input3) {
+            input3.value = color; // Remplir le champ de saisie avec la couleur
+        } const input4 = document.querySelector('.tasting_sheet_color4');
+        if (input4) {
+            input4.value = color; // Remplir le champ de saisie avec la couleur
+        }
+
     }
 }
 
