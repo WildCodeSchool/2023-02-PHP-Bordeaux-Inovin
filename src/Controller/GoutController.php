@@ -70,7 +70,7 @@ class GoutController extends AbstractController
             }
             $goutRepository->save($gout, true);
 
-            return $this->redirectToRoute('gout_edit', ['id' => $gout->getId()]);
+            return $this->redirectToRoute('app_atelier');
         }
 
 
