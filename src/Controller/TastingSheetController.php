@@ -29,7 +29,6 @@ class TastingSheetController extends AbstractController
         Request $request,
         TastingSheetRepository $tastingSheetRepository
     ): Response {
-        git push
         $tastingSheets = [];
         $forms = [];
 
