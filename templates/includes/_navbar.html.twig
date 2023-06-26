@@ -14,10 +14,10 @@
         <img class="iv-burger m-0" src="{{ asset('build/images/logoinovin.f33bd3fc.png') }}" alt="Logo Link to menu">
 
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}"><h2 class="iv-dk-grey mt-5">Accès Admin</h2></a>
+            <a href="{{ path('admin') }}" class="iv-link-navbar"><h2 class="iv-dk-grey mt-5">Accès Admin</h2></a>
         {% endif %}
 
-        <a href="{{ path('app_atelier') }}" class="iv-color"><h2 class="iv-color mt-5">Accès atelier</h2></a>
+        <a href="{{ path('app_atelier') }}" class="iv-color iv-link-navbar"><h2 class="iv-color mt-5">Accès atelier</h2></a>
 
         <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverDegustations()">Mes dégustations</h2>
         <div class="iv-nav-degustations">
@@ -37,8 +37,8 @@
 
         <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
         <div class="iv-nav-profil">
-            <a href="{{ path('app_user_edit', {id: app.user.id})}}"><p class="iv-color">Mon profil</p></a>
-            <a href="{{ path('gout_show')}}"><p class="iv-color">Mes goûts</p></a>
+            <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
+            <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
         </div>
 
         <a href="/logout" class="iv-link-navbar"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>

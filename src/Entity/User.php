@@ -59,6 +59,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Gout $gout = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
+    public function __construct()
+    {
+        $this->tastingSheets = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -226,5 +234,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getUser() === $this) {
+                $tastingSheet->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
