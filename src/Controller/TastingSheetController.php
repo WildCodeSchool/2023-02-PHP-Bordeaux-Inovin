@@ -22,10 +22,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class TastingSheetController extends AbstractController
 {
     #[Route('/tastingSheet/{codeWorkshop}', name: 'app_tasting_sheet', methods: ['GET', 'POST'])]
+
     public function index(Workshop $workshop, Request $request, TastingSheetRepository $tastingSheetRepository): Response
     {
         $tastingSheets = [];
         $forms = [];
+
 
         for ($i = 1; $i <= 4; $i++) {
             $tastingSheet = new TastingSheet();
