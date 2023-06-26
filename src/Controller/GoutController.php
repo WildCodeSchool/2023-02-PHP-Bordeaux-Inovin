@@ -91,7 +91,7 @@ class GoutController extends AbstractController
             $goutRepository->save($gout, true);
             // ...
 
-            return $this->redirectToRoute('app_atelier');
+            return $this->redirectToRoute('gout_show');
         }
 
         return $this->render('gout/show.html.twig', [
@@ -120,7 +120,7 @@ class GoutController extends AbstractController
             return $this->redirectToRoute('app_atelier');
         }
 
-        return $this->render('atlier/welcome.html.twig', [
+        return $this->render('gout/show.html.twig', [
             'form' => $form->createView(),
             'gout' => $gout,
         ]);
