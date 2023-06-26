@@ -38,7 +38,7 @@
         <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
         <div class="iv-nav-profil">
             <a href="{{ path('app_user_edit', {id: app.user.id})}}"><p class="iv-color">Mon profil</p></a>
-            <a href="{{ path('gout_edit', {id: app.user.gout.id})}}"><p class="iv-color">Mes goûts</p></a>
+            <a href="{{ path('gout_show')}}"><p class="iv-color">Mes goûts</p></a>
         </div>
 
         <a href="/logout" class="iv-link-navbar"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>

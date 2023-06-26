@@ -29,6 +29,7 @@ class TastingSheetController extends AbstractController
         Request $request,
         TastingSheetRepository $tastingSheetRepository
     ): Response {
+        git push
         $tastingSheets = [];
         $forms = [];
 
@@ -37,6 +38,7 @@ class TastingSheetController extends AbstractController
         $form1->handleRequest($request);
         $tastingSheets[] = $tastingSheet1;
         $forms[] = $form1->createView();
+
 
         $tastingSheet2 = new TastingSheet();
         $form2 = $this->createForm(TastingSheetType2::class, $tastingSheet2);
