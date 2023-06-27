@@ -32,7 +32,7 @@ class Piechart extends HTMLElement {
         const shadow = this.attachShadow({mode: 'open'});
         let colors;
         for (let i = 1; i <= 4; i++) {
-            if (document.querySelector('.colorCepage' +i).innerText === "blanc") {
+            if (document.querySelector('.colorCepage' + i).innerText === "Blanc") {
                 colors = [vert, blanc, dore, paille, roux];
             } else {
                 colors = [pourpre, cerise, grenat, tuile, ambre];

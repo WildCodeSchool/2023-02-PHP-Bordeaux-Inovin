@@ -56,6 +56,9 @@ class TastingSheetType3 extends AbstractType
             ->add('wine', EntityType::class, [
                 'class' => Wine::class,
                 'choice_label' => 'id',
+                'attr' => [
+                    'hidden' => true
+                ],
             ]);
     }
 
