@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/gout', name: 'gout_')]
 class GoutController extends AbstractController
@@ -80,8 +81,9 @@ class GoutController extends AbstractController
     }
 
     #[Route('/show', name: 'show')]
-    public function show(GoutRepository $goutRepository, Request $request): response
+    public function show(GoutRepository $goutRepository, Request $request, SessionInterface $session): response
     {
+        $session->set('countValidateForm', 0);
         $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
