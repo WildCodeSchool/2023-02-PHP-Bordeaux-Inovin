@@ -17,3 +17,4 @@ require('bootstrap');
 import './bootstrap';
 import './navbar.js';
 import './scriptColor.js';
+import './linkToBlend.js';

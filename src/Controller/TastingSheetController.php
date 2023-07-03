@@ -11,18 +11,21 @@ use App\Form\TastingSheetType4;
 use App\Repository\TastingSheetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class TastingSheetController extends AbstractController
 {
     #[Route('/tastingSheet/{codeWorkshop}', name: 'app_tasting_sheet', methods: ['GET', 'POST'])]
     public function index(
-        Workshop $workshop,
-        Request $request,
-        TastingSheetRepository $tastingSheetRepo
-    ): Response {
-
+        Workshop               $workshop,
+        Request                $request,
+        TastingSheetRepository $tastingSheetRepo,
+        SessionInterface       $session
+    ): Response
+    {
 
         $tastingSheets = [];
         $forms = [];
@@ -35,14 +38,15 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
 
+
         foreach ($formTypes as $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
 
+
             if ($form->isSubmitted() && $form->isValid()) {
                 // Traitez les données du formulaire
-
                 $tastingSheet->setWorkshop($workshop);
                 $tastingSheet->setUser($this->getUser());
                 $selectedSmells = $form->get('smell')->getData();
@@ -57,13 +61,24 @@ class TastingSheetController extends AbstractController
                     $taste->addTastingSheet($tastingSheet);
                 }
                 $tastingSheetRepo->save($tastingSheet, true);
+
+                if ($session->has('countValidateForm')) {
+                    $count = $session->get('countValidateForm');
+                    $session->set('countValidateForm', $count + 1);
+                } else {
+                    $session->set('countValidateForm', 1);
+                }
             }
+            $countValidateForm = $session->get('countValidateForm');
+
         }
+
 
         return $this->render('tasting_sheet/index.html.twig', [
             'forms' => $forms,
             'tastingSheets' => $tastingSheets,
             'workshop' => $workshop,
+            'countValidateForm' => $countValidateForm
         ]);
     }
 
