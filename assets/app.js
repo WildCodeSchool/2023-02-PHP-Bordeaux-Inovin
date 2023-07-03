@@ -20,3 +20,5 @@ import './bootstrap';
 import './navbar.js';
 import './scriptColor.js';
 import './vote.js';
+import './linkToBlend.js';
+

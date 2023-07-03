@@ -31,10 +31,13 @@ class Piechart extends HTMLElement {
         super();
         const shadow = this.attachShadow({mode: 'open'});
         let colors;
-        if (document.querySelector('.colorCepage').innerText === "blanc") {
-            colors = [vert, blanc, dore, paille, roux];
-        } else {
-            colors = [pourpre, cerise, grenat, tuile, ambre];
+        for (let i = 1; i <= 4; i++) {
+            if (document.querySelector('.colorCepage' + i).innerText === "Blanc") {
+                colors = [vert, blanc, dore, paille, roux];
+            } else {
+                colors = [pourpre, cerise, grenat, tuile, ambre];
+            }
+
         }
 
         this.data = this.getAttribute('data').split(';').map(v => parseFloat(v));
@@ -42,7 +45,7 @@ class Piechart extends HTMLElement {
             <g class="pathGroup" mask="url(#graphMask)"></g>
             <mask class="maskGroup" id="graphMask">
             <rect fill="white" x="-1" y="-1" width="2" height="2"/>
-            <circle r="0.5" fill="black"/>
+            <circle r="0.2" fill="black"/>
             </mask>
             </svg>`);
         const pathGroup = svg.querySelector('.pathGroup');
@@ -63,7 +66,7 @@ class Piechart extends HTMLElement {
         this.lines = this.data.map((_, k) => {
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('stroke', '#000');
-            line.setAttribute('stroke-width', '0.1');
+            line.setAttribute('stroke-width', '0.07');
             line.setAttribute('x1', '0');
             line.setAttribute('y1', '0');
             maskGroup.appendChild(line);
@@ -83,7 +86,7 @@ class Piechart extends HTMLElement {
                                    height:100%
                               }
                               path:hover{
-                                   opacity:0.5;
+                                   opacity:0.4;
                               }`
         shadow.appendChild(style)
         shadow.appendChild(svg);
@@ -124,10 +127,22 @@ class Piechart extends HTMLElement {
 
     handleClick(event) {
         const color = event.target.getAttribute('data-color');
-        const input = document.getElementById('tasting_sheet_color');
+        const input = document.querySelector('.tasting_sheet_color1');
         if (input) {
             input.value = color; // Remplir le champ de saisie avec la couleur
         }
+        const input2 = document.querySelector('.tasting_sheet_color2');
+        if (input2) {
+            input2.value = color; // Remplir le champ de saisie avec la couleur
+        }
+        const input3 = document.querySelector('.tasting_sheet_color3');
+        if (input3) {
+            input3.value = color; // Remplir le champ de saisie avec la couleur
+        } const input4 = document.querySelector('.tasting_sheet_color4');
+        if (input4) {
+            input4.value = color; // Remplir le champ de saisie avec la couleur
+        }
+
     }
 }
 

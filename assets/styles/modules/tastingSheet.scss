@@ -79,11 +79,26 @@ ul li img:hover {
 /* form tastingSheet */
 .iv-form-tastingSheet > div{justify-content: flex-end; background-color :#F4EDDB;
 }
-#tasting_sheet_intensity, #tasting_sheet_clarity, #tasting_sheet_color {
+#tasting_sheet_intensity,
+#tasting_sheet_type1_intensity,
+#tasting_sheet_type2_intensity,
+#tasting_sheet_type3_intensity,
+#tasting_sheet_type4_intensity,
+#tasting_sheet_type1_clarity,
+#tasting_sheet_type2_clarity,
+#tasting_sheet_type3_clarity,
+#tasting_sheet_type4_clarity,
+#tasting_sheet_clarity,
+#tasting_sheet_color,
+#tasting_sheet_type1_color,
+#tasting_sheet_type2_color,
+#tasting_sheet_type3_color,
+#tasting_sheet_type4_color {
     background: #FFFAF0;
+    padding: 0 10px;
     border: 1px solid #B58654;
     border-radius: 0.625rem;
-    font-family: "Crimson Text", serif;
+    font-family: $iv-title-font-family;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -118,7 +133,12 @@ ul li img:hover {
     width: 0;
 }
 /*camembert*/
-pie-chart{width:150px; height:150px; margin :10px auto}
+pie-chart{
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    background-color: $iv-goldBM;
+    border-radius: 100px;}
 
 @media creen and (max-width: 1024px) {
     .iv-tasting-cards {

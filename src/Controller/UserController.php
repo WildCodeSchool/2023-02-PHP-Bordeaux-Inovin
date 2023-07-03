@@ -59,7 +59,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $userRepository->edit($user, true);
 
             return $this->redirectToRoute(
                 'app_user_edit',
@@ -76,9 +76,11 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST', 'GET'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+        /*if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {*/
             $userRepository->remove($user, true);
-        }
+        /*} else {
+            dd('test');
+        }*/
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }

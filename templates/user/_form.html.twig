@@ -202,10 +202,10 @@
                 <div class="row">
                     {% if form_title == "Mes informations" %}
                         <div class="col mx-auto">
-                            <input type="submit" class="iv-btn" value="Modifier">{#  href="{{ path('app_user_edit', {'id': user.id}) }}" #}
+                            <input type="submit" class="iv-btn" value="Modifier">
                         </div>
                         <div class="col mx-auto">
-                            <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="iv-btn">Supprimer</a>
+                            <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="iv-btn" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?');">Supprimer</a>
                         </div>
                     {% else %}
                         <div class="col mx-auto">

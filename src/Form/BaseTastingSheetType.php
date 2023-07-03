@@ -5,17 +5,15 @@ namespace App\Form;
 use App\Entity\Smell;
 use App\Entity\Taste;
 use App\Entity\TastingSheet;
-
+use App\Entity\Wine;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TastingSheetType extends AbstractType
+class BaseTastingSheetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -24,14 +22,14 @@ class TastingSheetType extends AbstractType
                 'choices' => [
                     'Limpide' => 'limpide',
                     'Opalescence' => 'opalescence',
-                    'Voilee' => 'voilee',
+                    'Voilée' => 'voilée',
                     'Trouble' => 'trouble',
                 ],
             ])
             ->add('clarity', ChoiceType::class, [
                 'choices' => [
-                    'Etincelance' => 'etincelance',
-                    'Eclatante' => 'eclatante',
+                    'Étincelante' => 'étincelante',
+                    'Éclatante' => 'éclatante',
                     'Brillance' => 'brillance',
                 ],
             ])
@@ -49,11 +47,15 @@ class TastingSheetType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
+            ])
+            ->add('wine', EntityType::class, [
+                'class' => Wine::class,
+                'choice_label' => 'id',
+                'attr' => [
+                    'hidden' => true
+                ],
             ]);
-           /*  //->add('wine', TextType::class)
-            //->add('workshop', TextType::class);*/
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
