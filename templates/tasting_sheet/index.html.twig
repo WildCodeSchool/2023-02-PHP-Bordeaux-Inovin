@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="iv-tasting-cards">
-        <h1 class="iv-title">Atelier Name ABC</h1>
+        <h1 class="iv-title">{{ workshop.nameWorkshop }}</h1>
         <section>
             <ul>
                 {% for wine in workshop.wines %}
@@ -17,8 +17,13 @@
                 {% endfor %}
             </ul>
         </section>
+        {{ app.session.get('countValidateForm') }}
+        {%  if app.session.get('countValidateForm') >=4 %}
+        <a href= "{{ path('app_wine_blend_new') }}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
+        {% endif %}
     </div>
    {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
 {% endblock %}
-{% block javascript %}{% endblock %}
+{% block javascript %}
+{% endblock %}

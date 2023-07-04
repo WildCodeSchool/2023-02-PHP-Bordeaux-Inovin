@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/wine/blend')]
 class WineBlendController extends AbstractController
@@ -22,8 +23,9 @@ class WineBlendController extends AbstractController
     }
 
     #[Route('/new', name: 'app_wine_blend_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, WineBlendRepository $wineBlendRepository): Response
+    public function new(Request $request, WineBlendRepository $wineBlendRepository, SessionInterface $session): Response
     {
+        $session->set('countValidateForm', 0);
         $wineBlend = new WineBlend();
         $form = $this->createForm(WineBlendType::class, $wineBlend);
         $form->handleRequest($request);
