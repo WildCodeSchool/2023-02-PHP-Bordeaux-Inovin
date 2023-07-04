@@ -32,7 +32,10 @@ body {
     background-repeat: no-repeat;
     background-position: top right;
 }
+a{
+    text-decoration: none;
 
+}
 .iv-title{
     font-family: $iv-title-font-family;
     color: $iv-goldBM;
@@ -40,6 +43,7 @@ body {
     line-height: 64px;
     font-weight: 400;
     text-align: center;
+    margin-top: 19px;
 }
 
 .iv-sub-title {
