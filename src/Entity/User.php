@@ -63,10 +63,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
     private Collection $wineBlends;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->wineBlends = new ArrayCollection();
         $this->tastingSheets = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
 
@@ -292,6 +296,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $wineBlend->setUser(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getUser() === $this) {
+                $vote->setUser(null);
+            }
+        }
+
         return $this;
     }
 }
