@@ -122,4 +122,5 @@ class WineBlend
 
         return $this;
     }
+
 }
