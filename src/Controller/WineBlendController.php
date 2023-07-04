@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\WineBlend;
 use App\Form\WineBlendType;
 use App\Repository\WineBlendRepository;
+use App\Service\ServiceScoreToPercent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +24,11 @@ class WineBlendController extends AbstractController
     }
 
     #[Route('/new', name: 'app_wine_blend_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, WineBlendRepository $wineBlendRepository, SessionInterface $session): Response
-    {
+    public function new(
+        Request $request,
+        WineBlendRepository $wineBlendRepository,
+        SessionInterface $session,
+    ): Response {
         $session->set('countValidateForm', 0);
         $wineBlend = new WineBlend();
         $wineBlendForm = $this->createForm(WineBlendType::class, $wineBlend);
@@ -71,7 +75,7 @@ class WineBlendController extends AbstractController
     #[Route('/{id}', name: 'app_wine_blend_delete', methods: ['POST'])]
     public function delete(Request $request, WineBlend $wineBlend, WineBlendRepository $wineBlendRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$wineBlend->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $wineBlend->getId(), $request->request->get('_token'))) {
             $wineBlendRepository->remove($wineBlend, true);
         }
 

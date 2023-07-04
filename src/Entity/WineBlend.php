@@ -47,9 +47,13 @@ class WineBlend
     #[ORM\Column(nullable: true)]
     private ?int $percentageCepage4 = null;
 
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,6 +139,7 @@ class WineBlend
         return $this;
     }
 
+
     public function getPercentageCepage1(): ?int
     {
         return $this->percentageCepage1;
@@ -143,6 +148,24 @@ class WineBlend
     public function setPercentageCepage1(?int $percentageCepage1): static
     {
         $this->percentageCepage1 = $percentageCepage1;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setWineBlend($this);
+        }
 
         return $this;
     }
@@ -179,6 +202,17 @@ class WineBlend
     public function setPercentageCepage4(?int $percentageCepage4): static
     {
         $this->percentageCepage4 = $percentageCepage4;
+
+        return $this;
+    }
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getWineBlend() === $this) {
+                $vote->setWineBlend(null);
+            }
+        }
 
         return $this;
     }

@@ -19,13 +19,8 @@
 
         <a href="{{ path('app_atelier') }}" class="iv-color iv-link-navbar"><h2 class="iv-color mt-5">Accès atelier</h2></a>
 
-        <h2 class="iv-color mt-5" style="cursor: pointer" id="click-degustation">Mes dégustations</h2>
-        <div class="iv-nav-degustations">
-            <p class="iv-color">Cépage 1 - 2022 - Château X</p>
-            <p class="iv-color">Cépage 2 - 2022 - Château Y</p>
-            <p class="iv-color">Cépage 3 - 2022 - Château Z</p>
-            <p class="iv-color">Cépage 4 - 2022 - Château W</p>
-        </div>
+        <a href="{{ path('tasting_sheet_show',{id: app.user.id}) }}"> <h2 class="iv-color mt-5" style="cursor: pointer" id="click-degustation">Mes dégustations</h2></a>
+
 
         <h2 class="iv-color mt-5" style="cursor: pointer" id="click-assemblage">Mes assemblages</h2>
         <div class="iv-nav-assemblages">

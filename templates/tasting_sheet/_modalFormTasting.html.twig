@@ -1,7 +1,7 @@
 {% for wine in workshop.wines %}
     <!-- Modal -->
 
-    <div class="modal fade" id="wine{{ wine.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade tastingheetWine{{~ loop.index }}" id="wine{{ wine.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered iv-form-tastingSheet">
             <div class="modal-content iv-background-none w-100">
@@ -15,8 +15,8 @@
                     <button type="button" class="btn-close iv-color" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex w-100 justify-content-lg-around flex-wrap">
-                    <div class="iv-form-container container-tastingSheet py-3 my-1">
+                <div class="modal-body iv-modal-body">
+                    <div class="iv-form-container container-tastingSheet py-3 my-1 ">
                         <div class="d-flex align-items-center flex-column">
                             <div>
                                 <ul class="d-none">
@@ -36,8 +36,8 @@
                                 <pie-chart data="22;22;22;22;22" class="p-1 mb-3"></pie-chart>
                                 {{ form_widget(forms[loop.index0].color, {
                                     'attr': {
-                                        'class': 'tasting_sheet_color' ~ loop.index ~ ' ml-3',
-                                        'placeholder': 'Selectionnez une couleur dans la roue'
+                                        'class': 'tasting_sheet_color' ~ loop.index ~ ' ml-3 tasting_sheet_color',
+                                        'placeholder': 'clickez sur un couleur'
                                     }
                                 }) }}
                             </div>
@@ -71,8 +71,9 @@
                 <div class="modal-footer">
                     {{ form_widget(forms[loop.index0].scoreTastingSheet, {
                         'attr': {
-                            'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3',
-                            'placeholder': '/10'
+                            'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3 tasting_sheet_score',
+                            'placeholder': '/10',
+                            'oninput': "this.value = Math.round(Math.max(0, Math.min(10, this.value)))"
                         }
                     }) }}
                     <button class="iv-btn my-4" type="submit"

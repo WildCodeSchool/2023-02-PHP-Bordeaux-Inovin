@@ -1,0 +1,66 @@
+.iv-border {
+    border: $iv-border-form;
+    border-radius: $iv-border-radius;
+    width: 65vw
+}
+.w-40{
+    width: 40%;
+}
+.w-35{
+    width: 35%;
+}
+.w-30{
+    width: 30%;
+}
+li{
+    list-style-type: none;
+}
+.iv-font-title{
+    font-family: $iv-title-font-family;
+    color: $iv-goldBM;
+    font-size: 1.7rem;
+}
+.iv-font-text{
+    font-family: $iv-text-font-family;
+    color: $iv-main-darkgrey;
+    font-size: 21px;
+}
+.iv-bg{
+    background-color: $iv-main-white;
+}
+.iv-font {
+    color: $iv-main-darkgrey;
+}
+
+@media screen and (max-width: 1024px) {
+.iv-border{
+    width: 90vw;
+}
+}
+
+@media screen and (max-width: 430px) {
+
+    .iv-tasting-cards {
+        width: 100%;
+    }
+    .iv-flex{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .iv-largTel{
+        width: 95%
+    }
+    .iv-tel{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        margin-right: 0 !important;
+    }
+    .iv-tel-w-100{
+        width: 100%;
+    }
+
+}

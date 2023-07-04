@@ -16,13 +16,16 @@
                     </li>
                 {% endfor %}
             </ul>
+
         </section>
-        {{ app.session.get('countValidateForm') }}
-        {%  if app.session.get('countValidateForm') >=4 %}
-        <a href= "{{ path('app_wine_blend_new') }}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
-        {% endif %}
+        <div class="d-flex justify-content-center">
+            {%  if app.session.get('countValidateForm') >=4 %}
+                <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
+            {% endif %}
+        </div>
     </div>
-   {% include "tasting_sheet/_modalFormTasting.html.twig" %}
+
+    {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
 {% endblock %}
 {% block javascript %}
