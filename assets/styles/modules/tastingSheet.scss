@@ -14,10 +14,28 @@ section {
 
 }
 
-#wine1 {
+.tastingheetWine1 {
     background: url("../../images/inovin-tasting1.jpg") no-repeat center center;
+
+}
+
+.tastingheetWine2 {
+    background: url("../../images/inovin-tasting2.jpg") no-repeat center center;
+
+}
+
+.tastingheetWine3 {
+    background: url("../../images/inovin-tasting3.jpg") no-repeat center center;
+
+}
+
+.tastingheetWine4 {
+    background: url("../../images/inovin-tasting4.jpg") no-repeat center center;
+
+}
+
+.tastingheetWine1, .tastingheetWine2, .tastingheetWine3, .tastingheetWine4 {
     background-size: 100% auto;
-    background-position: center center;
     animation: shrink 1s ease-out;
 }
 
@@ -175,6 +193,12 @@ pie-chart {
     border-radius: 100px;
 }
 
+.modal-footer {
+    border-top: none;
+    padding-top: 0;
+    padding-right: 24px;
+}
+
 @media screen and (max-width: 1024px) {
     .iv-tasting-cards {
         width: 80%;
@@ -190,5 +214,12 @@ pie-chart {
     }
     .container-tastingSheet {
         width: 100%;
+    }
+    .modal-footer {
+        padding-right: 12px;
+    }
+    .tastingheetWine1, .tastingheetWine2, .tastingheetWine3, .tastingheetWine4 {
+        background-size: 0; animation: none;
+
     }
 }
