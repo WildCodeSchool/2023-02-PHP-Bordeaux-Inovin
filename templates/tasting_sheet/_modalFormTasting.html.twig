@@ -1,7 +1,7 @@
 {% for wine in workshop.wines %}
     <!-- Modal -->
 
-    <div class="modal fade" id="wine{{ wine.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade tastingheetWine{{~ loop.index }}" id="wine{{ wine.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered iv-form-tastingSheet">
             <div class="modal-content iv-background-none w-100">

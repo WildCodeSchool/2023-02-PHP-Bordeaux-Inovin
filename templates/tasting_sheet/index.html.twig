@@ -18,12 +18,13 @@
             </ul>
 
         </section>
+        <div class="d-flex justify-content-center">
+            {%  if app.session.get('countValidateForm') >=4 %}
+                <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
+            {% endif %}
+        </div>
     </div>
-       <div class="d-flex justify-content-center">
-        {%  if app.session.get('countValidateForm') >=4 %}
-             <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
-        {% endif %}
-       </div>
+
     {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
 {% endblock %}
