@@ -72,7 +72,8 @@
                     {{ form_widget(forms[loop.index0].scoreTastingSheet, {
                         'attr': {
                             'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3 tasting_sheet_score',
-                            'placeholder': '/10'
+                            'placeholder': '/10',
+                            'oninput': "this.value = Math.round(Math.max(0, Math.min(10, this.value)))"
                         }
                     }) }}
                     <button class="iv-btn my-4" type="submit"
