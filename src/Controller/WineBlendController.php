@@ -27,10 +27,10 @@ class WineBlendController extends AbstractController
     {
         $session->set('countValidateForm', 0);
         $wineBlend = new WineBlend();
-        $form = $this->createForm(WineBlendType::class, $wineBlend);
-        $form->handleRequest($request);
+        $wineBlendForm = $this->createForm(WineBlendType::class, $wineBlend);
+        $wineBlendForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($wineBlendForm->isSubmitted() && $wineBlendForm->isValid()) {
             $wineBlendRepository->save($wineBlend, true);
 
             return $this->redirectToRoute('app_wine_blend_index', [], Response::HTTP_SEE_OTHER);
@@ -38,7 +38,7 @@ class WineBlendController extends AbstractController
 
         return $this->renderForm('wine_blend/new.html.twig', [
             'wine_blend' => $wineBlend,
-            'form' => $form,
+            'wineBlendForm' => $wineBlendForm,
         ]);
     }
 
