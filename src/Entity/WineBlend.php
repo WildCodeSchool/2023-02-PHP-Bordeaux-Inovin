@@ -35,6 +35,18 @@ class WineBlend
     #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $percentageCepage1 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $percentageCepage2 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $percentageCepage3 = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $percentageCepage4 = null;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
@@ -119,6 +131,54 @@ class WineBlend
                 $tastingSheet->setWineBlend(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPercentageCepage1(): ?int
+    {
+        return $this->percentageCepage1;
+    }
+
+    public function setPercentageCepage1(?int $percentageCepage1): static
+    {
+        $this->percentageCepage1 = $percentageCepage1;
+
+        return $this;
+    }
+
+    public function getPercentageCepage2(): ?int
+    {
+        return $this->percentageCepage2;
+    }
+
+    public function setPercentageCepage2(?int $percentageCepage2): static
+    {
+        $this->percentageCepage2 = $percentageCepage2;
+
+        return $this;
+    }
+
+    public function getPercentageCepage3(): ?int
+    {
+        return $this->percentageCepage3;
+    }
+
+    public function setPercentageCepage3(?int $percentageCepage3): static
+    {
+        $this->percentageCepage3 = $percentageCepage3;
+
+        return $this;
+    }
+
+    public function getPercentageCepage4(): ?int
+    {
+        return $this->percentageCepage4;
+    }
+
+    public function setPercentageCepage4(?int $percentageCepage4): static
+    {
+        $this->percentageCepage4 = $percentageCepage4;
 
         return $this;
     }
