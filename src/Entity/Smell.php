@@ -72,4 +72,8 @@ class Smell
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getNameSmell();
+    }
 }

@@ -37,10 +37,18 @@ class Workshop
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'workshops')]
     private Collection $wines;
 
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: WineBlend::class)]
+    private Collection $wineBlends;
+
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
         $this->wines = new ArrayCollection();
+        $this->wineBlends = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +154,71 @@ class Workshop
     public function removeWine(Wine $wine): static
     {
         $this->wines->removeElement($wine);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, WineBlend>
+     */
+    public function getWineBlends(): Collection
+    {
+        return $this->wineBlends;
+    }
+
+    public function addWineBlend(WineBlend $wineBlend): static
+    {
+        if (!$this->wineBlends->contains($wineBlend)) {
+            $this->wineBlends->add($wineBlend);
+            $wineBlend->setWorkshop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWineBlend(WineBlend $wineBlend): static
+    {
+        if ($this->wineBlends->removeElement($wineBlend)) {
+            // set the owning side to null (unless already changed)
+            if ($wineBlend->getWorkshop() === $this) {
+                $wineBlend->setWorkshop(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNameWorkshop();
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setWorkshop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getWorkshop() === $this) {
+                $vote->setWorkshop(null);
+            }
+        }
 
         return $this;
     }

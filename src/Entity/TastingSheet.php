@@ -41,6 +41,18 @@ class TastingSheet
     #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
     private ?Workshop $workshop = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $percentageTastingSheet = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $scoreTastingSheet = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?WineBlend $wineBlend = null;
+
     public function __construct()
     {
         $this->taste = new ArrayCollection();
@@ -168,6 +180,54 @@ class TastingSheet
     public function setWorkshop(?Workshop $workshop): static
     {
         $this->workshop = $workshop;
+
+        return $this;
+    }
+
+    public function getPercentageTastingSheet(): ?float
+    {
+        return $this->percentageTastingSheet;
+    }
+
+    public function setPercentageTastingSheet(?float $percentageTastingSheet): static
+    {
+        $this->percentageTastingSheet = $percentageTastingSheet;
+
+        return $this;
+    }
+
+    public function getScoreTastingSheet(): ?int
+    {
+        return $this->scoreTastingSheet;
+    }
+
+    public function setScoreTastingSheet(?int $scoreTastingSheet): static
+    {
+        $this->scoreTastingSheet = $scoreTastingSheet;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getWineBlend(): ?WineBlend
+    {
+        return $this->wineBlend;
+    }
+
+    public function setWineBlend(?WineBlend $wineBlend): static
+    {
+        $this->wineBlend = $wineBlend;
 
         return $this;
     }

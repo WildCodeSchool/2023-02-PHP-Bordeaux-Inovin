@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TastingSheetController!{% endblock %}
+
+{% block body %}
+    <div class="iv-tasting-cards">
+        <h1 class="iv-title mb-4">INO VIN Dégustation</h1>
+        <h2 class="iv-font mb-4">Mes Fiches de dégustation</h2>
+        <div class="d-flex justify-content-center flex-column iv-largTel">
+            {% for tastingsheet in userTastingSheets %}
+                <div class="container d-flex iv-border mb-4 iv-bg iv-flex">
+                    <div class="me-md-5 w-40 iv-me-2 iv-tel">
+
+                        <h4 class="iv-color mt-1 fs-2">{{ tastingsheet.wine.producer }} </h4>
+                        <h4 class="iv-font mt-1 fs-3">{{ tastingsheet.wine.cepage }}</h4>
+                    </div>
+                    <div class="me-5 w-35 iv-tel">
+                        <p class="mb-2 d-flex iv-font-title mt-1">Visuel</p>
+                        <p class="mb-1 iv-font-text"><span class="fw-bold">Brillance :</span> {{ tastingsheet.clarity }}
+                        </p>
+                        <p class="mb-1 iv-font-text"><span
+                                class="fw-bold">limpidité :</span> {{ tastingsheet.intensity }}</p>
+                        <p class="mb-1 iv-font-text"><span class="fw-bold">Couleur :</span> {{ tastingsheet.color }}</p>
+                    </div>
+                    <div class="w-40 d-flex iv-tel iv-tel-w-100">
+                        <div class="d-flex  iv-tel-w-100 iv-tel ">
+                            <div class="w-30 me-4 iv-tel-w-100 iv-tel">
+                                <p class="mb-0 d-flex iv-font-title mt-1 ">Nez </p>
+                                <div class="">
+                                    {% for tastingsmell in tastingsheet.smell %}
+                                        <li class="iv-font-text me-3">{{ tastingsmell }}</li>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="w-40 iv-tel-w-100 iv-tel">
+                                <p class="mb-0 d-flex iv-font-title mt-1">Bouche </p>
+                                <div class="">
+                                    {% for tastingtaste in tastingsheet.taste %}
+                                        <li class="iv-font-text me-3">{{ tastingtaste }}</li>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

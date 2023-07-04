@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use DateTime;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,11 +45,18 @@ class RegistrationController extends AbstractController
                 "Cet email est déjà utilisé. Rendez-vous sur la page de connexion pour réinitialiser votre mot de passe.");
         }
 
-        /*if ($form->isSubmitted() && ($form->get('plainPassword')->getData() !== $_POST['confirmPassword'])) {
-            $this->addFlash('danger', 'Les mots de passe ne correspondent pas');
-        }*/
-
         if ($form->isSubmitted() && $form->isValid()) {
+            // verify if the user is over 18
+            $userBirthday = $user->getBirthday();
+            $currentDate = new DateTime('now');
+            $diff = $currentDate->diff($userBirthday);
+            //  dd($userBirthday, $currentDate, $diff->y);
+
+            if ($diff->y < 18) {
+                $this->addFlash('danger', 'Vous devez avoir plus de 18 ans pour vous inscrire');
+                return $this->redirectToRoute('app_register');
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

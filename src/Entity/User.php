@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -29,9 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -42,6 +41,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+ // #[Assert\LessThanOrEqual("today - 18 years", message : "Vous devez avoir au moins
+ //      18 ans pour participer à un atelier.")]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(nullable: true)]
@@ -55,6 +56,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Gout $gout = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
+    private Collection $wineBlends;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
+    private Collection $votes;
+
+    public function __construct()
+    {
+        $this->wineBlends = new ArrayCollection();
+        $this->tastingSheets = new ArrayCollection();
+        $this->votes = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -223,5 +240,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setUser($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, WineBlend>
+     */
+    public function getWineBlends(): Collection
+    {
+        return $this->wineBlends;
+    }
+
+    public function addWineBlend(WineBlend $wineBlend): static
+    {
+        if (!$this->wineBlends->contains($wineBlend)) {
+            $this->wineBlends->add($wineBlend);
+            $wineBlend->setUser($this);
+
+        }
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getUser() === $this) {
+                $tastingSheet->setUser(null);
+            }
+        }
+        return $this;
+    }
+
+    public function removeWineBlend(WineBlend $wineBlend): static
+    {
+        if ($this->wineBlends->removeElement($wineBlend)) {
+            // set the owning side to null (unless already changed)
+            if ($wineBlend->getUser() === $this) {
+                $wineBlend->setUser(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getUser() === $this) {
+                $vote->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

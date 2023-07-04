@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/gout', name: 'gout_')]
 class GoutController extends AbstractController
@@ -70,7 +71,7 @@ class GoutController extends AbstractController
             }
             $goutRepository->save($gout, true);
 
-            return $this->redirectToRoute('gout_edit', ['id' => $gout->getId()]);
+            return $this->redirectToRoute('app_atelier');
         }
 
 
@@ -80,8 +81,9 @@ class GoutController extends AbstractController
     }
 
     #[Route('/show', name: 'show')]
-    public function show(GoutRepository $goutRepository, Request $request): response
+    public function show(GoutRepository $goutRepository, Request $request, SessionInterface $session): response
     {
+        $session->set('countValidateForm', 0);
         $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
@@ -91,7 +93,7 @@ class GoutController extends AbstractController
             $goutRepository->save($gout, true);
             // ...
 
-            return $this->redirectToRoute('app_atelier');
+            return $this->redirectToRoute('gout_show');
         }
 
         return $this->render('gout/show.html.twig', [
@@ -120,7 +122,8 @@ class GoutController extends AbstractController
             return $this->redirectToRoute('app_atelier');
         }
 
-        return $this->render('atlier/welcome.html.twig', [
+        return $this->render('atelier/welcome.html.twig', [
+
             'form' => $form->createView(),
             'gout' => $gout,
         ]);
