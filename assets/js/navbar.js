@@ -1,17 +1,9 @@
 let degustationsTitle = document.querySelector('.iv-nav-degustations')
 let checkDegustations = false
+let clickDegustation = document.getElementById('click-degustation');
 
-function closeMenu() {
-    // eslint-disable-next-line no-console
-    console.log('closeMenu')
-    checkDegustations = false
-    checkAssemblages = false
-    checkProfil= false
-    degustationsTitle.style.display = 'none'
-    assemblagesTitle.style.display = 'none'
-    profilTitle.style.display = 'none'
-}
-function onOverDegustations() {
+
+clickDegustation.addEventListener('click', () => {
     if (checkDegustations === false) {
         checkDegustations = true
         degustationsTitle.style.display = 'block'
@@ -19,10 +11,11 @@ function onOverDegustations() {
         checkDegustations = false
         degustationsTitle.style.display = 'none'
     }
-}
+})
 let assemblagesTitle = document.querySelector('.iv-nav-assemblages')
 let checkAssemblages = false
-function onOverAssemblages() {
+let clickAssemblage = document.getElementById('click-assemblage');
+clickAssemblage.addEventListener('click', () => {
     if (checkAssemblages === false) {
         checkAssemblages = true
         assemblagesTitle.style.display = 'block'
@@ -30,10 +23,14 @@ function onOverAssemblages() {
         checkAssemblages = false
         assemblagesTitle.style.display = 'none'
     }
-}
+})
+
 let profilTitle = document.querySelector('.iv-nav-profil')
 let checkProfil = false
-function onOverProfil() {
+let clickProfil = document.getElementById('click-profil');
+
+clickProfil.addEventListener('click', () => {
+
     if (checkProfil === false) {
         checkProfil = true
         profilTitle.style.display = 'block'
@@ -41,4 +38,8 @@ function onOverProfil() {
         checkProfil = false
         profilTitle.style.display = 'none'
     }
-}
+})
+
+
+
+
