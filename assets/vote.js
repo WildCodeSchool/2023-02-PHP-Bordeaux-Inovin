@@ -36,8 +36,5 @@ prev.onclick = function () {
     active = active - 1 >= 0 ? active - 1 : active;
     loadShow();
 }
-// eslint-disable-next-line no-undef
-$('#myModal').on('shown.bs.modal', function () {
-    // eslint-disable-next-line no-undef
-    $('#myInput').trigger('focus')
-})
+
+
