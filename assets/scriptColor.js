@@ -1,5 +1,5 @@
 function strToDom(str) {
-  return document.createRange().createContextualFragment(str).firstElementChild;
+    return document.createRange().createContextualFragment(str).firstElementChild;
 }
 
 class Point {
@@ -7,9 +7,11 @@ class Point {
         this.x = x;
         this.y = y;
     }
+
     toSvgPath() {
         return `${this.x} ${this.y}`;
     }
+
     static fromAngle(angle) {
         return new Point(Math.cos(angle), Math.sin(angle));
     }
@@ -138,7 +140,8 @@ class Piechart extends HTMLElement {
         const input3 = document.querySelector('.tasting_sheet_color3');
         if (input3) {
             input3.value = color; // Remplir le champ de saisie avec la couleur
-        } const input4 = document.querySelector('.tasting_sheet_color4');
+        }
+        const input4 = document.querySelector('.tasting_sheet_color4');
         if (input4) {
             input4.value = color; // Remplir le champ de saisie avec la couleur
         }
