@@ -6,7 +6,7 @@
      aria-labelledby="offcanvasExampleLabel">
 
     <div class="offcanvas-header iv-nav-bg iv-nav-width">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" onclick="closeMenu()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" ></button>
     </div>
 
     <div class="offcanvas-body iv-nav-bg iv-center mt-0 iv-nav-width">
@@ -19,7 +19,7 @@
 
         <a href="{{ path('app_atelier') }}" class="iv-color iv-link-navbar"><h2 class="iv-color mt-5">Accès atelier</h2></a>
 
-        <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverDegustations()">Mes dégustations</h2>
+        <h2 class="iv-color mt-5" style="cursor: pointer" id="click-degustation">Mes dégustations</h2>
         <div class="iv-nav-degustations">
             <p class="iv-color">Cépage 1 - 2022 - Château X</p>
             <p class="iv-color">Cépage 2 - 2022 - Château Y</p>
@@ -27,7 +27,7 @@
             <p class="iv-color">Cépage 4 - 2022 - Château W</p>
         </div>
 
-        <h2 class="iv-color mt-5" style="cursor: pointer" onclick="onOverAssemblages()">Mes assemblages</h2>
+        <h2 class="iv-color mt-5" style="cursor: pointer" id="click-assemblage">Mes assemblages</h2>
         <div class="iv-nav-assemblages">
             <p class="iv-color">Petit BBQ entre amis - juin 2023</p>
             <p class="iv-color">La Camargue ca vous gagne - mai 2022</p>
@@ -35,7 +35,7 @@
             <p class="iv-color">Le plus bel atelier de ma vie - décembre 2021</p>
         </div>
 
-        <h2 class="iv-color mt-5"  style="cursor: pointer"onclick="onOverProfil()">Mon profil</h2>
+        <h2 class="iv-color mt-5"  style="cursor: pointer" id="click-profil">Mon profil</h2>
         <div class="iv-nav-profil">
             <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
             <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
@@ -49,50 +49,3 @@
 
 </div>
 
-<script>
-    let degustationsTitle = document.querySelector('.iv-nav-degustations')
-    let checkDegustations = false
-
-    function closeMenu() {
-        // eslint-disable-next-line no-console
-        console.log('closeMenu')
-        checkDegustations = false
-        checkAssemblages = false
-        checkProfil= false
-        degustationsTitle.style.display = 'none'
-        assemblagesTitle.style.display = 'none'
-        profilTitle.style.display = 'none'
-    }
-    function onOverDegustations() {
-        if (checkDegustations === false) {
-            checkDegustations = true
-            degustationsTitle.style.display = 'block'
-        } else {
-            checkDegustations = false
-            degustationsTitle.style.display = 'none'
-        }
-    }
-    let assemblagesTitle = document.querySelector('.iv-nav-assemblages')
-    let checkAssemblages = false
-    function onOverAssemblages() {
-        if (checkAssemblages === false) {
-            checkAssemblages = true
-            assemblagesTitle.style.display = 'block'
-        } else {
-            checkAssemblages = false
-            assemblagesTitle.style.display = 'none'
-        }
-    }
-    let profilTitle = document.querySelector('.iv-nav-profil')
-    let checkProfil = false
-    function onOverProfil() {
-        if (checkProfil === false) {
-            checkProfil = true
-            profilTitle.style.display = 'block'
-        } else {
-            checkProfil = false
-            profilTitle.style.display = 'none'
-        }
-    }
-
-</script>
