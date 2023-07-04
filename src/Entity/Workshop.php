@@ -40,11 +40,15 @@ class Workshop
     #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: WineBlend::class)]
     private Collection $wineBlends;
 
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
         $this->wines = new ArrayCollection();
         $this->wineBlends = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,5 +191,35 @@ class Workshop
     public function __toString(): string
     {
         return $this->getNameWorkshop();
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setWorkshop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getWorkshop() === $this) {
+                $vote->setWorkshop(null);
+            }
+        }
+
+        return $this;
     }
 }

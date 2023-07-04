@@ -35,9 +35,13 @@ class WineBlend
     #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class)]
+    private Collection $votes;
+
     public function __construct()
     {
         $this->tastingSheets = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,6 +121,36 @@ class WineBlend
             // set the owning side to null (unless already changed)
             if ($tastingSheet->getWineBlend() === $this) {
                 $tastingSheet->setWineBlend(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): static
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes->add($vote);
+            $vote->setWineBlend($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): static
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getWineBlend() === $this) {
+                $vote->setWineBlend(null);
             }
         }
 
