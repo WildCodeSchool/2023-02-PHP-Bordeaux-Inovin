@@ -15,8 +15,8 @@
                     <button type="button" class="btn-close iv-color" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex w-100 justify-content-lg-around flex-wrap">
-                    <div class="iv-form-container container-tastingSheet py-3 my-1">
+                <div class="modal-body iv-modal-body">
+                    <div class="iv-form-container container-tastingSheet py-3 my-1 ">
                         <div class="d-flex align-items-center flex-column">
                             <div>
                                 <ul class="d-none">
@@ -36,8 +36,8 @@
                                 <pie-chart data="22;22;22;22;22" class="p-1 mb-3"></pie-chart>
                                 {{ form_widget(forms[loop.index0].color, {
                                     'attr': {
-                                        'class': 'tasting_sheet_color' ~ loop.index ~ ' ml-3',
-                                        'placeholder': 'Selectionnez une couleur dans la roue'
+                                        'class': 'tasting_sheet_color' ~ loop.index ~ ' ml-3 tasting_sheet_color',
+                                        'placeholder': 'clickez sur un couleur'
                                     }
                                 }) }}
                             </div>
@@ -71,7 +71,7 @@
                 <div class="modal-footer">
                     {{ form_widget(forms[loop.index0].scoreTastingSheet, {
                         'attr': {
-                            'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3',
+                            'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3 tasting_sheet_score',
                             'placeholder': '/10'
                         }
                     }) }}
