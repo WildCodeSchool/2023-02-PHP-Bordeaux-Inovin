@@ -1,10 +1,22 @@
-.request-form{
-    width: 400px;
+.iv-request-form{
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 110px;
+    padding: 2rem;
+    border: $iv-border-form;
+    Border-radius: $iv-border-radius;
+    background: $iv-background-color;
 }
 .request-btn{
     Border-radius: $iv-border-radius;
     Color: $iv-main-white;
+}
+.iv-request-container {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.iv-p-10{
+padding-left: 10px;
 }
