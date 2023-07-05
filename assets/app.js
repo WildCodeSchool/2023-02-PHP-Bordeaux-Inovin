@@ -20,7 +20,7 @@ import './bootstrap';
 import './js/navbar.js';
 import './scriptColor.js';
 import './linkToBlend.js';
-import './vote.js';
 import './linkToBlend.js';
+//import './vote.js';
 
 
