@@ -9,11 +9,8 @@ use App\Form\TastingSheetType2;
 use App\Form\TastingSheetType3;
 use App\Form\TastingSheetType4;
 use App\Repository\TastingSheetRepository;
-use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Stmt\Return_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -22,12 +19,11 @@ class TastingSheetController extends AbstractController
 {
     #[Route('/tastingSheet/{codeWorkshop}', name: 'app_tasting_sheet', methods: ['GET', 'POST'])]
     public function index(
-        Workshop               $workshop,
-        Request                $request,
+        Workshop $workshop,
+        Request $request,
         TastingSheetRepository $tastingSheetRepo,
-        SessionInterface       $session
-    ): Response
-    {
+        SessionInterface $session
+    ): Response {
 
         $tastingSheets = [];
         $forms = [];
@@ -40,12 +36,10 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
 
-
         foreach ($formTypes as $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
-
 
             if ($form->isSubmitted() && $form->isValid()) {
                 // Traitez les données du formulaire
@@ -72,9 +66,7 @@ class TastingSheetController extends AbstractController
                 }
             }
             $countValidateForm = $session->get('countValidateForm');
-
         }
-
 
         return $this->render('tasting_sheet/index.html.twig', [
             'forms' => $forms,
@@ -101,27 +93,27 @@ class TastingSheetController extends AbstractController
     //en test
     #[Route('/tastingSheet/{codeWorkshop}/addPercent', name: 'tasting_sheet_addPercent', methods: ['GET', 'POST'])]
     public function addPercent(
-        TastingSheetRepository $tastingSheetRepository,
-        Workshop               $workshop,
-    ): Response
-    {
+        TastingSheetRepository $tastingSheetRepo,
+        Workshop $workshop,
+    ): Response {
         // get the tasting sheets from the workshop by user
         $workshop->getId();
-        $tastingSheets = $tastingSheetRepository->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
+        $tastingSheets = $tastingSheetRepo->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
 
         // create an array with the cepages and their scores/10 (by user/workshop)
         $cepageScoreArray = [];
-        foreach ($tastingSheets as $key=>$value) {
+        foreach ($tastingSheets as $key => $value) {
             $key = $value->getWine()->getCepage()->getNameCepage();
             $value = $value->getScoreTastingSheet();
             $cepageScoreArray[$key] = $value;
         }
 
-        // identify the lowest score, and set it to 0. If several cepages have the same lowest score, pick one randomly to set to 0
+        // identify the lowest score, and set it to 0.
+        // If several cepages have the same lowest score, pick one randomly to set to 0
         $minimumScore = min(array_values($cepageScoreArray));
         $minimumScoreCepages = array_keys($cepageScoreArray, $minimumScore);
-        $randomLowestScoreCepage = $minimumScoreCepages[array_rand($minimumScoreCepages)];
-        $cepageScoreArray[$randomLowestScoreCepage] = 0;
+        $randomLowScoreCepage = $minimumScoreCepages[array_rand($minimumScoreCepages)];
+        $cepageScoreArray[$randomLowScoreCepage] = 0;
 
         // transform the scores into percentages, so that they add up to 100
         $addAllScores = array_sum($cepageScoreArray);
@@ -137,16 +129,16 @@ class TastingSheetController extends AbstractController
         if ($missingValue > 0) {
             $highestScore = max($cepagePercentArray);
             $highestScoreCepages = array_keys($cepagePercentArray, $highestScore);
-            $randomHighestScoreCepage = $highestScoreCepages[array_rand($highestScoreCepages)];
-            $cepagePercentArray[$randomHighestScoreCepage] += 1;
+            $randomHighScoreCepag = $highestScoreCepages[array_rand($highestScoreCepages)];
+            $cepagePercentArray[$randomHighScoreCepag] += 1;
         }
 
         // update the tasting sheets of the user with the new percentages
-        foreach ($tastingSheets as $key=>$tastingSheet) {
+        foreach ($tastingSheets as $key => $tastingSheet) {
             $cepageName = $tastingSheet->getWine()->getCepage()->getNameCepage();
-            if(isset($cepagePercentArray[$cepageName])) {
+            if (isset($cepagePercentArray[$cepageName])) {
                 $tastingSheet->setPercentageTastingSheet($cepagePercentArray[$cepageName]);
-                $tastingSheetRepository->save($tastingSheet, true);
+                $tastingSheetRepo->save($tastingSheet, true);
             }
         }
         return $this->redirectToRoute('app_wine_blend_new');

@@ -4,28 +4,32 @@
 
 {% block body %}
     <h1 class="iv-title">INO VIN Dégustation</h1>
-<div class="request-form">
+    <div class="iv-request-container">
+        <div class="iv-request-form ">
 
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-        <h2 class="iv-center">Réinitialisez votre mot de passe</h2>
+            {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            <h2 class="iv-sub-title">Réinitialisez votre mot de passe</h2>
 
-        {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email,{'attr':{'class':'form form-control'}}) }}
+            {{ form_start(requestForm) }}
+            {{ form_widget(requestForm.email,{'attr':{'class':'form form-control iv-form-input','placeholder':'Email'}}) }}
 
-        <div>
-            <small>
-                Entrez votre adresse e-mail et nous vous enverrons un
-                lien pour réinitialiser votre mot de passe.
-            </small>
-        </div>
 
-        <button style="background-color: #B58654;" class="request-btn sm m-1">Envoyer un e-mail de réinitialisation du mot de passe</button>
-
-    {{ form_end(requestForm) }}
-
+            <div class="iv-p-10 mt-1">
+                <small>
+                    Entrez votre adresse e-mail et nous vous enverrons un
+                    lien pour réinitialiser votre mot de passe.
+                </small>
+            </div>
+<div class="d-flex justify-content-center mt-4">
+            <button style="background-color: #B58654;" class="iv-btn sm m-1 w-1w-50 ">Valider
+            </button>
 </div>
+            {{ form_end(requestForm) }}
+
+        </div>
+    </div>
 {% endblock %}
 
 
