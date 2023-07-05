@@ -1,3 +1,4 @@
+/*
 let items = document.querySelectorAll('.slider .item');
 let next = document.getElementById('next');
 let prev = document.getElementById('prev');
@@ -27,6 +28,7 @@ function loadShow()
         items[i].style.opacity = stt > 2 ? 0 : 0.6;
     }
 }
+gg
 loadShow();
 next.onclick = function () {
     active = active + 1 < items.length ? active + 1 : active;
@@ -38,3 +40,5 @@ prev.onclick = function () {
 }
 
 
+
+*/
