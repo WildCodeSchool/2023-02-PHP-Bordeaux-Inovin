@@ -30,11 +30,25 @@
             <p class="iv-color">Le plus bel atelier de ma vie - décembre 2021</p>
         </div>
 
-        <h2 class="iv-color mt-5"  style="cursor: pointer" id="click-profil">Mon profil</h2>
-        <div class="iv-nav-profil">
+        <div class="accordion mt-4" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button text-center iv-color fs-24" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Mon profil
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
+                        <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       {# <div class="iv-nav-profil">
             <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
             <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
-        </div>
+        </div>#}
 
         <a href="/logout" class="iv-link-navbar"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>
         <p class="m-0 dark-grey">Mentions Légales</p>

@@ -69,7 +69,31 @@
         width: 50px;
     }
 }
-
+.accordion-button{
+    display: block;
+    background-color: $iv-main-white;
+    border: none;
+}
+.accordion-button:not(.collapsed){
+    color: $iv-goldBM;
+    font-size: 2rem;
+    background-color: $iv-main-white;
+    border: none;
+}
+.fs-24{
+    font-size: 2rem;
+}
+.accordion-item{
+    border: none;
+}
+.accordion {
+    --bs-accordion-bg: $iv-main-white;
+    --bs-accordion-border-width: none;
+}
+.accordion-button:focus{
+    border-color: $iv-main-white;
+    box-shadow: none;
+}
 /* tablet max width portrait cell phone landscape 768 */
 
 
