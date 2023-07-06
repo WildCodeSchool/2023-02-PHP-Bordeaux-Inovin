@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="iv-title">INO VIN Erreur 404</h1>
+
+    <div class="d-flex justify-content-center w-100">
+        <div class="iv-form-container-login w-50 d-flex align-items-center">
+
+            <img src="{{ asset('build/images/404filling.gif') }}" class="mb-4 w-75"
+                 alt="error gif">
+
+            <p class="fs-4 text-center">
+                La page que vous demandez n'a pas pu être localisée. Vérifiez l'URL pour une éventuelle erreur de typo
+                ou <a href="{{ path('app_welcome') }}" class="iv-color">retournez à la page d'accueil</a>.
+            </p>
+
+        </div>
+    </div>
+
+
+{% endblock %}
