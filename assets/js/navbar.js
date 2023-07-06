@@ -1,3 +1,4 @@
+/*
 let degustationsTitle = document.querySelector('.iv-nav-degustations')
 let checkDegustations = false
 let clickDegustation = document.getElementById('click-degustation');
@@ -43,3 +44,4 @@ clickProfil.addEventListener('click', () => {
 
 
 
+*/

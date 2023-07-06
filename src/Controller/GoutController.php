@@ -85,6 +85,9 @@ class GoutController extends AbstractController
     {
         $session->set('countValidateForm', 0);
         $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
+        if (!$gout) {
+            return $this->redirectToRoute('gout_new');
+        }
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
 
