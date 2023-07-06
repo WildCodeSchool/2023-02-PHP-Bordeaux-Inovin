@@ -108,9 +108,11 @@ class TastingSheetController extends AbstractController
 
         // identify the lowest score, and set it to 0.
         // If several cepages have the same lowest score, pick one randomly to set to 0
-        $minimumScore = min($cepageScoreArray);
-        $randomLowScoreCepage = array_rand(array_keys($cepageScoreArray, $minimumScore));
+        $minimumScore = min(array_values($cepageScoreArray));
+        $minimumScoreCepages = array_keys($cepageScoreArray, $minimumScore);
+        $randomLowScoreCepage = $minimumScoreCepages[array_rand($minimumScoreCepages)];
         $cepageScoreArray[$randomLowScoreCepage] = 0;
+
 
         // transform the scores into percentages, so that they add up to 100
         $addAllScores = array_sum($cepageScoreArray);
@@ -123,7 +125,9 @@ class TastingSheetController extends AbstractController
         $sumOfPercent = array_sum($cepagePercentArray);
         $missingValue = 100 - $sumOfPercent;
         if ($missingValue > 0) {
-            $randomHighScoreCepag = array_rand(array_keys($cepagePercentArray, max($cepagePercentArray)));
+            $highestScore = max($cepagePercentArray);
+            $highestScoreCepages = array_keys($cepagePercentArray, $highestScore);
+            $randomHighScoreCepag = $highestScoreCepages[array_rand($highestScoreCepages)];
             $cepagePercentArray[$randomHighScoreCepag] += 1;
         }
 
