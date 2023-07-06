@@ -82,17 +82,14 @@ class TastingSheetController extends AbstractController
         ]);
     }
 
-    #[Route('/tastingSheet/show/{id}', name: 'tasting_sheet_show', methods: ['GET'])]
+    #[Route('/tasting-sheet/show/{id}', name: 'tasting_sheet_show', methods: ['GET'])]
     public function show(
-        TastingSheet $tastingSheet,
         TastingSheetRepository $tastingSheetRepo,
-        int $id
     ): Response {
 
-        $userTastingSheets = $tastingSheetRepo->findBy(['user' => $id]);
+        $tastingSheets = $tastingSheetRepo->findBy([]);
         return $this->render('tasting_sheet/show.html.twig', [
-            'tasting_sheet' => $tastingSheet,
-            'userTastingSheets' => $userTastingSheets,
+            'tasting_sheets' => $tastingSheets,
         ]);
     }
 

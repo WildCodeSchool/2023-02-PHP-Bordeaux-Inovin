@@ -37,7 +37,7 @@
                         Mon profil
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse data-bs-parent" id="accordionExample">
                     <div class="accordion-body">
                         <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
                         <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
@@ -45,11 +45,6 @@
                 </div>
             </div>
         </div>
-       {# <div class="iv-nav-profil">
-            <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
-            <a href="{{ path('gout_show')}}" class="iv-link-navbar"><p class="iv-color">Mes goûts</p></a>
-        </div>#}
-
         <a href="/logout" class="iv-link-navbar"><h2 class="mt-5 dark-grey">Me déconnecter</h2></a>
         <p class="m-0 dark-grey">Mentions Légales</p>
         <p class="m-0 dark-grey">Politique de confidentialité</p>

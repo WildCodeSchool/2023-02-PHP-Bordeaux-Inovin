@@ -7,7 +7,7 @@
         <h1 class="iv-title mb-4">INO VIN Dégustation</h1>
         <h2 class="iv-font mb-4">Mes Fiches de dégustation</h2>
         <div class="d-flex justify-content-center flex-column iv-largTel">
-            {% set limitedTastingSheets = userTastingSheets|slice(0, 4) %}
+            {% set limitedTastingSheets = tasting_sheets|slice(0, 4) %}
             {% for tastingsheet in limitedTastingSheets %}
                 <div class="container d-flex iv-border mb-4 iv-bg iv-flex">
                     <div class="me-md-5 w-40 iv-me-2 iv-tel">
