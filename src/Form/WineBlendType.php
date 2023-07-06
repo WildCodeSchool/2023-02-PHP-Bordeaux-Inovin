@@ -27,6 +27,7 @@ class WineBlendType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => WineBlend::class,
+            'csrf_protection' => false,
         ]);
     }
 }
