@@ -44,6 +44,8 @@
 }
 
 .iv-blend-slider {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
     height: 300px;
     -webkit-appearance: slider-vertical;
     grid-area: slider;
