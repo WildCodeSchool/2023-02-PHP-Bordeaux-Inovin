@@ -9,6 +9,7 @@ use App\Form\TastingSheetType2;
 use App\Form\TastingSheetType3;
 use App\Form\TastingSheetType4;
 use App\Repository\TastingSheetRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,8 @@ class TastingSheetController extends AbstractController
         Workshop $workshop,
         Request $request,
         TastingSheetRepository $tastingSheetRepo,
-        SessionInterface $session
+        SessionInterface $session,
+        EntityManagerInterface $entityManager
     ): Response {
 
         $tastingSheets = [];
@@ -35,13 +37,19 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType3::class, $tastingSheet),
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
-
+        $wineExist = $entityManager
+            ->getRepository(TastingSheet::class)
+            ->findOneBy(['wine' => $tastingSheet->getWine()]);
+        if ($wineExist) {
+            $this->addFlash('danger', "ce vin a déjà été dégusté.");
+        }
         foreach ($formTypes as $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
 
             if ($form->isSubmitted() && $form->isValid()) {
+
                 // Traitez les données du formulaire
                 $tastingSheet->setWorkshop($workshop);
                 $tastingSheet->setUser($this->getUser());
