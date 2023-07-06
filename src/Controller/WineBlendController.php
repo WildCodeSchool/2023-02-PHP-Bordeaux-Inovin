@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\WineBlend;
+use App\Entity\Workshop;
 use App\Form\WineBlendType;
+use App\Repository\TastingSheetRepository;
 use App\Repository\WineBlendRepository;
 use App\Service\ServiceScoreToPercent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,18 +25,24 @@ class WineBlendController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_wine_blend_new', methods: ['GET', 'POST'])]
+    #[Route('/new/{codeWorkshop}', name: 'app_wine_blend_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         WineBlendRepository $wineBlendRepository,
         SessionInterface $session,
+        Workshop $workshop,
+        TastingSheetRepository $tastingSheetRepository,
     ): Response {
         $session->set('countValidateForm', 0);
         $wineBlend = new WineBlend();
         $wineBlendForm = $this->createForm(WineBlendType::class, $wineBlend);
         $wineBlendForm->handleRequest($request);
 
+        $tastingSheets = $tastingSheetRepository->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
+
         if ($wineBlendForm->isSubmitted() && $wineBlendForm->isValid()) {
+            $wineBlend->setUser($this->getUser());
+            $wineBlend->setWorkshop($workshop);
             $wineBlendRepository->save($wineBlend, true);
 
             return $this->redirectToRoute('app_wine_blend_index', [], Response::HTTP_SEE_OTHER);
@@ -43,6 +51,7 @@ class WineBlendController extends AbstractController
         return $this->renderForm('wine_blend/new.html.twig', [
             'wine_blend' => $wineBlend,
             'wineBlendForm' => $wineBlendForm,
+            'tastingSheets' => $tastingSheets,
         ]);
     }
 
