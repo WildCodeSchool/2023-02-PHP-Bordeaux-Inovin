@@ -102,21 +102,27 @@ class TastingSheetController extends AbstractController
     {
         $tastingSheets = $tastingSheetRepo->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
 
+        // create an array with the cepages and their scores/10 (by user/workshop)
         $cepageScoreArray = array_reduce($tastingSheets, function ($carry, $value) {
             $carry[$value->getWine()->getCepage()->getNameCepage()] = $value->getScoreTastingSheet();
             return $carry;
         }, []);
 
+
+        // identify the lowest score, and set it to 0.
+        // If several cepages have the same lowest score, pick one randomly to set to 0
         $minimumScore = min($cepageScoreArray);
         $randomLowScoreCepage = array_rand(array_keys($cepageScoreArray, $minimumScore));
         $cepageScoreArray[$randomLowScoreCepage] = 0;
 
+        // transform the scores into percentages, so that they add up to 100
         $addAllScores = array_sum($cepageScoreArray);
         $percentTransformer = 100 / $addAllScores;
         $cepagePercentArray = array_map(function ($value) use ($percentTransformer) {
             return round($value * $percentTransformer);
         }, $cepageScoreArray);
 
+        // if the sum of the percentages is not 100, add the missing value to the cepage with the highest score
         $sumOfPercent = array_sum($cepagePercentArray);
         $missingValue = 100 - $sumOfPercent;
         if ($missingValue > 0) {
@@ -124,6 +130,7 @@ class TastingSheetController extends AbstractController
             $cepagePercentArray[$randomHighScoreCepag] += 1;
         }
 
+        // update the tasting sheets of the user with the new percentages
         array_walk($tastingSheets, function ($tastingSheet) use ($cepagePercentArray, $tastingSheetRepo) {
             $cepageName = $tastingSheet->getWine()->getCepage()->getNameCepage();
             if (isset($cepagePercentArray[$cepageName])) {
