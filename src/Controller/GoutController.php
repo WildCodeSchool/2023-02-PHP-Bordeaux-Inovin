@@ -6,10 +6,6 @@ use App\Entity\Gout;
 use App\Form\GoutType;
 use App\Repository\AromeRepository;
 use App\Repository\ColorRepository;
-
-
-
-
 use App\Repository\GoutRepository;
 use App\Repository\RegionRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
