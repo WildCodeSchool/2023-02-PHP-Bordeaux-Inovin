@@ -132,6 +132,6 @@ class TastingSheetController extends AbstractController
             }
         });
 
-        return $this->redirectToRoute('app_wine_blend_new');
+        return $this->redirectToRoute('app_wine_blend_new',['codeWorkshop' => $workshop->getCodeWorkshop()]);
     }
 }
