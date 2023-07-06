@@ -2,10 +2,6 @@
 
 {% block body %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-form-container-login">
         <div class="d-flex justify-content-center iv-margin-top-322">
@@ -19,13 +15,13 @@
                         <div class="iv-322">
                             <input type="text" id="username" name="_username" value="{{ last_username }}"
                                    class="form-control iv-form-input"
-                                   placeholder="Mail"/>
+                                   placeholder="Mail" required/>
                             <label class="form-label" for="username"></label>
                         </div>
 
                         <div class="iv-322">
                             <input type="password" id="password" name="_password" class="form-control iv-form-input"
-                                   placeholder="Mot de passe"/>
+                                   placeholder="Mot de passe" required/>
                             <label class="form-label" for="password"></label>
                         </div>
 
@@ -50,8 +46,8 @@
 #}
     </form>
     <div class="text-center ">
-        <p class="$iv-main-darkgrey" >Première fois ? <a href="{{ path('app_register') }}" class="iv-color">Inscrivez-vous !</a></p>
-        <p class="$iv-main-darkgrey"><a href="{{ path('app_forgot_password_request') }}"> J’ai oublié mon mot de passe ?</a></p>
+        <p class="$iv-main-darkgrey" >Première fois ? <a  href="{{ path('app_register') }}" class="iv-color">Inscrivez-vous !</a></p>
+        <p class="$iv-main-darkgrey"><a class="iv-color" href="{{ path('app_forgot_password_request') }}"> J’ai oublié mon mot de passe !</a></p>
 
 
         </div>
