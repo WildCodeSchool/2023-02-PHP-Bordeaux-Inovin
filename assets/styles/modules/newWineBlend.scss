@@ -49,11 +49,29 @@
     grid-area: slider;
 }
 
-.iv-blend-label {
+.iv-blend-label-cepage {
     height: fit-content;
     width: fit-content;
-    margin: 0 auto;
+    margin: 0 auto;/*
     grid-area: label;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;*/
+}
+
+.iv-blend-label {
+    grid-area: label;
+}
+
+.iv-blend-cepage {
+    grid-area: cepage;
+}
+
+.iv-blend-label span {
+    font-family: $iv-text-font-family;
+    font-size: 1.5rem;
+    color: $iv-goldBM;
 }
 
 .iv-blend-slider-liquid {
@@ -62,6 +80,7 @@
     grid:
             "slider tube" 300px
             ". label" 20px
+            ". cepage" 20px
             / 20px 100px;
     margin: auto;
 }
