@@ -24,6 +24,18 @@
         const label3 = document.getElementById("iv-blend-label3");
         const label4 = document.getElementById("iv-blend-label4");
 
+        liquid1.style.height = slider1.value + "%";
+        label1.textContent = Math.trunc(slider1.value) + "%";
+
+        liquid2.style.height = slider2.value + "%";
+        label2.textContent = Math.trunc(slider2.value) + "%";
+
+        liquid3.style.height = slider3.value + "%";
+        label3.textContent = Math.trunc(slider3.value) + "%";
+
+        liquid4.style.height = slider4.value + "%";
+        label4.textContent = Math.trunc(slider4.value) + "%";
+
         slider1.addEventListener("input", function () {
             const totalValue = parseInt(this.value) + parseInt(slider2.value) + parseInt(slider3.value) + parseInt(slider4.value)
             const remainingValue = 100 - totalValue;
