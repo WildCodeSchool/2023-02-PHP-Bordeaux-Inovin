@@ -1,50 +1,62 @@
 {{ form_start(wineBlendForm) }}
+{{ form_errors(wineBlendForm) }}
 <div>
     <form action="" method="post">
         <div class="iv-blend-slider-container">
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid1">
-                <input type="range" id="iv-blend-slider1" class="iv-blend-slider" min="0" max="100" value="50" name="{{ field_name(wineBlendForm.percentageCepage1) }}">
+                <input type="range" id="iv-blend-slider1" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.0.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage1) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube1">
                     <div class="iv-blend-liquid" id="iv-blend-liquid1"></div>
                 </div>
-                <span id="iv-blend-label1" class="iv-blend-label">100%</span>
+                <div class="iv-blend-label">
+                    <span id="iv-blend-label1">{{ tastingSheets.0.percentageTastingSheet }}%</span>
+                    <span>{{ tastingSheets.0.wine.cepage }}</span>
+                </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid2">
-                <input type="range" id="iv-blend-slider2" class="iv-blend-slider" min="0" max="100" value="50" name="{{ field_name(wineBlendForm.percentageCepage2) }}">
+                <input type="range" id="iv-blend-slider2" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.1.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage2) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube2">
                     <div class="iv-blend-liquid" id="iv-blend-liquid2"></div>
                 </div>
-                <span id="iv-blend-label2" class="iv-blend-label">100%</span>
+                <div class="iv-blend-label">
+                    <span id="iv-blend-label1">{{ tastingSheets.1.percentageTastingSheet }}%</span>
+                    <span>{{ tastingSheets.1.wine.cepage }}</span>
+                </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid3">
-                <input type="range" id="iv-blend-slider3" class="iv-blend-slider" min="0" max="100" value="50" name="{{ field_name(wineBlendForm.percentageCepage3) }}">
+                <input type="range" id="iv-blend-slider3" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.2.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage3) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube3">
                     <div class="iv-blend-liquid" id="iv-blend-liquid3"></div>
                 </div>
-                <span id="iv-blend-label3" class="iv-blend-label">100%</span>
+                <div class="iv-blend-label">
+                    <span id="iv-blend-label1">{{ tastingSheets.2.percentageTastingSheet }}%</span>
+                    <span>{{ tastingSheets.2.wine.cepage }}</span>
+                </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid4">
-                <input type="range" id="iv-blend-slider4" class="iv-blend-slider" min="0" max="100" value="50" name="{{ field_name(wineBlendForm.percentageCepage4) }}">
+                <input type="range" id="iv-blend-slider4" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.3.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage4) }}">
 
                 <div class="iv-blend-tube" id="tube4">
                     <div class="iv-blend-liquid" id="iv-blend-liquid4"></div>
                 </div>
-                <span id="iv-blend-label4" class="iv-blend-label">100%</span>
+                <div class="iv-blend-label-cepage">
+                    <span class="iv-blend-label" id="iv-blend-label1">{{ tastingSheets.3.percentageTastingSheet }}%</span>
+                    <span class="iv-blend-cepage">{{ tastingSheets.3.wine.cepage }}</span>
+                </div>
             </div>
         </div>
         <div class="iv-blend-submit">
-            <input type="text" class="iv-form-input iv-blend-name" placeholder="Le nom de mon assemblage" name="{{ field_name(wineBlendForm.nameBlend) }}">
+            <input type="text" class="iv-form-input iv-blend-name" placeholder="Le nom de mon assemblage" name="{{ field_name(wineBlendForm.nameBlend) }}" required>
             <input type="submit" class="iv-btn">
         </div>
     </form>
 
 </div>
-
 {{ form_end(wineBlendForm) }}
