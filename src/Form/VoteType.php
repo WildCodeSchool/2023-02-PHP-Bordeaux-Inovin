@@ -15,7 +15,14 @@ class VoteType extends AbstractType
     {
 
         $builder
-            ->add('scoreVote', IntegerType::class);
+            ->add('scoreVote', IntegerType::class, [
+                'label' => false,
+                'attr' => [
+                    'min' => 0,
+                    'max' => 10,
+                    'class' => 'form-control',
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

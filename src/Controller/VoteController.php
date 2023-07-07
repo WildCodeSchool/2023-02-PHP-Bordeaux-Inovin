@@ -21,13 +21,11 @@ class VoteController extends AbstractController
     public function index(VoteRepository $voteRepository, Request $request, Workshop $workshop, Vote $vote): Response
     {
         $votesByWorkshop = $voteRepository->findBy(['workshop' => $workshop]);
-
         $voteFormBuilder = $this->createFormBuilder();
 
         foreach ($votesByWorkshop as $workshopVotes) {
             $voteFormBuilder->add('vote_' . $workshopVotes->getId(), VoteType::class, [
                 'data' => $workshopVotes,
-                'label' => false,
             ]);
         }
 
@@ -35,19 +33,17 @@ class VoteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Supprimer les boucles foreach inutiles pour les relations ManyToMany (couleur, arôme, région)
             $voteRepository->save($vote, true);
-            // ...
-
-            //return $this->redirectToRoute('app_atelier');
+            return $this->redirectToRoute('app_vote_loader');
         }
 
         return $this->render('vote/index.html.twig', [
             'form' => $form->createView(),
-            'votes'=> $votesByWorkshop,
+            'votes' => $votesByWorkshop,
             'voteForm' => $voteFormBuilder->getForm(),
         ]);
     }
+
     #[Route('/vote/loader', name: 'app_vote_loader')]
     public function loader(): Response
     {

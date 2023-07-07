@@ -21,8 +21,9 @@
 <div>   {{ form_start(voteForm) }}
     {% for value in votes %}
         <div>
+            <label for="form_vote_{{  value.id }}_scoreVote"></label>
 
-            {{ form_widget(voteForm['vote_' ~ value.id], {'label': value.wineBlend.nameBlend }) }}
+            {{ form_row(voteForm['vote_' ~ value.id], {'label': value.wineBlend.nameBlend }) }}
         </div>
     {% endfor %}
            <button type="submit" class="rounded-button no-border">
@@ -34,14 +35,7 @@
             <div class="iv-item-vote">
                 <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-25 rounded-image"
                      alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
 
-                </div>
-            </div>
-
-        <div class="iv-btn-vote-position">
-            <button type="submit" class="iv-btn">Voter</button>
         </div>
 
     </div>
