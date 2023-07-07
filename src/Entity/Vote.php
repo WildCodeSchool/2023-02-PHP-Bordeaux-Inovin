@@ -14,6 +14,7 @@ class Vote
     private ?int $id = null;
 
     #[ORM\Column]
+    #[ORM\JoinColumn(nullable: true)]
     private ?int $scoreVote = null;
 
     #[ORM\ManyToOne(inversedBy: 'votes')]
