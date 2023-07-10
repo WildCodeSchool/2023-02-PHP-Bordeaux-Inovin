@@ -185,7 +185,7 @@ ul li img:hover {
 }
 
 /*camembert*/
-pie-chart {
+.pie-chart {
     width: 150px;
     height: 150px;
     margin: 10px auto;
@@ -193,6 +193,30 @@ pie-chart {
     border-radius: 100px;
 }
 
+.iv-card-title{
+    position: relative;
+    top: -220px;
+    right: -10px;
+    font-family:$iv-title-font-family
+}
+.iv-bg-img{
+    background-color: Black;
+    opacity: 70%;
+}
+
+.iv-card-li{
+    height: 250px
+}
+
+.iv-card-sub-title {
+    font-family: $iv-title-font-family;
+    color: #323232;
+    font-size: 40px;
+    line-height: 55px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1rem !important;
+}
 .modal-footer {
     border-top: none;
     padding-top: 0;
