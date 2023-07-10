@@ -8,7 +8,6 @@ use App\Entity\Workshop;
 use App\Form\WineBlendType;
 use App\Repository\TastingSheetRepository;
 use App\Repository\WineBlendRepository;
-use App\Service\ServiceScoreToPercent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -83,13 +82,17 @@ class WineBlendController extends AbstractController
             $wineBlend->setNameCepage1($tastingSheets[0]->getWine()->getCepage());
             $wineBlendRepository->save($wineBlend, true);
 
-            return $this->redirectToRoute('app_vote', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_winner', [
+                'workshopId' => $workshop->getId(),
+            ], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('wine_blend/new.html.twig', [
             'wine_blend' => $wineBlend,
             'wineBlendForm' => $wineBlendForm,
             'tastingSheets' => $tastingSheets,
+            'workshop' => $workshop,
         ]);
     }
 
