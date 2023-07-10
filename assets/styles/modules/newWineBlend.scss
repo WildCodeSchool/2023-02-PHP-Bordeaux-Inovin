@@ -3,8 +3,14 @@
     grid:
             "iv-blend-slider-liquid1 iv-blend-slider-liquid2 iv-blend-slider-liquid3 iv-blend-slider-liquid4" 1fr
             /1fr 1fr 1fr 1fr;
-    margin-top: 4rem;
+    margin-top: 3rem;
 
+}
+
+.iv-blend-explain {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 .iv-blend-tube {
@@ -113,8 +119,5 @@
 
 .iv-blend-name {
     width: 17rem;
-}
-
-.iv-blend-name::placeholder {
-    padding-left: 10px
+    padding-left: 0.625rem;
 }
