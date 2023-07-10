@@ -8,6 +8,7 @@ use App\Entity\Region;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,33 +27,14 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class, [
-                'constraints' => [
-                    new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
-                ]
-            ])
-            ->add('lastname', TextType::class, [
-                'constraints' => [
-                    new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
-                ]
-            ])
+            ->add('firstname', TextType::class)
+            ->add('lastname', TextType::class)
             ->add('birthday', DateType::class, [
                 'format' => 'yyyy-MM-dd',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrez une date de naissance',
-                    ]),
-                ]
             ])
             ->add('zipcode', IntegerType::class)
             ->add('phoneNumber', TextType::class)
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrez une adresse email',
-                    ]),
-                ]
-            ])
+            ->add('email', EmailType::class)
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -61,23 +43,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            /*->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])*/
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre.',
@@ -95,27 +60,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ]]);/*  ->add('color', EntityType::class, [
-                'class' => Color::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'by_reference' => false,
-            ])
-            ->add('arome', EntityType::class, [
-                'class' => Arome::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'by_reference' => false,
-            ])
-            ->add('region', EntityType::class, [
-                'class' => Region::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'by_reference' => false,
-            ]) */;
+                ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

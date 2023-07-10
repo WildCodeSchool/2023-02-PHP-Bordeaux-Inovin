@@ -27,6 +27,7 @@
                             {% else %}
                                 placeholder="Nom"
                             {% endif %}>
+                        {{ form_error(registrationForm.lastname) }}
                     </div>
                     <div class="col">
                         <input
@@ -37,6 +38,7 @@
                             {% else %}
                                 placeholder="Prénom"
                             {% endif %}>
+                        {{ form_error(registrationForm.firstname) }}
                     </div>
                 </div>
                 <div class="row">
