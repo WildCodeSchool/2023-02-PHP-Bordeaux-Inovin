@@ -11,8 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -272,7 +270,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->wineBlends->contains($wineBlend)) {
             $this->wineBlends->add($wineBlend);
             $wineBlend->setUser($this);
-
         }
         return $this;
     }

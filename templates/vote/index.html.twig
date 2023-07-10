@@ -6,93 +6,37 @@
     <div class="iv-body-vote-page">
         <h1 class="iv-title">INO VIN Dégustation</h1>
         <h2 class="iv-sub-title">Je vote pour un assemblage</h2>
+        {{ dump(votes) }}
 
-        <div class="iv-cards-vote-page">
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="button" class="rounded-button no-border">
-                        /10
-                    </button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter"> Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter"> Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter"> Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter"> Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteWhiteWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteWhiteWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteWhiteWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteWhiteWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteWhiteWine.jpg') }}" class="d-block w-100 rounded-image"
-                     alt="image bouteille">
-                <div class="iv-name-voter">Michael bob</div>
-                <div class="iv-vote-score">
-                    <button type="submit" class="rounded-button no-border">/10</button>
-                </div>
-            </div>
+        <div>
+            {%  for value in votes %}
+
+                {{ value.wineBlend.nameBlend }}
+
+
+
+            {% endfor %}
+
         </div>
-        <div class="iv-btn-vote-position">
-            <button type="submit" class="iv-btn">Voter</button>
+<div>   {{ form_start(voteForm) }}
+    {% for value in votes %}
+        <div>
+            <label for="form_vote_{{  value.id }}_scoreVote"></label>
+
+            {{ form_row(voteForm['vote_' ~ value.id], {'label': value.wineBlend.nameBlend }) }}
         </div>
+    {% endfor %}
+           <button type="submit" class="rounded-button no-border">
+            valider
+        </button>
+        {{ form_end(voteForm) }}
+    </div>
+    <div class="iv-cards-vote-page">
+            <div class="iv-item-vote">
+                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-25 rounded-image"
+                     alt="image bouteille">
+
+        </div>
+
     </div>
 {% endblock %}

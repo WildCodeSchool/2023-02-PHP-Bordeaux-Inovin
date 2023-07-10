@@ -1,13 +1,14 @@
 {% for wine in workshop.wines %}
     <!-- Modal -->
 
+
     <div class="modal fade tastingheetWine{{~ loop.index }}" id="wine{{ wine.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered iv-form-tastingSheet">
             <div class="modal-content iv-background-none w-100">
                 <div class="">
                     {{ form_start(forms[loop.index0], {'attr': {'name': 'form_' ~ loop.index0, 'class': 'd-flex w-100 align-items-center justify-content-between px-3 pt-3'}}) }}
-
+                    {{ form_errors(forms[loop.index0]) }}
                     <h1 class="ps-4 modal-title fs-5 iv-color" id="staticBackdropLabel"></h1>
 
                     <h1 class=" text-center iv-color">{{ wine.cepage.nameCepage }}</h1>
@@ -77,9 +78,12 @@
                         }
                     }) }}
                     <button class="iv-btn my-4" type="submit"
-                            data-bs-dismiss="modal">{{ button_label|default('Valider') }}</button>
+                            data-bs-dismiss="modal">
+                                {{ button_label|default('Valider') }}
+                        </button>
                 </div> {{ form_end(forms[loop.index0]) }}
             </div>
         </div>
     </div>
+
 {% endfor %}

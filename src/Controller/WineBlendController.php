@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Vote;
 use App\Entity\WineBlend;
 use App\Entity\Workshop;
 use App\Form\WineBlendType;
@@ -40,13 +41,51 @@ class WineBlendController extends AbstractController
         $tastingSheets = $tastingSheetRepo->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
 
         if ($wineBlendForm->isSubmitted() && $wineBlendForm->isValid()) {
+            // TODO : refactor
+            $percentages = [];
+            $percentages[] = $wineBlendForm->get('percentageCepage1')->getData();
+            $percentages[] = $wineBlendForm->get('percentageCepage2')->getData();
+            $percentages[] = $wineBlendForm->get('percentageCepage3')->getData();
+            $percentages[] = $wineBlendForm->get('percentageCepage4')->getData();
+            if (!in_array(0, $percentages)) {
+                $this->addFlash('danger', 'Veuillez ne sélectionner que 3 vins maximum');
+                return $this->redirectToRoute(
+                    'app_wine_blend_new',
+                    ['codeWorkshop' => $workshop->getCodeWorkshop()],
+                    Response::HTTP_SEE_OTHER
+                );
+            }
+            if (count(array_keys($percentages, 0)) > 2) {
+                $this->addFlash('danger', 'Veuillez sélectionner au moins 2 vins');
+                return $this->redirectToRoute(
+                    'app_wine_blend_new',
+                    ['codeWorkshop' => $workshop->getCodeWorkshop()],
+                    Response::HTTP_SEE_OTHER
+                );
+            }
+            if (array_sum($percentages) < 100) {
+                $this->addFlash('danger', 'Le pourcentage total doit faire 100%');
+                return $this->redirectToRoute(
+                    'app_wine_blend_new',
+                    ['codeWorkshop' => $workshop->getCodeWorkshop()],
+                    Response::HTTP_SEE_OTHER
+                );
+            }
+
+
             $wineBlend->setUser($this->getUser());
             $wineBlend->setWorkshop($workshop);
+            array_map(function ($tastingSheet, $index) use ($wineBlend) {
+                $func = 'setNameCepage' . ($index + 1);
+                $wineBlend->$func($tastingSheet->getWine()->getCepage()->getNameCepage());
+            }, $tastingSheets, array_keys($tastingSheets));
+            $wineBlend->setNameCepage1($tastingSheets[0]->getWine()->getCepage());
             $wineBlendRepository->save($wineBlend, true);
 
             return $this->redirectToRoute('app_winner', [
                 'workshopId' => $workshop->getId(),
             ], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('wine_blend/new.html.twig', [

@@ -3,16 +3,20 @@
 {% block title %}Hello TastingSheetController!{% endblock %}
 
 {% block body %}
+    <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-tasting-cards">
-        <h1 class="iv-title">{{ workshop.nameWorkshop }}</h1>
+        <h2 class="iv-card-sub-title mt-3 fs-3">Atelier : {{ workshop.nameWorkshop }}</h2>
+
         <section>
             <ul>
                 {% for wine in workshop.wines %}
-                    <li>
+                    <li class="iv-card-li">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
-                                 alt="{{ wine.producer }}">
+                                 alt="{{ wine.producer }}"
+                            class="iv-bg-img">
                         </a>
+                        <h5 class="iv-card-title">{{ wine.cepage.nameCepage }}</h5>
                     </li>
                 {% endfor %}
             </ul>
