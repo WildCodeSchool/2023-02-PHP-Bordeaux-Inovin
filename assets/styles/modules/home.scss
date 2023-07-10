@@ -1,6 +1,13 @@
 
 /*accueil*/
 
+.iv-form-container-welcome {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .iv-logo-accueil {
     width: 30%;
     padding: 40px;
@@ -8,15 +15,14 @@
 
 .iv-carousel {
     background-size: cover;
-    padding: 10px 50px 0;
-    width: 100%;
-    margin: 0 auto;
     height: 100vh;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .iv-widthFull{
-    width: 90vw;}
+    width: 75vw;
+}
 
 hr {
     border: 2px solid $iv-taupe;
@@ -31,30 +37,26 @@ hr {
     align-items: center;
     padding: 40px;
     background-color: $iv-taupe;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .iv-img-carousel {
-    min-height: 460px;
+    height: 55vh;
     overflow: hidden;
     position: relative;
-    max-height: 460px;
-    width: 45%;
+    width: 48%;
 }
 
 .iv-img-carousel img {
-    height: 460px;
     position: absolute;
-    top: 0;
     right: -70px;
+    min-width: 100%;
+    height: 100vh;
 }
 
 .iv-block-carousel {
-    min-height: 340px;
-    height: 460px;
-    max-height: 460px;
-    width: 46%;
-    margin-left: 30px;
+    height: 55vh;
+    width: 48%;
     background-color: $iv-main-darkgrey;
     padding: 40px;
     color: $iv-taupe
@@ -68,10 +70,17 @@ hr {
 .iv-carousel a{height:100vh}
 
 .iv-list-carousel li {
-    line-height: 2rem;
     padding: 10px 5px;
     font-family: $iv-text-font-family;
     font-size: 1.3rem;
+}
+
+.iv-line-height-3 {
+    line-height: 3rem;
+}
+
+.iv-line-height-2 {
+    line-height: 2rem;
 }
 
 .carousel-control-next-icon {
@@ -101,7 +110,10 @@ hr {
     border-top: 0;
     border-bottom: 0;
 }
-.iv-connexionHref{text-decoration: none}
+.iv-connexionHref{
+    text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
     .iv-img-carousel {
         display: none

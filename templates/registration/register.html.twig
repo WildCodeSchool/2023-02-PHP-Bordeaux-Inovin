@@ -5,7 +5,7 @@
 {% block body %}
 
     {{ form_start(registrationForm) }}
-    {{ form_errors(registrationForm) }}
+
     <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-form-container-register align-items-center">
         <div class="iv-form-container py-3 my-1" id="iv-form-container-register">
@@ -17,6 +17,7 @@
                             name="{{ field_name(registrationForm.lastname) }}"
                             type="text" class="form-control iv-form-input" placeholder="Nom">
                     </div>
+                    {{ form_errors(registrationForm.lastname) }}
                     <div class="iv-hidden-mediascreen">
                     </div>
                     <div class="col">
@@ -24,6 +25,7 @@
                             name="{{ field_name(registrationForm.firstname) }}"
                             type="text" class="form-control iv-form-input" placeholder="Prénom">
                     </div>
+                    {{ form_errors(registrationForm.firstname) }}
                 </div>
                 <div class="row">
                     <div class="col">
@@ -31,6 +33,7 @@
                             name="{{ field_name(registrationForm.email) }}"
                             type="text" class="form-control iv-form-input" placeholder="Email">
                     </div>
+                    {{ form_errors(registrationForm.email) }}
                 </div>
                 <div class="row">
                     <div class="col">
@@ -38,6 +41,7 @@
                             name="{{ field_name(registrationForm.birthday) }}"
                             type="date" class="form-control iv-form-input">
                     </div>
+                    {{ form_errors(registrationForm.birthday) }}
                     <div class="iv-hidden-mediascreen">
                     </div>
                     <div class="col">
@@ -59,13 +63,14 @@
                             name="{{ field_name(registrationForm.password.first) }}"
                             type="password" class="form-control iv-form-input" placeholder="Mot de passe">
                     </div>
+                    {{ form_errors(registrationForm.password.first) }}
                 </div>
                 <div class="row">
                     <div class="col">
                         <input
                             name="{{ field_name(registrationForm.password.second) }}"
                             type="password" class="form-control iv-form-input" placeholder="Confirmer le mot de passe">
-                        {# <span>{{ field_errors(registrationForm.password.second) }}</span> #}
+                        {{ form_errors(registrationForm.password.second) }}
                     </div>
                 </div>
                 <div class="row">

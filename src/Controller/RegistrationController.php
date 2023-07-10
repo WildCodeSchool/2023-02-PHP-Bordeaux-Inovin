@@ -42,7 +42,9 @@ class RegistrationController extends AbstractController
         if ($userExist) {
             $this->addFlash(
                 'danger',
-                "Cet email est déjà utilisé. Rendez-vous sur la page de connexion pour réinitialiser votre mot de passe.");
+                "Cet email est déjà utilisé. Rendez-vous sur la page de connexion
+                pour réinitialiser votre mot de passe."
+            );
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +85,8 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre profil a bien été créé. Rendez-vous sur votre boite mail pour vérifier votre compte');
+                'Votre profil a bien été créé. Rendez-vous sur votre boite mail pour vérifier votre compte'
+            );
                 $this->authenticateUser($user);
             return $this->redirectToRoute('gout_new');
         }

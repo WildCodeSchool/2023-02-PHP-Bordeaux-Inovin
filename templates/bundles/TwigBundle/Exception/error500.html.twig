@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="iv-title">INO VIN Erreur 500</h1>
+
+    <div class="d-flex justify-content-center w-100">
+        <div class="iv-form-container-login w-50 d-flex align-items-center">
+
+            <img src="{{ asset('build/images/EmptyError.gif') }}" class="mb-4 w-75"
+                 alt="error gif">
+
+            <p class="fs-4 text-center">
+                Un problème de serveur est survenu. Veuillez réessayer plus tard ou
+                <a href="{{ path('app_welcome') }}" class="iv-color"> retournez à la page d'accueil</a>.
+            </p>
+
+        </div>
+    </div>
+
+
+{% endblock %}

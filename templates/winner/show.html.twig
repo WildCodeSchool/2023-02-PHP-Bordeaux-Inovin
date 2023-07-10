@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+
+    <h2>Résultats</h2>
+
+    <p>Nombre de votants : {{ numberOfBlends }}</p>
+    <p>Meilleur note : {{ highestScore.scoreWineblend }} </p>
+    <p>Nom de l'assemblage avec la meilleure note : " {{ highestScore.nameBlend }} "</p>
+
+    <button onclick="rafraichirPage()">Rafraichir</button>
+
+    <script>
+        function rafraichirPage() {
+            location.reload();
+        }
+    </script>
+{% endblock %}
