@@ -50,14 +50,20 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // verify if the user is over 18
             $userBirthday = $user->getBirthday();
-            $currentDate = new DateTime('now');
-            $diff = $currentDate->diff($userBirthday);
+            if ($userBirthday !== null) {
+                $currentDate = new DateTime('now');
+                $diff = $currentDate->diff($userBirthday);
             //  dd($userBirthday, $currentDate, $diff->y);
 
-            if ($diff->y < 18) {
-                $this->addFlash('danger', 'Vous devez avoir plus de 18 ans pour vous inscrire');
+                if ($diff->y < 18) {
+                    $this->addFlash('danger', 'Vous devez avoir plus de 18 ans pour vous inscrire');
+                    return $this->redirectToRoute('app_register');
+                }
+            } else {
                 return $this->redirectToRoute('app_register');
             }
+
+
 
             // encode the plain password
             $user->setPassword(
