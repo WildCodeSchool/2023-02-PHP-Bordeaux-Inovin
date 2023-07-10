@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\WineBlend;
+use App\Entity\Workshop;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,25 @@ class WineBlendRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WineBlend::class);
+    }
+
+    public function countByWorkshop(Workshop $workshop): int
+    {
+        return $this->createQueryBuilder('wb')
+            ->select('COUNT(wb)')
+            ->andWhere('wb.workshop = :workshop')
+            ->setParameter('workshop', $workshop)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function findHighestScore(): ?WineBlend
+    {
+        return $this->createQueryBuilder('wb')
+            ->orderBy('wb.scoreWineblend', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     public function save(WineBlend $entity, bool $flush = false): void
