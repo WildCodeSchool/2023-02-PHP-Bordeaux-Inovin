@@ -41,6 +41,8 @@ class WineBlendController extends AbstractController
 
         $tastingSheets = $tastingSheetRepo->findBy(['workshop' => $workshop, 'user' => $this->getUser()]);
 
+        //dd($tastingSheets[0]->getWine()->getColor()->getNameColor());
+
         if ($wineBlendForm->isSubmitted() && $wineBlendForm->isValid()) {
             // TODO : refactor
             $percentages = [];
@@ -83,7 +85,11 @@ class WineBlendController extends AbstractController
             $wineBlend->setNameCepage1($tastingSheets[0]->getWine()->getCepage());
             $wineBlendRepository->save($wineBlend, true);
 
-            return $this->redirectToRoute('app_vote', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_vote',
+                ['codeWorkshop' => $workshop->getCodeWorkshop()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->renderForm('wine_blend/new.html.twig', [
