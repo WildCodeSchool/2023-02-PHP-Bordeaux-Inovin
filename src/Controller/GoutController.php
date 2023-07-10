@@ -27,10 +27,11 @@ class GoutController extends AbstractController
      */
     #[Route('/', name: 'app_gout')]
     public function index(
-        AromeRepository $aromeRepository,
+        AromeRepository  $aromeRepository,
         RegionRepository $regionRepository,
-        ColorRepository $colorRepository
-    ): Response {
+        ColorRepository  $colorRepository
+    ): Response
+    {
 
         $arome = $aromeRepository->findAll();
         $region = $regionRepository->findAll();
@@ -51,24 +52,34 @@ class GoutController extends AbstractController
         $form->handleRequest($request);
 
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $gout->setUser($this->getUser());
             $selectedColors = $form->get('color')->getData();
             $selectedAromes = $form->get('arome')->getData();
             $selectedRegions = $form->get('region')->getData();
-            foreach ($selectedColors as $color) {
+
+            $selectedColorsArray = $selectedColors->toArray();
+
+            array_map(function ($color) use ($gout) {
                 $gout->addColor($color);
                 $color->addGout($gout);
-            }
-            foreach ($selectedAromes as $arome) {
+            }, $selectedColorsArray);
+
+
+            $selectedAromesArray = $selectedAromes->toArray();
+
+            array_map(function ($arome) use ($gout) {
                 $gout->addArome($arome);
                 $arome->addGout($gout);
-            }
-            foreach ($selectedRegions as $region) {
+            }, $selectedAromesArray);
+
+            $selectedRegionsArray = $selectedRegions->toArray();
+
+            array_map(function ($region) use ($gout) {
                 $gout->addRegion($region);
                 $region->addGout($gout);
-            }
+            }, $selectedRegionsArray);
+
             $goutRepository->save($gout, true);
 
             return $this->redirectToRoute('app_atelier');

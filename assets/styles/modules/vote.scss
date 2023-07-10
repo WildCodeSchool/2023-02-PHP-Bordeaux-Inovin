@@ -1,0 +1,56 @@
+
+
+.iv-item-vote {
+    width: 200px;
+    text-align: justify;
+    background-color: #D3BDA5;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 15px;
+}
+
+.iv-name-voter {
+    background-color: #B58654;
+    border-radius: 0.625rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    color: #FFFAF0;
+}
+
+.iv-vote-score {
+
+    background-color: #FFFAF0;
+    border-radius: 0.625rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin-left: 40px;
+    margin-top: 5px;
+}
+
+.rounded-image {
+    border-radius: 0.625rem;
+}
+
+.rounded-button {
+    border: none;
+    background-color: #FFFAF0;
+}
+
+.no-border {
+    border: none;
+}
+
+.iv-btn-vote-position {
+    display: flex;
+    justify-content: center;
+}
+
+.iv-cards-vote-page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: -40px;
+    margin-left: 100px;
+}

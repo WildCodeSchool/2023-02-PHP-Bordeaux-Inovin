@@ -1,0 +1,120 @@
+.iv-blend-slider-container {
+    display: grid;
+    grid:
+            "iv-blend-slider-liquid1 iv-blend-slider-liquid2 iv-blend-slider-liquid3 iv-blend-slider-liquid4" 1fr
+            /1fr 1fr 1fr 1fr;
+    margin-top: 4rem;
+
+}
+
+.iv-blend-tube {
+    position: relative;
+    width: 100px;
+    height: 300px;
+    background-color: $iv-main-white;
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
+    grid-area: tube;
+    border: $iv-border-form;
+}
+
+.iv-blend-liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transition: height 0.2s;
+    background-color: $iv-main-red-wine;
+}
+
+#iv-blend-liquid1 {
+    height: 50%;
+}
+
+#iv-blend-liquid2 {
+    height: 50%;
+}
+
+#iv-blend-liquid3 {
+    height: 50%;
+}
+
+#iv-blend-liquid4 {
+    height: 50%;
+}
+
+.iv-blend-slider {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    height: 300px;
+    -webkit-appearance: slider-vertical;
+    grid-area: slider;
+}
+
+.iv-blend-label-cepage {
+    height: fit-content;
+    width: fit-content;
+    margin: 0 auto;/*
+    grid-area: label;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;*/
+}
+
+.iv-blend-label {
+    grid-area: label;
+    text-align: center;
+}
+
+.iv-blend-cepage {
+    grid-area: cepage;
+}
+
+.iv-blend-label span {
+    font-family: $iv-text-font-family;
+    font-size: 1.5rem;
+    color: $iv-goldBM;
+}
+
+.iv-blend-slider-liquid {
+    display: grid;
+    width: fit-content;
+    grid:
+            "slider tube" 300px
+            ". label" 20px
+            ". cepage" 20px
+            / 20px 100px;
+    margin: auto;
+}
+
+#iv-blend-slider-liquid1 {
+    grid-area: iv-blend-slider-liquid1;
+}
+
+#iv-blend-slider-liquid2 {
+    grid-area: iv-blend-slider-liquid2;
+}
+
+#iv-blend-slider-liquid3 {
+    grid-area: iv-blend-slider-liquid3;
+}
+
+#iv-blend-slider-liquid4 {
+    grid-area: iv-blend-slider-liquid4;
+}
+
+.iv-blend-submit {
+    display: flex;
+    margin-top: 7rem;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.iv-blend-name {
+    width: 17rem;
+}
+
+.iv-blend-name::placeholder {
+    padding-left: 10px
+}
