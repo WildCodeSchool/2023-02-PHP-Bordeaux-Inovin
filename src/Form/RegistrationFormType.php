@@ -26,15 +26,33 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
+            ->add('firstname', TextType::class, [
+                'constraints' => [
+                    new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
+                ]
+            ])
+            ->add('lastname', TextType::class, [
+                'constraints' => [
+                    new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
+                ]
+            ])
             ->add('birthday', DateType::class, [
-                'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrez une date de naissance',
+                    ]),
+                ]
             ])
             ->add('zipcode', IntegerType::class)
             ->add('phoneNumber', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrez une adresse email',
+                    ]),
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -77,8 +95,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ]]);
-            /*  ->add('color', EntityType::class, [
+                ]]);/*  ->add('color', EntityType::class, [
                 'class' => Color::class,
                 'choice_label' => 'name',
                 'multiple' => true,
