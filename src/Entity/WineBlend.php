@@ -21,8 +21,8 @@ class WineBlend
     #[ORM\Column(length: 255)]
     private ?string $nameBlend = null;
 
-    #[ORM\Column]
-    private ?int $scoreWineblend = null;
+    #[ORM\Column(nullable: true)]
+    private ?float $scoreWineblend = null;
 
     #[ORM\ManyToOne(inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
@@ -73,12 +73,12 @@ class WineBlend
         return $this;
     }
 
-    public function getScoreWineblend(): ?int
+    public function getScoreWineblend(): ?float
     {
         return $this->scoreWineblend;
     }
 
-    public function setScoreWineblend(int $scoreWineblend): static
+    public function setScoreWineblend(float $scoreWineblend): static
     {
         $this->scoreWineblend = $scoreWineblend;
 
@@ -216,5 +216,4 @@ class WineBlend
 
         return $this;
     }
-
 }
