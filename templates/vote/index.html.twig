@@ -1,42 +1,31 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Vote assemblage{% endblock %}
 {% block body %}
-    <div class="iv-body-vote-page">
-        <h1 class="iv-title">INO VIN Dégustation</h1>
-        <h2 class="iv-sub-title">Je vote pour un assemblage</h2>
-        {{ dump(votes) }}
+<div class="iv-body-vote-page">
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+    <h2 class="iv-sub-title">Je vote pour un assemblage</h2>
 
-        <div>
-            {%  for value in votes %}
+    <div>   {{ form_start(voteForm) }}
+        {% for value in votes %}
+            <div>
+                <label for="form_vote_{{ value.id }}_scoreVote"></label>
 
-                {{ value.wineBlend.nameBlend }}
+                {{ form_row(voteForm['vote_' ~ value.id], {'label': value.nameBlend }) }}
+            </div>
+        {% endfor %}
 
-
-
-            {% endfor %}
-
-        </div>
-<div>   {{ form_start(voteForm) }}
-    {% for value in votes %}
-        <div>
-            <label for="form_vote_{{  value.id }}_scoreVote"></label>
-
-            {{ form_row(voteForm['vote_' ~ value.id], {'label': value.wineBlend.nameBlend }) }}
-        </div>
-    {% endfor %}
-           <button type="submit" class="rounded-button no-border">
+        <button type="submit" class="rounded-button no-border">
             valider
         </button>
         {{ form_end(voteForm) }}
     </div>
     <div class="iv-cards-vote-page">
-            <div class="iv-item-vote">
-                <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-25 rounded-image"
-                     alt="image bouteille">
+        <div class="iv-item-vote">
+            <img src="{{ asset('build/images/VoteRedWine.jpg') }}" class="d-block w-25 rounded-image"
+                 alt="image bouteille">
 
         </div>
 
     </div>
-{% endblock %}
+    {% endblock %}
