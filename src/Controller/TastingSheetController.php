@@ -37,19 +37,14 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType3::class, $tastingSheet),
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
-        $wineExist = $entityManager
-            ->getRepository(TastingSheet::class)
-            ->findOneBy(['wine' => $tastingSheet->getWine()]);
-        if ($wineExist) {
-            $this->addFlash('danger', "ce vin a déjà été dégusté.");
-        }
+
+
         foreach ($formTypes as $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 // Traitez les données du formulaire
                 $tastingSheet->setWorkshop($workshop);
                 $tastingSheet->setUser($this->getUser());
