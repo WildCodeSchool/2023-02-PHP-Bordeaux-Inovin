@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vote assemblage{% endblock %}
+{% block title %}{{ parent() }}Vote assemblage{% endblock %}
 {% block body %}
     {% embed "includes/helper.html.twig" %}
         {% block helper_content %}
