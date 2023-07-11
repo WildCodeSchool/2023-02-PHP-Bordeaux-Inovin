@@ -29,31 +29,31 @@ class TastingSheet
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $intensity = null;
 
-    #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets')]
+    #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
     private Collection $taste;
 
-    #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets')]
+    #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
     private Collection $smell;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Comment $comment = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?Wine $wine = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?Workshop $workshop = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $percentageTastingSheet = null;
+    private ?float $percentTastingSheet = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $scoreTastingSheet = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?WineBlend $wineBlend = null;
 
     public function __construct()
@@ -187,14 +187,14 @@ class TastingSheet
         return $this;
     }
 
-    public function getPercentageTastingSheet(): ?float
+    public function getPercentTastingSheet(): ?float
     {
-        return $this->percentageTastingSheet;
+        return $this->percentTastingSheet;
     }
 
-    public function setPercentageTastingSheet(?float $percentageTastingSheet): static
+    public function setPercentTastingSheet(?float $percentTastingSheet): static
     {
-        $this->percentageTastingSheet = $percentageTastingSheet;
+        $this->percentTastingSheet = $percentTastingSheet;
 
         return $this;
     }

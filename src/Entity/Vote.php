@@ -17,13 +17,13 @@ class Vote
     #[ORM\JoinColumn(nullable: true)]
     private ?int $scoreVote = null;
 
-    #[ORM\ManyToOne(inversedBy: 'votes')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'votes')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'votes')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'votes')]
     private ?WineBlend $wineBlend = null;
 
-    #[ORM\ManyToOne(inversedBy: 'votes')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'votes')]
     private ?Workshop $workshop = null;
 
     public function getId(): ?int
