@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à modifier vos préférences en matière de vin. Vous pouvez à chaque fois sélectionner une ou plusieurs options. Parlez-nous de vous !
+        {% endblock %}
+    {% endembed %}
 
     <h1 class="iv-title">INO VIN Dégustation</h1>
 
