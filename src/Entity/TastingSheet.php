@@ -33,21 +33,21 @@ class TastingSheet
     #[Assert\NotBlank]
     private ?string $intensity = null;
 
-    #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets')]
-    #[Assert\NotBlank]
+
+    #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
     private Collection $taste;
 
-    #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets')]
-    #[Assert\NotBlank]
+    #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
+
     private Collection $smell;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Comment $comment = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?Wine $wine = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?Workshop $workshop = null;
 
     #[ORM\Column(nullable: true)]
@@ -56,10 +56,10 @@ class TastingSheet
     #[ORM\Column(nullable: true)]
     private ?int $scoreTastingSheet = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'tastingSheets')]
     private ?WineBlend $wineBlend = null;
 
     public function __construct()

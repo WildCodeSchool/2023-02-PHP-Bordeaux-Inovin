@@ -21,7 +21,7 @@ class Smell
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $nameSmell = null;
 
-    #[ORM\ManyToMany(targetEntity: TastingSheet::class, mappedBy: 'smell')]
+    #[ORM\ManyToMany(targetEntity: TastingSheet::class, mappedBy: 'smell', cascade: ['persist', 'remove'])]
     private Collection $tastingSheets;
 
     public function __construct()
