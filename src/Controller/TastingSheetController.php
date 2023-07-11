@@ -38,18 +38,26 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
 
-
         foreach ($formTypes as $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted()) {
                 // Traitez les données du formulaire
                 $tastingSheet->setWorkshop($workshop);
                 $tastingSheet->setUser($this->getUser());
                 $selectedSmells = $form->get('smell')->getData();
                 $selectedTastes = $form->get('taste')->getData();
+
+                $cepage = $form->get('wine')->getData()->getCepage();
+                if ($form->get('scoreTastingSheet')->getData() === null) {
+                    $this->addFlash(
+                        'danger',
+                        "Vous devez renseigner une note pour le cépage -
+                        -$cepage--> cette fiche de dégustation n'a pas été enregistrée"
+                    );
+                }
 
                 $selectedSmellsArray = $selectedSmells->toArray();
 
@@ -74,6 +82,7 @@ class TastingSheetController extends AbstractController
                     $session->set('countValidateForm', 1);
                 }
             }
+
             $countValidateForm = $session->get('countValidateForm');
         }
 
@@ -138,7 +147,7 @@ class TastingSheetController extends AbstractController
         array_walk($tastingSheets, function ($tastingSheet) use ($cepagePercentArray, $tastingSheetRepo) {
             $cepageName = $tastingSheet->getWine()->getCepage()->getNameCepage();
             if (isset($cepagePercentArray[$cepageName])) {
-                $tastingSheet->setPercentageTastingSheet($cepagePercentArray[$cepageName]);
+                $tastingSheet->setPercentTastingSheet($cepagePercentArray[$cepageName]);
                 $tastingSheetRepo->save($tastingSheet, true);
             }
         });
