@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TastingSheetRepository::class)]
 #[UniqueEntity(fields: ['wine'], message: 'Vous avez déjà rempli une fiche de dégustation pour cet atelier')]
@@ -20,19 +21,24 @@ class TastingSheet
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 30)]
+    #[Assert\NotBlank]
     private ?string $color = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 30)]
+    #[Assert\NotBlank]
     private ?string $clarity = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 30)]
+    #[Assert\NotBlank]
     private ?string $intensity = null;
+
 
     #[ORM\ManyToMany(targetEntity: Taste::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
     private Collection $taste;
 
     #[ORM\ManyToMany(targetEntity: Smell::class, inversedBy: 'tastingSheets', cascade: ['persist', 'remove'])]
+
     private Collection $smell;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

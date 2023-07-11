@@ -6,11 +6,8 @@ use App\Entity\Vote;
 use App\Entity\Workshop;
 use App\Form\VoteType;
 use App\Repository\VoteRepository;
-use JetBrains\PhpStorm\NoReturn;
-
+use App\Repository\WineBlendRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,22 +15,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class VoteController extends AbstractController
 {
     #[Route('/vote/{codeWorkshop}', name: 'app_vote')]
-    public function index(VoteRepository $voteRepository, Request $request, Workshop $workshop, Vote $vote): Response
-    {
-        $votesByWorkshop = $voteRepository->findBy(['workshop' => $workshop]);
-        $voteFormBuilder = $this->createFormBuilder();
+    public function index(
+        VoteRepository $voteRepository,
+        Request $request,
+        Workshop $workshop,
+        WineBlendRepository $blendRepository
+    ): Response {
 
-        foreach ($votesByWorkshop as $workshopVotes) {
-            $voteFormBuilder->add('vote_' . $workshopVotes->getId(), VoteType::class, [
-                'data' => $workshopVotes,
+        $votesByWorkshop = $blendRepository->findBy(['workshop' => $workshop]);
+        $voteFormBuilder = $this->createFormBuilder();
+        $formSaves = [];
+        foreach ($votesByWorkshop as $voteByWorkshop) {
+            $newVote = new Vote();
+            $newVote->setWineBlend($voteByWorkshop);
+            $newVote->setUser($this->getUser());
+            $newVote->setWorkshop($workshop);
+
+            $voteFormBuilder->add('vote_' . $voteByWorkshop->getId(), VoteType::class, [
+                'data' => $newVote,
             ]);
         }
 
         $form = $voteFormBuilder->getForm();
         $form->handleRequest($request);
-
+        $formSaves = $form->getData();
         if ($form->isSubmitted() && $form->isValid()) {
-            $voteRepository->save($vote, true);
+            array_map(function ($formSave) use ($voteRepository) {
+                $voteRepository->save($formSave, true);
+            }, $formSaves);
+
             return $this->redirectToRoute('app_vote_loader');
         }
 
@@ -43,6 +53,7 @@ class VoteController extends AbstractController
             'voteForm' => $voteFormBuilder->getForm(),
         ]);
     }
+
 
     #[Route('/vote/loader', name: 'app_vote_loader')]
     public function loader(): Response

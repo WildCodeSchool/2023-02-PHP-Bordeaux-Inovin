@@ -6,6 +6,7 @@ use App\Entity\Workshop;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -35,7 +36,7 @@ class WorkshopCrudController extends AbstractCrudController
 
         yield TextField::new('place_workshop', 'Lieu de l\'atelier');
 
-        yield DateTimeField::new('date_workshop', 'Date de l\'atelier');
+        yield DateField::new('date_workshop', 'Date de l\'atelier');
 
         yield DateTimeField::new('created_at', 'Créer')->hideOnForm();
 

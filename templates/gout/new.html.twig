@@ -3,9 +3,14 @@
 {% block title %}Vos goûts{% endblock %}
 
 {% block body %}
-
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à enregistrer vos préférences en matière de vin. Vous pouvez à chaque fois sélectionner une ou plusieurs options. Parlez-nous de vous !
+        {% endblock %}
+    {% endembed %}
     <h1 class="iv-title">INO VIN Dégustation</h1>
 
-            {{ include('gout/_form.html.twig', {'button_label': 'Valider'}) }}
+    {{ include('gout/_form.html.twig', {'button_label': 'Valider'}) }}
+
 
 {% endblock %}
