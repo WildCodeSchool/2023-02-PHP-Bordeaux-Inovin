@@ -3,6 +3,11 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à modifier vos informations personnelles. Parlez-nous de vous !
+        {% endblock %}
+    {% endembed %}
 
     {% set form_title = "Mes informations" %}
     {{ include('user/_form.html.twig', {'button_label': "Modifier"}, form_title) }} {#{'form_title' : "Mes informations"}#}

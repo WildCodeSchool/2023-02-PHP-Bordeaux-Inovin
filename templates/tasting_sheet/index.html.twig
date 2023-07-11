@@ -3,6 +3,12 @@
 {% block title %}Dégustation{% endblock %}
 
 {% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à remplir ces 4 fiches de dégustations. Vous devrez définir les vins selon des critères olfactifs, gustatifs et visuels avant de les noter.
+        {% endblock %}
+    {% endembed %}
+
     <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-tasting-cards">
         <h2 class="iv-card-sub-title mt-3 fs-3">Atelier : {{ workshop.nameWorkshop }}</h2>
