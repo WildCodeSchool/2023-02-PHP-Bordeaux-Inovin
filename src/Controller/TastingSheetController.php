@@ -57,6 +57,10 @@ class TastingSheetController extends AbstractController
                         "Vous devez renseigner une note pour le cépage -
                         -$cepage--> cette fiche de dégustation n'a pas été enregistrée"
                     );
+                    if ($session->has('countValidateForm')) {
+                        $count = $session->get('countValidateForm');
+                        $session->set('countValidateForm', $count - 1);
+                    }
                 }
 
                 $selectedSmellsArray = $selectedSmells->toArray();
