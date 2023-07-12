@@ -55,7 +55,7 @@ class VoteController extends AbstractController
     }
 
 
-    #[Route('/vote/loader', name: 'app_vote_loader')]
+    #[Route('/loader', name: 'app_vote_loader')]
     public function loader(): Response
     {
         return $this->render('vote/loader.html.twig', [
