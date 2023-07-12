@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Pre-vote loader{% endblock %}
+{% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Cliquez sur "Rafraichir" jusqu'à ce que le nombre d'assemblages créés soit égale au nombre de participants à l'atelier, puis cliquez sur "Voter".
+        {% endblock %}
+    {% endembed %}
+
+        <h1 class="iv-title">INO VIN Dégustation</h1>
+        <h2 class="iv-sub-title mb-5">Tout le monde a créé son assemblage ?</h2>
+        <p class="mt-5">Nombre d'assemblages : {{ nbOfUsers }} </p>
+        <h6>Tant que le nombre d'assemblages n'est pas égale au nombre de participants aujourd'hui, rafraichissez cette
+            page</h6>
+        <button onclick="rafraichirPage()">Rafraichir</button>
+
+    <div class="iv-container-loader">
+        <div class="loader">
+            <ul class="iv-loader-ul">
+                <li class="iv-loader-li"></li>
+                <li class="iv-loader-li"></li>
+                <li class="iv-loader-li"></li>
+            </ul>
+            <div class="wineglass iv-loader-left">
+                <div class="iv-loader-top"></div>
+            </div>
+            <div class="wineglass iv-loader-right">
+                <div class="iv-loader-top"></div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_vote', {'codeWorkshop': codeWorkshop}) }}"><button>Passer au vote</button></a>
+
+    <script>
+        function rafraichirPage() {
+            location.reload();
+        }
+    </script>
+{% endblock %}
