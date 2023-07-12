@@ -11,13 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WinnerController extends AbstractController
 {
-    #[Route('/winner/{workshopId}', name: 'app_winner')]
+    #[Route('/winner/{codeWorkshop}', name: 'app_winner')]
     public function show(
-        Workshop $workshopId,
+        Workshop $workshop,
         WorkshopRepository $workshopRepository,
         WineBlendRepository $wineBlendRepository
     ): Response {
-        $workshop = $workshopRepository->findOneBy(['id' => $workshopId]);
+
         $numberOfBlends = $wineBlendRepository->countByWorkshop($workshop);
         $highestScore = $wineBlendRepository->findHighestScore();
 
