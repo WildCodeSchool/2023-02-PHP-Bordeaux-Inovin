@@ -114,12 +114,14 @@ input[type="date" i] {
     color: $iv-goldBM;
     background-color: $iv-main-white;
     border-color: $iv-goldBM;
+    border-radius: 0 0 6px 6px;
 }
 
 .alert-danger{
     color: $iv-main-white;
     background-color: $iv-goldBM;
     border-color: $iv-goldBM;
+    border-radius: 0 0 6px 6px;
 }
 
 @media screen and (max-width: 430px) {
