@@ -31,6 +31,7 @@ class RegistrationFormType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('birthday', DateType::class, [
                 'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text',
             ])
             ->add('zipcode', IntegerType::class)
             ->add('phoneNumber', TextType::class)

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TastingSheetController!{% endblock %}
+{% block title %}Dégustation{% endblock %}
 
 {% block body %}
     {% embed "includes/helper.html.twig" %}
@@ -29,6 +29,7 @@
 
         </section>
         <div class="d-flex justify-content-center">
+            {{ app.session.get('countValidateForm') }}
             {%  if app.session.get('countValidateForm') >=4 %}
                 <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
             {% endif %}

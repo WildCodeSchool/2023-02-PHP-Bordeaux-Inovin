@@ -21,7 +21,7 @@ class Region
     #[ORM\Column(length: 100)]
     private ?string $nameRegion = null;
 
-    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'region')]
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'region', cascade: ['persist', 'remove'])]
     private Collection $gouts;
 
     public function __construct()

@@ -56,7 +56,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[assert\Date]
     #[Assert\NotBlank(message: 'Veuillez entrez une date d\'anniversaire')]
  // #[Assert\LessThanOrEqual("today - 18 years", message : "Vous devez avoir au moins
  //      18 ans pour participer à un atelier.")]
@@ -74,13 +73,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Gout $gout = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
     private Collection $tastingSheets;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class, cascade: ['persist', 'remove'])]
     private Collection $wineBlends;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
     private Collection $votes;
 
     public function __construct()

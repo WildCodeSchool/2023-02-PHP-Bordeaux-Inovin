@@ -110,6 +110,18 @@ input[type="date" i] {
     color: $iv-med-grey;
 }
 
+.alert-success{
+    color: $iv-goldBM;
+    background-color: $iv-main-white;
+    border-color: $iv-goldBM;
+}
+
+.alert-danger{
+    color: $iv-main-white;
+    background-color: $iv-goldBM;
+    border-color: $iv-goldBM;
+}
+
 @media screen and (max-width: 430px) {
     .iv-title{
         font-size: 25px;
