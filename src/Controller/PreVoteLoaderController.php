@@ -27,21 +27,5 @@ class PreVoteLoaderController extends AbstractController
                 'codeWorkshop' => $codeWorkshop,
             ]
         );
-        //$workshop = $this->getUser()->getWorkshop();
-
-        //la page après validation
-        /*return $this->redirectToRoute(
-            'app_vote',
-            ['codeWorkshop' => $workshop->getCodeWorkshop()],
-            Response::HTTP_SEE_OTHER
-        );*/
-
-// la page d'affichage
-        /*return $this->renderForm('wine_blend/new.html.twig', [
-            'wine_blend' => $wineBlend,
-            'wineBlendForm' => $wineBlendForm,
-            'tastingSheets' => $tastingSheets,
-            'workshop' => $workshop,
-        ]);*/
     }
 }
