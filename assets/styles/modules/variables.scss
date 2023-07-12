@@ -56,6 +56,10 @@ a{
     margin-bottom: 30px !important;
 }
 
+.iv-title-font-family{
+    font-family: $iv-title-font-family;
+}
+
 .iv-color {
     color: $iv-goldBM;
 }
@@ -126,10 +130,15 @@ input[type="date" i] {
 
 @media screen and (max-width: 430px) {
     .iv-title{
-        font-size: 25px;
+        font-size: 22px;
     }
     .iv-sub-title {
-        font-size: 22px;
+        font-size: 19px;
+        line-height: 30px;
         margin-bottom: 5px !important;
+    }
+
+    h3 {
+        font-size: 1.2rem;
     }
 }

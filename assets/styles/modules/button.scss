@@ -15,6 +15,23 @@
     text-decoration: none;
 }
 
+.iv-btn-reversed {
+    Border-radius: $iv-border-radius;
+    Color: $iv-goldBM;
+    background: $iv-main-white;
+    font-family: $iv-title-font-family;
+    border: 2px solid $iv-goldBM;
+    font-size: 1.25rem;
+    width: 18.75rem;
+    height: 3.125rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    line-height: 1.625rem;
+    justify-content: center;
+    text-decoration: none;
+}
+
 
 .iv-btn-workshop {
     width: 10rem;
