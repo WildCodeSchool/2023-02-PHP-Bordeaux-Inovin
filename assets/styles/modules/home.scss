@@ -12,7 +12,9 @@
     width: 30%;
     padding: 40px;
 }
-
+.carousel-inner{
+    border-radius:20px
+}
 .iv-carousel {
     background-size: cover;
     height: 100vh;
@@ -38,6 +40,7 @@ hr {
     padding: 40px;
     background-color: $iv-taupe;
     justify-content: space-between;
+
 }
 
 .iv-img-carousel {
@@ -45,6 +48,7 @@ hr {
     overflow: hidden;
     position: relative;
     width: 48%;
+    border-radius: 20px;
 }
 
 .iv-img-carousel img {
@@ -52,6 +56,7 @@ hr {
     right: -70px;
     min-width: 100%;
     height: 100vh;
+
 }
 
 .iv-block-carousel {
@@ -59,7 +64,8 @@ hr {
     width: 48%;
     background-color: $iv-main-darkgrey;
     padding: 40px;
-    color: $iv-taupe
+    color: $iv-taupe;
+    border-radius:20px;
 }
 
 .iv-list-carousel {
@@ -164,3 +170,18 @@ hr {
     }
 
 }
+.iv-zoom2 {
+    animation: scale2 7s linear infinite;
+}
+
+@keyframes scale2 {
+    50% {
+        -webkit-transform:scale(1.1);
+        -moz-transform:scale(1.1);
+        -ms-transform:scale(1.1);
+        -o-transform:scale(1.1);
+        transform:scale(1.1);
+    }
+}
+
+
