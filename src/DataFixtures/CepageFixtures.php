@@ -11,7 +11,7 @@ use Faker\Factory;
 
 class CepageFixtures extends Fixture
 {
-    public const CEPAGES = [
+    public const CEPAGES_BLANC = [
         'Chardonnay',
         'Sauvignon blanc',
         'Sémillon',
@@ -24,8 +24,9 @@ class CepageFixtures extends Fixture
         'Muscat blanc',
         'Sylvaner',
         'Malvasia',
-        'Trebbiano blanc',
-        'Cabernet-Sauvignon',
+        'Trebbiano blanc'];
+
+    public const CEPAGES_ROUGE =   [ 'Cabernet-Sauvignon',
         'Pinot noir',
         'Merlot',
         'Syrah (Shiraz)',
@@ -40,10 +41,18 @@ class CepageFixtures extends Fixture
         'Tempranillo'
     ];
     public const COLOR = ['Blanc', 'Rouge', 'Rosé'];
+    public const COLOR_BLANC = 'Blanc';
+    public const COLOR_ROUGE = 'Rouge';
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::CEPAGES as $cepageName) {
+        foreach (self::CEPAGES_ROUGE as $cepageName) {
+            $cepage = new Cepage();
+            $cepage->setNameCepage($cepageName);
+            $manager->persist($cepage);
+            $this->addReference('cepage_' . $cepageName, $cepage);
+        }
+        foreach (self::CEPAGES_BLANC as $cepageName) {
             $cepage = new Cepage();
             $cepage->setNameCepage($cepageName);
             $manager->persist($cepage);
@@ -62,19 +71,30 @@ class CepageFixtures extends Fixture
 
 
         $faker = Factory::create();
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $wine = new Wine();
             $wine->setProducer('Château ' . $faker->lastName);
             $wine->setProductionYear($faker->year());
-            $cepageName = $this->getReference('cepage_' . self::CEPAGES[array_rand(self::CEPAGES)]);
+            $cepageName = $this->getReference('cepage_' . self::CEPAGES_ROUGE[array_rand(self::CEPAGES_ROUGE)]);
             $wine->setCepage($cepageName);
-            $color = $this->getReference('color_' . self::COLOR[array_rand(self::COLOR)]);
+            $color = $this->getReference('color_' . self::COLOR_ROUGE);
+            $wine->setColor($color);
+
+
+
+            $wine = new Wine();
+            $wine->setProducer('Château ' . $faker->lastName);
+            $wine->setProductionYear($faker->year());
+            $cepageName = $this->getReference('cepage_' . self::CEPAGES_BLANC[array_rand(self::CEPAGES_BLANC)]);
+            $wine->setCepage($cepageName);
+            $color = $this->getReference('color_' . self::COLOR_BLANC);
             $wine->setColor($color);
             $manager->persist($wine);
+
             $this->addReference('wine_' . $i, $wine);
         }
-
         $manager->flush();
+
     }
 
 }
