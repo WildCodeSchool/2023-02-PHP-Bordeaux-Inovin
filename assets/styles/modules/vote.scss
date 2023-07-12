@@ -1,5 +1,4 @@
 
-
 .iv-item-vote {
     width: 200px;
     text-align: justify;
@@ -54,3 +53,81 @@
     margin-top: -40px;
     margin-left: 100px;
 }
+
+.iv-container-vote-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+
+}
+
+.iv-container-vote-input {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 20px;
+}
+
+.iv-container-vote .form-control {
+    background-color: rgba(181, 134, 84, 0);
+    border-radius: 0.625rem;
+    border: none;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: $iv-text-font-family;
+    font-size: 1.2rem;
+    color: #B58654;
+}
+
+.iv-container-vote label {
+    font-weight: bold;
+    font-family: $iv-text-font-family;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    color: $iv-goldBM
+}
+
+.iv-container-vote form > div {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.form-control:focus {
+    transform: scale(1.2);
+    outline: none;
+    box-shadow: 0 0 0 1px #b5865494;
+    border-radius: 0.625rem;
+    border: $iv-check-border;
+    transition: 0.5s ease-in-out;
+}
+
+.iv-container-vote .form-control label {
+    padding: 5px 15px;
+    margin: 0 5px;
+    border-radius: 20px;
+    background: $iv-main-white;
+    cursor: pointer;
+}
+
+.iv-container-vote .form-control label:hover {
+    background-color: $iv-taupe;
+    color: #FFFAF0;
+}
+
+.iv-container-vote .form-control input[type="radio"]:checked + label {
+    background-color: $iv-taupe;
+    color: #FFFAF0;
+}
+
+.iv-container-vote .form-control input[type="radio"] {
+    display: none
+}
+
+
