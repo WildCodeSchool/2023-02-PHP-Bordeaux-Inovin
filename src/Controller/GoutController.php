@@ -27,10 +27,11 @@ class GoutController extends AbstractController
      */
     #[Route('/', name: 'app_gout')]
     public function index(
-        AromeRepository $aromeRepository,
+        AromeRepository  $aromeRepository,
         RegionRepository $regionRepository,
-        ColorRepository $colorRepository
-    ): Response {
+        ColorRepository  $colorRepository
+    ): Response
+    {
 
         $arome = $aromeRepository->findAll();
         $region = $regionRepository->findAll();
@@ -49,7 +50,6 @@ class GoutController extends AbstractController
         $gout = new Gout();
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
-
 
 
         if ($form->isSubmitted() && $form->isValid()) {
