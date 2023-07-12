@@ -83,9 +83,11 @@ class WineBlendController extends AbstractController
             }, $tastingSheets, array_keys($tastingSheets));
             $wineBlend->setNameCepage1($tastingSheets[0]->getWine()->getCepage());
             $wineBlendRepository->save($wineBlend, true);
+
+            $codeWorkshop = $workshop->getCodeWorkshop();
             return $this->redirectToRoute(
-                'app_vote',
-                ['codeWorkshop' => $workshop->getCodeWorkshop()],
+                'app_prevote_loader',
+                ['codeWorkshop' => $codeWorkshop],
                 Response::HTTP_SEE_OTHER
             );
         }

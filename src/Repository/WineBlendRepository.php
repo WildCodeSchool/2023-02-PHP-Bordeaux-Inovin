@@ -59,6 +59,17 @@ class WineBlendRepository extends ServiceEntityRepository
         }
     }
 
+    public function countUserByWS(int $workshopId): int
+    {
+        return $this->createQueryBuilder('wb')
+            ->select('COUNT(DISTINCT u.id)')
+            ->leftJoin('wb.user', 'u')
+            ->andWhere('wb.workshop = :workshopId')
+            ->setParameter('workshopId', $workshopId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return WineBlend[] Returns an array of WineBlend objects
 //     */
