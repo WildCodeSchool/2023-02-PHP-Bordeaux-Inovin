@@ -18,42 +18,15 @@ class UserEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class, [
-                'attr' => [
-                    'minlength' => 2,
-                    'maxlength' => 50,
-                ],
-                'constraints' => [
-                    new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
-                ]
-            ])
-            ->add('lastname', TextType::class, [
-                    'attr' => [
-                        'minlength' => 2,
-                        'maxlength' => 50,
-                    ],
-                    'constraints' => [
-                        new Length(null, 2, 50, 'Votre prénom doit contenir entre 2 et 50 caractères'),
-                    ]
-                ])
+            ->add('firstname', TextType::class)
+            ->add('lastname', TextType::class)
             ->add('birthday', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrez une date de naissance',
-                    ]),
-                ]
-            ])
+                ])
             ->add('zipcode', IntegerType::class)
             ->add('phoneNumber', TextType::class)
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrez une adresse email',
-                    ]),
-                ]
-            ]);
+            ->add('email', EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

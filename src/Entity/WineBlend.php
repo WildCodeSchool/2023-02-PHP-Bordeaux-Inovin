@@ -21,18 +21,18 @@ class WineBlend
     #[ORM\Column(length: 255)]
     private ?string $nameBlend = null;
 
-    #[ORM\Column]
-    private ?int $scoreWineblend = null;
+    #[ORM\Column(nullable: true)]
+    private ?float $scoreWineblend = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wineBlends')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wineBlends')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Workshop $workshop = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
     private Collection $tastingSheets;
 
     #[ORM\Column(nullable: true)]
@@ -47,8 +47,20 @@ class WineBlend
     #[ORM\Column(nullable: true)]
     private ?int $percentageCepage4 = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class)]
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
     private Collection $votes;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nameCepage1 = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nameCepage2 = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nameCepage3 = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nameCepage4 = null;
 
     public function __construct()
     {
@@ -73,12 +85,12 @@ class WineBlend
         return $this;
     }
 
-    public function getScoreWineblend(): ?int
+    public function getScoreWineblend(): ?float
     {
         return $this->scoreWineblend;
     }
 
-    public function setScoreWineblend(int $scoreWineblend): static
+    public function setScoreWineblend(float $scoreWineblend): static
     {
         $this->scoreWineblend = $scoreWineblend;
 
@@ -217,4 +229,51 @@ class WineBlend
         return $this;
     }
 
+    public function getNameCepage1(): ?string
+    {
+        return $this->nameCepage1;
+    }
+
+    public function setNameCepage1(?string $nameCepage1): static
+    {
+        $this->nameCepage1 = $nameCepage1;
+
+        return $this;
+    }
+
+    public function getNameCepage2(): ?string
+    {
+        return $this->nameCepage2;
+    }
+
+    public function setNameCepage2(?string $nameCepage2): static
+    {
+        $this->nameCepage2 = $nameCepage2;
+
+        return $this;
+    }
+
+    public function getNameCepage3(): ?string
+    {
+        return $this->nameCepage3;
+    }
+
+    public function setNameCepage3(?string $nameCepage3): static
+    {
+        $this->nameCepage3 = $nameCepage3;
+
+        return $this;
+    }
+
+    public function getNameCepage4(): ?string
+    {
+        return $this->nameCepage4;
+    }
+
+    public function setNameCepage4(?string $nameCepage4): static
+    {
+        $this->nameCepage4 = $nameCepage4;
+
+        return $this;
+    }
 }

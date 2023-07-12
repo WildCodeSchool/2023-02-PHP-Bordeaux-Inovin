@@ -1,0 +1,13 @@
+<button class="btn btn-primary end-0 iv-btn-helper" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">?</button>
+
+    <div class="offcanvas offcanvas-end iv-helper" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pb-0">
+            <h5 class="offcanvas-title iv-helper-title" id="offcanvasRightLabel">{% block helper_title %}Tutoriel{% endblock %}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body iv-helper-content">
+            {% block helper_content %}
+                {{ helper_content }}
+            {% endblock %}
+        </div>
+    </div>

@@ -3,8 +3,15 @@
     grid:
             "iv-blend-slider-liquid1 iv-blend-slider-liquid2 iv-blend-slider-liquid3 iv-blend-slider-liquid4" 1fr
             /1fr 1fr 1fr 1fr;
-    margin-top: 4rem;
+    margin-top: 3rem;
 
+}
+
+.iv-blend-explain {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .iv-blend-tube {
@@ -24,7 +31,14 @@
     bottom: 0;
     width: 100%;
     transition: height 0.2s;
-    background-color: $iv-main-red-wine;
+}
+
+.iv-blend-liquid-red-wine {
+    background: $iv-main-red-wine;
+}
+
+.iv-blend-liquid-white-wine {
+    background: $iv-main-white-wine;
 }
 
 #iv-blend-liquid1 {
@@ -54,21 +68,12 @@
 .iv-blend-label-cepage {
     height: fit-content;
     width: fit-content;
-    margin: 0 auto;/*
-    grid-area: label;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;*/
+    margin: 0 auto;
 }
 
 .iv-blend-label {
     grid-area: label;
     text-align: center;
-}
-
-.iv-blend-cepage {
-    grid-area: cepage;
 }
 
 .iv-blend-label span {
@@ -82,8 +87,7 @@
     width: fit-content;
     grid:
             "slider tube" 300px
-            ". label" 20px
-            ". cepage" 20px
+            ". label" auto
             / 20px 100px;
     margin: auto;
 }
@@ -106,15 +110,43 @@
 
 .iv-blend-submit {
     display: flex;
-    margin-top: 7rem;
+    margin-top: 3rem;
     justify-content: center;
     gap: 1rem;
 }
 
 .iv-blend-name {
     width: 17rem;
+    padding-left: 0.625rem;
 }
 
-.iv-blend-name::placeholder {
-    padding-left: 10px
+@media screen and (max-width: 430px) {
+    .iv-blend-explain {
+        font-size: 1.25rem;
+        padding: 10px;
+    }
+
+    .iv-blend-slider-container {
+        grid:
+        "iv-blend-slider-liquid1 iv-blend-slider-liquid2" 1fr
+        "iv-blend-slider-liquid3 iv-blend-slider-liquid4" 1fr
+        / 1fr 1fr
+    }
+
+    .iv-blend-slider-liquid {
+        height: 70vh;
+    }
+
+    .iv-blend-submit {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .iv-blend-name {
+        width: 15rem;
+        height: 3rem;
+    }
+
 }

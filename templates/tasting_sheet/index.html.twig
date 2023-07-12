@@ -1,24 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TastingSheetController!{% endblock %}
+{% block title %}Dégustation{% endblock %}
 
 {% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à remplir ces 4 fiches de dégustations. Vous devrez définir les vins selon des critères olfactifs, gustatifs et visuels avant de les noter.
+        {% endblock %}
+    {% endembed %}
+
+    <h1 class="iv-title">INO VIN Dégustation</h1>
     <div class="iv-tasting-cards">
-        <h1 class="iv-title">{{ workshop.nameWorkshop }}</h1>
+        <h2 class="iv-card-sub-title mt-3 fs-3">Atelier : {{ workshop.nameWorkshop }}</h2>
+
         <section>
             <ul>
                 {% for wine in workshop.wines %}
-                    <li>
+                    <li class="iv-card-li">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
-                                 alt="{{ wine.producer }}">
+                                 alt="{{ wine.producer }}"
+                            class="iv-bg-img">
                         </a>
+                        <h5 class="iv-card-title">{{ wine.cepage.nameCepage }}</h5>
                     </li>
                 {% endfor %}
             </ul>
 
         </section>
         <div class="d-flex justify-content-center">
+            {{ app.session.get('countValidateForm') }}
             {%  if app.session.get('countValidateForm') >=4 %}
                 <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
             {% endif %}

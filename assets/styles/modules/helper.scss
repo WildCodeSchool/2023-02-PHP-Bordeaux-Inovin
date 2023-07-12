@@ -1,0 +1,38 @@
+.iv-helper {
+    height: 40vh;
+    margin: auto;
+    background: $iv-goldBM;
+    color: $iv-main-white;
+    border-radius: $iv-border-radius 0 0 $iv-border-radius;
+}
+
+.iv-helper-title {
+    font-family: $iv-title-font-family;
+    font-size: $iv-text-font-size;
+}
+
+.iv-helper-content {
+    font-family: $iv-text-font-family;
+    font-size: calc($iv-text-font-size - 0.25rem);
+}
+
+.iv-btn-helper {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    position: absolute;
+    background: $iv-goldBM;
+    color: $iv-main-white;
+    border-radius: $iv-border-radius 0 0 $iv-border-radius;
+    border: none;
+    font-family: $iv-title-font-family;
+    font-size: 1.5rem;
+    margin-top: 46vh;
+    height: 8vh;
+    padding: 0;
+    padding-left: 5px;
+}
+
+.iv-btn-helper:hover {
+    background: $iv-goldBM !important;
+    color: $iv-main-white !important;
+}
