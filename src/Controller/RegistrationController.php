@@ -20,12 +20,12 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    private EmailVerifier $emailVerifier;
+    //private EmailVerifier $emailVerifier;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    /*public function __construct(EmailVerifier $emailVerifier)
     {
         $this->emailVerifier = $emailVerifier;
-    }
+    }*/
 
     #[Route('/register', name: 'app_register')]
     public function register(
@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        // verify if the email is already used - does not work so far - no flashMessage
+        // verify if the email is already used
         $userExist = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
         if ($userExist) {
             $this->addFlash(
@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
             if ($userBirthday !== null) {
                 $currentDate = new DateTime('now');
                 $diff = $currentDate->diff($userBirthday);
-            //  dd($userBirthday, $currentDate, $diff->y);
+                //  dd($userBirthday, $currentDate, $diff->y);
 
                 if ($diff->y < 18) {
                     $this->addFlash('danger', 'Vous devez avoir plus de 18 ans pour vous inscrire');
@@ -62,7 +62,6 @@ class RegistrationController extends AbstractController
             } else {
                 return $this->redirectToRoute('app_register');
             }
-
 
 
             // encode the plain password
@@ -77,8 +76,8 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (
+            // generate a signed url and email it to the user - working but disabled for now
+            /*$this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (
             new TemplatedEmail())
                 ->from(new Address('contact@inovin.com', 'Equipe Inovin'))
                 ->to($user->getEmail())
@@ -87,13 +86,13 @@ class RegistrationController extends AbstractController
                     'firstname' => $user->getFirstname(),
                 ])
                 ->htmlTemplate('registration/confirmation_email.html.twig'));
-            // do anything else you need here, like send an email
-
+            */
+            $firstName = $user->getFirstname();
             $this->addFlash(
                 'success',
-                'Votre profil a bien été créé. Rendez-vous sur votre boite mail pour vérifier votre compte'
+                "Bienvenue $firstName ! Votre profil a bien été créé."
             );
-                $this->authenticateUser($user);
+            $this->authenticateUser($user);
             return $this->redirectToRoute('gout_new');
         }
 
@@ -102,7 +101,8 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/verify/email', name: 'app_verify_email')]
+    //Verify User Email method - working but disabled for now
+    /*#[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -120,7 +120,7 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Votre email a bien été vérifié.');
 
         return $this->redirectToRoute('app_register');
-    }
+    }*/
 
     public function authenticateUser(User $user): void
     {

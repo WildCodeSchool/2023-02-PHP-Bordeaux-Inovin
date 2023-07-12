@@ -51,6 +51,12 @@ class TastingSheetController extends AbstractController
                 $selectedTastes = $form->get('taste')->getData();
 
                 $cepage = $form->get('wine')->getData()->getCepage();
+                if ($session->has('countValidateForm')) {
+                    $count = $session->get('countValidateForm');
+                    $session->set('countValidateForm', $count + 1);
+                } else {
+                    $session->set('countValidateForm', 1);
+                }
                 if ($form->get('scoreTastingSheet')->getData() === null) {
                     $this->addFlash(
                         'danger',
@@ -78,13 +84,6 @@ class TastingSheetController extends AbstractController
                 }, $selectedTastesArray);
 
                 $tastingSheetRepo->save($tastingSheet, true);
-
-                if ($session->has('countValidateForm')) {
-                    $count = $session->get('countValidateForm');
-                    $session->set('countValidateForm', $count + 1);
-                } else {
-                    $session->set('countValidateForm', 1);
-                }
             }
 
             $countValidateForm = $session->get('countValidateForm');

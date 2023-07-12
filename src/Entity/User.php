@@ -15,7 +15,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'Cet Email à déjà été utiliser')]
+#[UniqueEntity(fields: ['email'], message: 'Cet Email à déjà été utilisé')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
@@ -26,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'Veuillez entrez un email')]
+    #[Assert\NotBlank(message: 'Veuillez entrer un email')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank(message: 'Veuillez entrez un prénom')]
+    #[Assert\NotBlank(message: 'Veuillez entrer un prénom')]
     #[Assert\Length(
         min: 2,
         max: 50,
@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank(message: 'Veuillez entrez un Nom')]
+    #[Assert\NotBlank(message: 'Veuillez entrer un Nom')]
     #[Assert\Length(
         min: 2,
         max: 50,
@@ -56,9 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Assert\NotBlank(message: 'Veuillez entrez une date d\'anniversaire')]
- // #[Assert\LessThanOrEqual("today - 18 years", message : "Vous devez avoir au moins
- //      18 ans pour participer à un atelier.")]
+    #[Assert\NotBlank(message: 'Veuillez entrer votre date de naissance')]
     private ?DateTimeInterface $birthday = null;
 
     #[ORM\Column(nullable: true)]
