@@ -22,7 +22,10 @@ class WorkshopCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter un atelier')
-            ->setPageTitle('index', 'Liste des ateliers');
+            ->setPageTitle('index', 'Liste des ateliers')
+            ->setDefaultSort([
+                'id' => 'DESC',
+            ]);
     }
 
     public function configureFields(string $pageName): iterable

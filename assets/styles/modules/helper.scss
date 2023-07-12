@@ -21,7 +21,6 @@
 }
 
 .iv-btn-helper {
-    writing-mode: vertical-rl;
     text-orientation: upright;
     position: absolute;
     background: $iv-goldBM;
@@ -35,6 +34,7 @@
     padding: 0;
     padding-left: 5px;
     z-index: 5;
+    width: 2vw;
 }
 
 .iv-btn-helper:hover {

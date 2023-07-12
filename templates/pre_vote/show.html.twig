@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Pre-vote loader{% endblock %}
+{% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Cliquez sur "Rafraichir" jusqu'à ce que le nombre d'assemblages créés soit égale au nombre de participants à l'atelier, puis cliquez sur "Passer au vote".
+        {% endblock %}
+    {% endembed %}
+
+    <h1 class="iv-title">INO VIN Dégustation</h1>
+    <h2 class="iv-sub-title mb-3">Tout le monde a créé son assemblage&nbsp;?</h2>
+    <div class="d-flex justify-content-center">
+        <div class="iv-form-input-preVote pt-1 pb-1 pe-3 ps-3">
+            <h3 class="iv-title-font-family iv-color mb-3 mt-3 iv-center">Assemblages déjà validés par les participants&nbsp;:&nbsp;{{ nbOfUsers }}</h3>
+            <p class="iv-center iv-blink">Tant que le nombre d'assemblages n'est pas égale au nombre de participants
+                à l'atelier, rafraichissez&nbsp;!</p>
+            <p class="iv-center iv-blink">Autant d'assemblages que de participants&nbsp;? Passez au vote&nbsp;!</p>
+            <div class="d-flex justify-content-center">
+                <button class="iv-btn mb-4 w-100 pe-5 ps-5" onclick="rafraichirPage()">Rafraichir</button>
+            </div>
+        </div>
+    </div>
+    <div class="iv-container-loader-preVote">
+        <div class="iv-loader-preVote">
+            <ul class="iv-loader-ul">
+                <li class="iv-loader-li"></li>
+                <li class="iv-loader-li"></li>
+                <li class="iv-loader-li"></li>
+            </ul>
+            <div class="wineglass iv-loader-left">
+                <div class="iv-loader-top"></div>
+            </div>
+            <div class="wineglass iv-loader-right">
+                <div class="iv-loader-top"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('app_vote', {'codeWorkshop': codeWorkshop}) }}" class="iv-center mt-4 ">
+            <button class="iv-btn-reversed w-100 pe-4 ps-4">Passer au vote</button>
+        </a>
+    </div>
+    <script>
+        function rafraichirPage() {
+            location.reload();
+        }
+    </script>
+{% endblock %}
