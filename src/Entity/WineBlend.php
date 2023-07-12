@@ -24,15 +24,15 @@ class WineBlend
     #[ORM\Column(nullable: true)]
     private ?float $scoreWineblend = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wineBlends')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wineBlends')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wineBlends')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Workshop $workshop = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
     private Collection $tastingSheets;
 
     #[ORM\Column(nullable: true)]
@@ -47,7 +47,7 @@ class WineBlend
     #[ORM\Column(nullable: true)]
     private ?int $percentageCepage4 = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class)]
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
     private Collection $votes;
 
     #[ORM\Column(length: 50, nullable: true)]

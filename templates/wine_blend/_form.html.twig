@@ -5,49 +5,49 @@
         <div class="iv-blend-slider-container">
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid1">
-                <input type="range" id="iv-blend-slider1" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.0.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage1) }}">
+                <input type="range" id="iv-blend-slider1" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.0.percentTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage1) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube1">
-                    <div class="iv-blend-liquid" id="iv-blend-liquid1"></div>
+                    <div class="iv-blend-liquid {{ tastingSheets.0.wine.color.nameColor == "Blanc" ? "iv-blend-liquid-white-wine" : "iv-blend-liquid-red-wine" }}" id="iv-blend-liquid1"></div>{#{% if tastingSheets.0.wine.color.nameColor == 'Blanc' %} class="iv-blend-liquid iv-blend-liquid-white-wine" {% else %} class="iv-blend-liquid iv-blend-liquid-red-wine" {% endif %}#}
                 </div>
                 <div class="iv-blend-label">
-                    <span id="iv-blend-label1">{{ tastingSheets.0.percentageTastingSheet }}%</span>
-                    <span>{{ tastingSheets.0.wine.cepage }}</span>
+                    <span id="iv-blend-label1">{{ tastingSheets.0.percentTastingSheet }}%</span>
+                    <span class="iv-blend-cepage">{{ tastingSheets.0.wine.cepage }}</span>
                 </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid2">
-                <input type="range" id="iv-blend-slider2" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.1.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage2) }}">
+                <input type="range" id="iv-blend-slider2" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.1.percentTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage2) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube2">
-                    <div class="iv-blend-liquid" id="iv-blend-liquid2"></div>
+                    <div class="iv-blend-liquid {{ tastingSheets.1.wine.color.nameColor == "Blanc" ? "iv-blend-liquid-white-wine" : "iv-blend-liquid-red-wine" }}" id="iv-blend-liquid2"></div>
                 </div>
                 <div class="iv-blend-label">
-                    <span id="iv-blend-label2">{{ tastingSheets.1.percentageTastingSheet }}%</span>
+                    <span id="iv-blend-label2">{{ tastingSheets.1.percentTastingSheet }}%</span>
                     <span>{{ tastingSheets.1.wine.cepage }}</span>
                 </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid3">
-                <input type="range" id="iv-blend-slider3" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.2.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage3) }}">
+                <input type="range" id="iv-blend-slider3" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.2.percentTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage3) }}">
 
                 <div class="iv-blend-tube" id="iv-blend-tube3">
-                    <div class="iv-blend-liquid" id="iv-blend-liquid3"></div>
+                    <div class="iv-blend-liquid {{ tastingSheets.2.wine.color.nameColor == "Blanc" ? "iv-blend-liquid-white-wine" : "iv-blend-liquid-red-wine" }}" id="iv-blend-liquid3"></div>
                 </div>
                 <div class="iv-blend-label">
-                    <span id="iv-blend-label3">{{ tastingSheets.2.percentageTastingSheet }}%</span>
+                    <span id="iv-blend-label3">{{ tastingSheets.2.percentTastingSheet }}%</span>
                     <span>{{ tastingSheets.2.wine.cepage }}</span>
                 </div>
             </div>
 
             <div class="iv-blend-slider-liquid" id="iv-blend-slider-liquid4">
-                <input type="range" id="iv-blend-slider4" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.3.percentageTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage4) }}">
+                <input type="range" id="iv-blend-slider4" class="iv-blend-slider" min="0" max="100" value="{{ tastingSheets.3.percentTastingSheet }}" name="{{ field_name(wineBlendForm.percentageCepage4) }}">
 
                 <div class="iv-blend-tube" id="tube4">
-                    <div class="iv-blend-liquid" id="iv-blend-liquid4"></div>
+                    <div class="iv-blend-liquid {{ tastingSheets.3.wine.color.nameColor == "Blanc" ? "iv-blend-liquid-white-wine" : "iv-blend-liquid-red-wine" }}" id="iv-blend-liquid4"></div>
                 </div>
                 <div class="iv-blend-label">
-                    <span id="iv-blend-label4">{{ tastingSheets.3.percentageTastingSheet }}%</span>
+                    <span id="iv-blend-label4">{{ tastingSheets.3.percentTastingSheet }}%</span>
                     <span>{{ tastingSheets.3.wine.cepage }}</span>
                 </div>
             </div>

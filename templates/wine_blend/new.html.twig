@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New WineBlend{% endblock %}
+{% block title %}Nouvel assemblage{% endblock %}
 
 {% block body %}
-    <h1 class="iv-title">Create new WineBlend</h1>
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à créer un assemblage en combinant des cépages selon vos préférences. Vous ne devez sélectionner que 2 ou 3 vins pour un total de 100%.
+        {% endblock %}
+    {% endembed %}
+    <h1 class="iv-title">Nouvel assemblage</h1>
 
     <h4 class="iv-blend-explain">Veuillez indiquer un pourcentage pour 2 ou 3 cépages pour un total de 100%</h4>
 

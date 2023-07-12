@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TastingSheetController!{% endblock %}
+{% block title %}Mes dégustations{% endblock %}
 
 {% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous voyez la liste des fiches de dégustations que vous avez remplis. Que de souvenirs !
+        {% endblock %}
+    {% endembed %}
     <div class="iv-tasting-cards">
         <h1 class="iv-title mb-4">INO VIN Dégustation</h1>
         <h2 class="iv-font mb-4">Mes Fiches de dégustation</h2>

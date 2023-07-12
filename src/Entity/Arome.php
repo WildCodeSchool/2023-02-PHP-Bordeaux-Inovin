@@ -21,7 +21,7 @@ class Arome
     #[ORM\Column(length: 100)]
     private ?string $nameArome = null;
 
-    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'arome')]
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'arome', cascade: ['persist', 'remove'])]
     private Collection $gouts;
 
     public function __construct()

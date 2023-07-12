@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Atelier{% endblock %}
+{% block title %}{{ parent() }}Atelier{% endblock %}
 
     {% block body %}
+        {% embed "includes/helper.html.twig" %}
+            {% block helper_content %}
+                Sur cette page, vous êtes invités à renseigner le code atelier communiqué par votre animateur pour accéder à l'atelier. Bonne dégustation !
+            {% endblock %}
+        {% endembed %}
 
         {{ form_start(workshopCodeForm) }}
         {{ form_errors(workshopCodeForm) }}

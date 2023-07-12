@@ -21,10 +21,10 @@ class Color
     #[ORM\Column(length: 20)]
     private ?string $nameColor = null;
 
-    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'color')]
+    #[ORM\ManyToMany(targetEntity: Gout::class, mappedBy: 'color', cascade: ['persist', 'remove'])]
     private Collection $gouts;
 
-    #[ORM\OneToMany(mappedBy: 'color', targetEntity: Wine::class)]
+    #[ORM\OneToMany(mappedBy: 'color', targetEntity: Wine::class, cascade: ['persist', 'remove'])]
     private Collection $wines;
 
     public function __construct()

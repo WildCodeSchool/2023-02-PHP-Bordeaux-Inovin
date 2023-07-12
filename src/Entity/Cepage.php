@@ -21,7 +21,7 @@ class Cepage
     #[ORM\Column(length: 100)]
     private ?string $nameCepage = null;
 
-    #[ORM\OneToMany(mappedBy: 'cepage', targetEntity: Wine::class)]
+    #[ORM\OneToMany(mappedBy: 'cepage', targetEntity: Wine::class, cascade: ['persist', 'remove'])]
     private Collection $wines;
 
     public function __construct()

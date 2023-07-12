@@ -16,12 +16,11 @@ class VoteController extends AbstractController
 {
     #[Route('/vote/{codeWorkshop}', name: 'app_vote')]
     public function index(
-        VoteRepository      $voteRepository,
-        Request             $request,
-        Workshop            $workshop,
+        VoteRepository $voteRepository,
+        Request $request,
+        Workshop $workshop,
         WineBlendRepository $blendRepository
-    ): Response
-    {
+    ): Response {
 
         $votesByWorkshop = $blendRepository->findBy(['workshop' => $workshop]);
         $voteFormBuilder = $this->createFormBuilder();

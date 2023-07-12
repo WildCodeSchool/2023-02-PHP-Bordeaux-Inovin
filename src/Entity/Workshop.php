@@ -31,16 +31,16 @@ class Workshop
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $placeWorkshop = null;
 
-    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
     private Collection $tastingSheets;
 
-    #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'workshops')]
+    #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'workshops', cascade: ['persist', 'remove'])]
     private Collection $wines;
 
-    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: WineBlend::class)]
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: WineBlend::class, cascade: ['persist', 'remove'])]
     private Collection $wineBlends;
 
-    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class)]
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
     private Collection $votes;
 
     public function __construct()
