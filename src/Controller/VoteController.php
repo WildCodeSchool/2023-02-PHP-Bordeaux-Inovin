@@ -51,7 +51,9 @@ class VoteController extends AbstractController
             // Appel à la méthode calculVote() du service CalculatorVote
             $calculatorVote->calculVote($voteRepository, $workshop, $blendRepository, $vote);
 
-            return $this->redirectToRoute('app_vote_loader');
+            return $this->redirectToRoute('app_winner', [
+                'codeWorkshop' => $workshop->getCodeWorkshop()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('vote/index.html.twig', [

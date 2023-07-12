@@ -10,10 +10,11 @@ use App\Repository\WineBlendRepository;
 class CalculatorVote
 {
     public function calculVote(
-        VoteRepository $voteRepository,
-        Workshop $workshop,
+        VoteRepository      $voteRepository,
+        Workshop            $workshop,
         WineBlendRepository $blendRepository
-    ): void {
+    ): void
+    {
         $wineBlends = $blendRepository->findBy(['workshop' => $workshop]);
 
         foreach ($wineBlends as $wineBlend) {
