@@ -32,7 +32,9 @@ class WorkshopCrudController extends AbstractCrudController
 
         yield TextField::new('name_workshop', 'Nom de l\'atelier');
 
-        yield IntegerField::new('code_workshop', 'Code de l\'atelier');
+        yield IntegerField::new('code_workshop', 'Code de l\'atelier')
+            ->setHelp('Voici un exemple de code du 12 juillet 2023 : 12072023');
+        ;
 
         yield TextField::new('place_workshop', 'Lieu de l\'atelier');
 
