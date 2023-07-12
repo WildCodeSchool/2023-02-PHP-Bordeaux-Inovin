@@ -7,6 +7,7 @@ use App\Entity\Workshop;
 use App\Form\VoteType;
 use App\Repository\VoteRepository;
 use App\Repository\WineBlendRepository;
+use App\Service\CalculatorVote;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +20,14 @@ class VoteController extends AbstractController
         VoteRepository $voteRepository,
         Request $request,
         Workshop $workshop,
-        WineBlendRepository $blendRepository
+        WineBlendRepository $blendRepository,
+        CalculatorVote $calculatorVote,
+        Vote $vote
     ): Response {
-
         $votesByWorkshop = $blendRepository->findBy(['workshop' => $workshop]);
         $voteFormBuilder = $this->createFormBuilder();
         $formSaves = [];
+
         foreach ($votesByWorkshop as $voteByWorkshop) {
             $newVote = new Vote();
             $newVote->setWineBlend($voteByWorkshop);
@@ -39,10 +42,14 @@ class VoteController extends AbstractController
         $form = $voteFormBuilder->getForm();
         $form->handleRequest($request);
         $formSaves = $form->getData();
+
         if ($form->isSubmitted() && $form->isValid()) {
             array_map(function ($formSave) use ($voteRepository) {
                 $voteRepository->save($formSave, true);
             }, $formSaves);
+
+            // Appel à la méthode calculVote() du service CalculatorVote
+            $calculatorVote->calculVote($voteRepository, $workshop, $blendRepository, $vote);
 
             return $this->redirectToRoute('app_vote_loader');
         }
@@ -53,7 +60,6 @@ class VoteController extends AbstractController
             'voteForm' => $voteFormBuilder->getForm(),
         ]);
     }
-
 
     #[Route('/loader', name: 'app_vote_loader')]
     public function loader(): Response
