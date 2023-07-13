@@ -40,7 +40,7 @@ class Workshop
     #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: WineBlend::class, cascade: ['persist', 'remove'])]
     private Collection $wineBlends;
 
-    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'workshop', targetEntity: Vote::class)]
     private Collection $votes;
 
     public function __construct()

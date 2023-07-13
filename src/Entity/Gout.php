@@ -15,13 +15,13 @@ class Gout
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Color::class, inversedBy: 'gouts', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Color::class, inversedBy: 'gouts')]
     private Collection $color;
 
-    #[ORM\ManyToMany(targetEntity: Arome::class, inversedBy: 'gouts', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Arome::class, inversedBy: 'gouts')]
     private Collection $arome;
 
-    #[ORM\ManyToMany(targetEntity: Region::class, inversedBy: 'gouts', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Region::class, inversedBy: 'gouts')]
     private Collection $region;
 
     #[ORM\OneToOne(inversedBy: 'gout', cascade: ['persist', 'remove'])]

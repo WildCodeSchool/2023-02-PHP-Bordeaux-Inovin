@@ -32,7 +32,7 @@ class WineBlend
     #[ORM\JoinColumn(nullable: false)]
     private ?Workshop $workshop = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'wineBlend', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
     #[ORM\Column(nullable: true)]
