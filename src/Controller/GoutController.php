@@ -51,7 +51,6 @@ class GoutController extends AbstractController
         $form->handleRequest($request);
 
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $gout->setUser($this->getUser());
             $selectedColors = $form->get('color')->getData();

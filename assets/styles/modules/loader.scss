@@ -1,3 +1,19 @@
+.iv-form-input-preVote {
+    background: $iv-main-white;
+    border: 1px solid $iv-goldBM;
+    border-radius: $iv-border-radius;
+    font-family: $iv-text-font-family;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .iv-container-loader {
     margin: 0;
     display: flex;
@@ -6,8 +22,29 @@
     height: 55vh;
 }
 
+.iv-container-loader-preVote {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+}
+
 .loader {
     zoom: 300%
+}
+
+.iv-blink{
+    animation: blink 4s infinite;
+}
+@keyframes blink {
+    0% { opacity:0; }
+    50% { opacity:1; }
+    100% { opacity:0; }
+}
+
+.iv-loader-preVote {
+    zoom: 150%
 }
 
 .wineglass {
@@ -130,5 +167,15 @@
 @media screen and (max-width: 430px) {
     .loader {
         zoom: 200%
+    }
+    .iv-loader-preVote {
+        zoom: 120%
+    }
+    .iv-container-loader-preVote {
+        height: 15vh;
+    }
+
+    .iv-blink{
+        font-size: 18px;
     }
 }
