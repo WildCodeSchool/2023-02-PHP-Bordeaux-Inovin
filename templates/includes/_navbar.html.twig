@@ -21,13 +21,13 @@
 
         <a href="{{ path('tasting_sheet_show',{id: app.user.id}) }}"> <h2 class="iv-color mt-5" style="cursor: pointer" id="click-degustation">Mes dégustations</h2></a>
 
-        <div class="accordion mt-4" id="accordionExample">
+        <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button text-center iv-color fs-24" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Mon profil
+                <p class="accordion-header">
+                    <button class="accordion-button text-center p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h2 class="iv-color mt-5">Mon profil</h2>
                     </button>
-                </h2>
+                </p>
                 <div id="collapseOne" class="accordion-collapse collapse data-bs-parent" id="accordionExample">
                     <div class="accordion-body">
                         <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>
