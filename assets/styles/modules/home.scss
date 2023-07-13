@@ -144,6 +144,39 @@ hr {
     background-color:$iv-taupe ;
 }
 
+
+
+
+.iv-falling-leaves {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.iv-leaf-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform-style: preserve-3d;
+    overflow: hidden;
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 34px;
+        background: url("../../images/FeuilleDeVigneGoldBMResize.png") no-repeat;
+        background-size: 100%;
+        transform-style: preserve-3d;
+        backface-visibility: visible;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .iv-img-carousel {
         display: none
