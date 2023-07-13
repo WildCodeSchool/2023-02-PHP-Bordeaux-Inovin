@@ -134,14 +134,14 @@ hr {
 .iv-logo-slider2 {
     display: flex;
     border-radius: 50%;
-    bottom: 0;
-    left: 165px;
+    bottom: 83px;
+    left: 237px;
     position: relative;
     width: 100px;
     height: 100px;
     justify-content: center;
     align-items: center;
-    background-color:$iv-taupe ;
+    background-color:$iv-background-color;
 }
 
 
@@ -236,14 +236,14 @@ hr {
     .iv-logo-slider2 {
         display: flex;
         border-radius: 50%;
-        bottom: -25px;
+        bottom: -10px;
         left: 119px;
         position: relative;
         width: 80px;
         height: 80px;
         justify-content: center;
         align-items: center;
-        background-color:$iv-taupe ;
+        background-color:$iv-background-color;
     }
 }
 @media screen and (min-width:430px) and (max-width:768px){
@@ -257,7 +257,7 @@ hr {
         height: 80px;
         justify-content: center;
         align-items: center;
-        background-color:$iv-taupe ;
+        background-color:$iv-background-color;
     }
 }
 .iv-zoom2 {

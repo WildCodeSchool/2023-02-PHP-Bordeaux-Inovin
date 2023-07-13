@@ -197,7 +197,9 @@ pie-chart {
     position: relative;
     top: -220px;
     right: -10px;
-    font-family:$iv-title-font-family
+    font-family:$iv-title-font-family;
+    color: $iv-main-white;
+    text-shadow: 6px 6px 10px $iv-main-darkgrey;
 }
 .iv-bg-img{
     background-color: Black;
