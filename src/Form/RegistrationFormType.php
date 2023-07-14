@@ -2,13 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Arome;
-use App\Entity\Color;
-use App\Entity\Region;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -32,6 +27,7 @@ class RegistrationFormType extends AbstractType
             ->add('birthday', DateType::class, [
                 'format' => 'yyyy-MM-dd',
                 'widget' => 'single_text',
+                'by_reference' => true,
             ])
             ->add('zipcode', IntegerType::class)
             ->add('phoneNumber', TextType::class)

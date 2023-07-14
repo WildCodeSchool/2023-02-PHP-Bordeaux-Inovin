@@ -27,6 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer un email')]
+    #[Assert\Email(
+        message: "L'email {{ value }} n'est pas un email valide.",
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -55,9 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $lastname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer votre date de naissance')]
-    private ?DateTimeInterface $birthday = null;
+    #[Assert\Date(message: 'Veuillez entrer une date de naissance')]
+    private ?DateTimeInterface $birthday;
 
     #[ORM\Column(nullable: true)]
     private ?int $zipcode = null;
