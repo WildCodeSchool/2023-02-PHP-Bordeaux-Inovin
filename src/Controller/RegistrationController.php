@@ -49,7 +49,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // verify if the user is over 18
-            $userBirthday = $form->get('birthday')->getData()->format('Y-m-d');
+            $userBirthday = $form->get('birthday')->getData();
             if ($userBirthday !== null) {
                 $currentDate = new DateTime('now');
                 $diff = $currentDate->diff($userBirthday);

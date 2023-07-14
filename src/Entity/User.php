@@ -60,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer votre date de naissance')]
-    #[Assert\Date(message: 'Veuillez entrer une date de naissance')]
+    //#[Assert\Date(message: 'Veuillez entrer une date de naissance')] --> c'est ce qui générait l'erreur
     private ?DateTimeInterface $birthday;
 
     #[ORM\Column(nullable: true)]

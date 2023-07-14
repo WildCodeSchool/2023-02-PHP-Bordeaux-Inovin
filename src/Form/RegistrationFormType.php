@@ -59,7 +59,6 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ]]);
-        $builder->get('birthday')->addModelTransformer(new DateTimeTransformer());
     }
 
     public function configureOptions(OptionsResolver $resolver): void
