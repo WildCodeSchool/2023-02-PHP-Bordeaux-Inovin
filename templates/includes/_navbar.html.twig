@@ -21,22 +21,13 @@
 
         <a href="{{ path('tasting_sheet_show',{id: app.user.id}) }}"> <h2 class="iv-color mt-5" style="cursor: pointer" id="click-degustation">Mes dégustations</h2></a>
 
-
-        <h2 class="iv-color mt-5" style="cursor: pointer" id="click-assemblage">Mes assemblages</h2>
-        <div class="iv-nav-assemblages">
-            <p class="iv-color">Petit BBQ entre amis - juin 2023</p>
-            <p class="iv-color">La Camargue ca vous gagne - mai 2022</p>
-            <p class="iv-color">Lozère et bien plus - juillet 2021</p>
-            <p class="iv-color">Le plus bel atelier de ma vie - décembre 2021</p>
-        </div>
-
-        <div class="accordion mt-4" id="accordionExample">
+        <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button text-center iv-color fs-24" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Mon profil
+                <p class="accordion-header">
+                    <button class="accordion-button text-center p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h2 class="iv-color mt-5">Mon profil</h2>
                     </button>
-                </h2>
+                </p>
                 <div id="collapseOne" class="accordion-collapse collapse data-bs-parent" id="accordionExample">
                     <div class="accordion-body">
                         <a href="{{ path('app_user_edit', {id: app.user.id})}}" class="iv-link-navbar"><p class="iv-color">Mon profil</p></a>

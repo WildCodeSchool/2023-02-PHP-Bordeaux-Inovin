@@ -22,14 +22,14 @@
                                  alt="{{ wine.producer }}"
                             class="iv-bg-img">
                         </a>
-                        <h5 class="iv-card-title">{{ wine.cepage.nameCepage }}</h5>
+                        <h2 class="iv-card-title">{{ wine.cepage.nameCepage }}</h2>
                     </li>
                 {% endfor %}
             </ul>
 
         </section>
         <div class="d-flex justify-content-center">
-            {{ app.session.get('countValidateForm') }}
+{#  {{ app.session.get('countValidateForm') }} #}
             {%  if app.session.get('countValidateForm') >=4 %}
                 <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
             {% endif %}

@@ -1,3 +1,20 @@
+:root {
+    --form-switch-checked-bg: #B58654;
+    --form-type-check-input-checked-bg: #B58654;
+    --sidebar-menu-active-item-color: #B58654;
+    --pagination-active-bg: #B58654;
+    --pagination-color: #B58654;
+    --pagination-disabled-color: #B58654;
+    --sidebar-menu-icon-color: #B58654;
+    --button-color: #B58654;
+    --button-primary-bg: #B58654;
+    --button-primary-color: #FFFAF0;
+    --sidebar-menu-active-item-bg: #FFFAF0;
+    --user-avatar-icon-color: #B58654;
+    --table-selected-cell-bg: #FFFAF0;
+}
+
+
 body,
 .content-header,
 .sidebar {
@@ -9,16 +26,15 @@ dl.datalist,
 .datagrid thead a,
 .datagrid thead span,
 .logo-custom,
-#main-menu,
-.menu,
 .menu-item-label,
 .menu-icon,
-.menu,
 .form-group label,
 .list-pagination-counter,
 .sorted a,
 .sorted i,
-.sorted {
+.sorted,
+.menu,
+.submenu {
     color: #B58654;
     box-shadow: none;
 }
@@ -48,3 +64,4 @@ dl.datalist,
     color: #B58654;
     box-shadow: none;
 }
+

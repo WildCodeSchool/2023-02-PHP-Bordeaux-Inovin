@@ -94,7 +94,5 @@ class CepageFixtures extends Fixture
             $this->addReference('wine_' . $i, $wine);
         }
         $manager->flush();
-
     }
-
 }
