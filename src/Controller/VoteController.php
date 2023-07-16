@@ -21,8 +21,8 @@ class VoteController extends AbstractController
         Request $request,
         Workshop $workshop,
         WineBlendRepository $blendRepository,
-        CalculatorVote $calculatorVote,
-        Vote $vote
+        CalculatorVote $calculatorVote
+
     ): Response {
         $votesByWorkshop = $blendRepository->findBy(['workshop' => $workshop]);
         $voteFormBuilder = $this->createFormBuilder();
@@ -49,7 +49,7 @@ class VoteController extends AbstractController
             }, $formSaves);
 
             // Appel à la méthode calculVote() du service CalculatorVote
-            $calculatorVote->calculVote($voteRepository, $workshop, $blendRepository, $vote);
+            $calculatorVote->calculVote($voteRepository, $workshop, $blendRepository);
 
             return $this->redirectToRoute('app_winner', [
                 'codeWorkshop' => $workshop->getCodeWorkshop()
@@ -61,6 +61,7 @@ class VoteController extends AbstractController
             'votes' => $votesByWorkshop,
             'voteForm' => $voteFormBuilder->getForm(),
         ]);
+
     }
 
     #[Route('/loader', name: 'app_vote_loader')]
