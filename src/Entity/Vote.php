@@ -17,7 +17,7 @@ class Vote
     #[ORM\JoinColumn(nullable: true)]
     private ?int $scoreVote = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'votes')]
+    #[ORM\ManyToOne(inversedBy: 'votes')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'votes')]

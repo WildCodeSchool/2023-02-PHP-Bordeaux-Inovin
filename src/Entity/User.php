@@ -68,16 +68,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user')]
     private ?Gout $gout = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
     private Collection $wineBlends;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
     private Collection $votes;
 
     public function __construct()

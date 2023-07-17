@@ -21,19 +21,19 @@ class Wine
     #[ORM\Column(length: 100)]
     private ?string $producer = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wines')]
+    #[ORM\ManyToOne(inversedBy: 'wines')]
     private ?Color $color = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'wines')]
+    #[ORM\ManyToOne(inversedBy: 'wines')]
     private ?Cepage $cepage = null;
 
     #[ORM\Column(length: 4)]
     private ?string $productionYear = null;
 
-    #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
-    #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'wines', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Workshop::class, mappedBy: 'wines')]
     private Collection $workshops;
 
     public function __construct()
