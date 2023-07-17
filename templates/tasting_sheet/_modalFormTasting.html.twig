@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer"><em class="iv-dk-grey">note :</em>
                     {{ form_widget(forms[loop.index0].scoreTastingSheet, {
                         'attr': {
                             'class': 'tasting_sheet_score' ~ loop.index ~ ' ml-3 tasting_sheet_score',
@@ -77,7 +77,7 @@
                             'oninput': "this.value = Math.round(Math.max(0, Math.min(10, this.value)))"
                         }
                     }) }}
-                    <button class="iv-btn my-4" type="submit"
+                    <button class="iv-btn my-4 iv-btn-tastingSheet" type="submit"
                             data-bs-dismiss="modal">
                                 {{ button_label|default('Valider') }}
                         </button>
