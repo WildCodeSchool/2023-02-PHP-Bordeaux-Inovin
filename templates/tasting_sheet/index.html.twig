@@ -16,8 +16,8 @@
         <section>
             <ul>
                 {% for wine in workshop.wines %}
-                    <li class="iv-card-li">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
+                    <li class="iv-card-li" >
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}" class="{{ loop.index0 in formsValidated ? "iv-tasting-sheet-disabled" : "" }}">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
                                  alt="{{ wine.producer }}"
                             class="iv-bg-img">
