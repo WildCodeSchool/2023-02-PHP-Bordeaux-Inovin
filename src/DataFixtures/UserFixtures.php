@@ -37,7 +37,9 @@ class UserFixtures extends Fixture //implements DependentFixtureInterface
 
 
             if ($userIterator === 9) {
+                $user->setEmail('admin@inovin.fr');
                 $user->setRoles(['ROLE_ADMIN']);
+
             }
 
             $manager->persist($user);
