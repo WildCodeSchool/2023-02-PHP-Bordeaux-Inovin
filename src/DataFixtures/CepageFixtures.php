@@ -79,7 +79,7 @@ class CepageFixtures extends Fixture
             $wine->setCepage($cepageName);
             $color = $this->getReference('color_' . self::COLOR_ROUGE);
             $wine->setColor($color);
-
+            $manager->persist($wine);
 
 
             $wine = new Wine();

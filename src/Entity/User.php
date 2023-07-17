@@ -27,6 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer un email')]
+    #[Assert\Email(
+        message: "L'email {{ value }} n'est pas un email valide.",
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -55,9 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $lastname = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer votre date de naissance')]
-    private ?DateTimeInterface $birthday = null;
+    //#[Assert\Date(message: 'Veuillez entrer une date de naissance')] --> c'est ce qui générait l'erreur
+    private ?DateTimeInterface $birthday;
 
     #[ORM\Column(nullable: true)]
     private ?int $zipcode = null;
@@ -68,16 +72,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user')]
     private ?Gout $gout = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: WineBlend::class)]
     private Collection $wineBlends;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vote::class)]
     private Collection $votes;
 
     public function __construct()
