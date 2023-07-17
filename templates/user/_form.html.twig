@@ -19,6 +19,7 @@
                 <h2 class="iv-title">{{ form_title }}</h2>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Nom : </label>
                         <input
                             name="{{ field_name(registrationForm.lastname) }}"
                             type="text" class="form-control iv-form-input"
@@ -30,6 +31,7 @@
                         {{ form_errors(registrationForm.lastname) }}
                     </div>
                     <div class="col">
+                        <label class="iv-color">Prénom : </label>
                         <input
                             name="{{ field_name(registrationForm.firstname) }}"
                             type="text" class="form-control iv-form-input"
@@ -43,6 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Email : </label>
                         <input
                             name="{{ field_name(registrationForm.email) }}"
                             type="text" class="form-control iv-form-input"
@@ -55,6 +58,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Date de naissance : </label>
                         <input
                             name="{{ field_name(registrationForm.birthday) }}"
                             type="date" class="form-control iv-form-input"
@@ -63,6 +67,7 @@
                             {% endif %}>
                     </div>
                     <div class="col">
+                        <label class="iv-color">Code postal </label>
                         <input
                             name="{{ field_name(registrationForm.zipcode) }} }}"
                             type="text" class="form-control iv-form-input"
@@ -75,6 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Numéro de télèphone : </label>
                         <input
                             name="{{ field_name(registrationForm.phoneNumber) }}"
                             type="text" class="form-control iv-form-input"
@@ -88,6 +94,7 @@
                 {% if form_title == "S'inscrire" %}
                     <div class="row">
                         <div class="col">
+                            <label class="iv-color">Mot de passe : </label>
                             <input
                                 name="{{ field_name(registrationForm.password.first) }}"
                                 type="password" class="form-control iv-form-input" placeholder="Mot de passe">
