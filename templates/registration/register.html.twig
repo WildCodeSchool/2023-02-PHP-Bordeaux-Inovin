@@ -18,29 +18,32 @@
                 <h2 class="iv-sub-title">Inscription</h2>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Nom : </label>
                         <input
                             name="{{ field_name(registrationForm.lastname) }}"
-                            type="text" class="form-control iv-form-input" placeholder="Nom">
-                    <div class="iv-form-error">
+                            type="text" class="form-control iv-form-input">
+                    <div class="iv-form-error ">
                         {{ form_errors(registrationForm.lastname) }}
                     </div>
                     </div>
                     <div class="iv-hidden-mediascreen">
                     </div>
                     <div class="col">
+                        <label class="iv-color">Prénom : </label>
                         <input
                             name="{{ field_name(registrationForm.firstname) }}"
-                            type="text" class="form-control iv-form-input" placeholder="Prénom">
-                    <div class="iv-form-error">
+                            type="text" class="form-control iv-form-input" >
+                    <div class="iv-form-error p-0">
                     {{ form_errors(registrationForm.firstname) }}
                     </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Email : </label>
                         <input
                             name="{{ field_name(registrationForm.email) }}"
-                            type="text" class="form-control iv-form-input" placeholder="Email">
+                            type="text" class="form-control iv-form-input">
                         <div class="iv-form-error">
                     {{ form_errors(registrationForm.email) }}
                     </div>
@@ -48,6 +51,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Date de naissance : </label>
                         <input
                             name="{{ field_name(registrationForm.birthday) }}"
                             type="date" class="form-control iv-form-input">
@@ -58,23 +62,26 @@
                     <div class="iv-hidden-mediascreen">
                     </div>
                     <div class="col">
+                        <label class="iv-color">Code postal : </label>
                         <input
                             name="{{ field_name(registrationForm.zipcode) }} }}"
-                            type="text" class="form-control iv-form-input" placeholder="Code postal">
+                            type="text" class="form-control iv-form-input" >
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Numéro de télèphone : </label>
                         <input
                             name="{{ field_name(registrationForm.phoneNumber) }}"
-                            type="text" class="form-control iv-form-input" placeholder="Téléphone">
+                            type="text" class="form-control iv-form-input">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Mot de passe : </label>
                         <input
                             name="{{ field_name(registrationForm.password.first) }}"
-                            type="password" class="form-control iv-form-input" placeholder="Mot de passe">
+                            type="password" class="form-control iv-form-input">
                     <div class="iv-form-error">
                     {{ form_errors(registrationForm.password.first) }}
                     </div>
@@ -82,9 +89,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <label class="iv-color">Confimer le mot de passe : </label>
                         <input
                             name="{{ field_name(registrationForm.password.second) }}"
-                            type="password" class="form-control iv-form-input" placeholder="Confirmer le mot de passe">
+                            type="password" class="form-control iv-form-input">
                         <div class="iv-form-error">
                         {{ form_errors(registrationForm.password.second) }}
                         </div>
