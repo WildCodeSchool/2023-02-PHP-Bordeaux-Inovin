@@ -29,6 +29,7 @@ class TastingSheetController extends AbstractController
 
         $tastingSheets = [];
         $forms = [];
+        $formsValidated = [];
         $tastingSheet = new TastingSheet();
 
         $formTypes = [
@@ -38,7 +39,7 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
 
-        foreach ($formTypes as $form) {
+        foreach ($formTypes as $key => $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
@@ -56,6 +57,13 @@ class TastingSheetController extends AbstractController
                     $session->set('countValidateForm', $count + 1);
                 } else {
                     $session->set('countValidateForm', 1);
+                }
+                if ($session->has('keysValidateForms')) {
+                    $keys = $session->get('keysValidateForms');
+                    $keys[] = $key;
+                    $session->set('keysValidateForms', $keys);
+                } else {
+                    $session->set('keysValidateForms', [$key]);
                 }
                 if ($form->get('scoreTastingSheet')->getData() === null) {
                     $this->addFlash(
@@ -87,13 +95,15 @@ class TastingSheetController extends AbstractController
             }
 
             $countValidateForm = $session->get('countValidateForm');
+            $formsValidated = $session->get('keysValidateForms');
         }
 
         return $this->render('tasting_sheet/index.html.twig', [
             'forms' => $forms,
             'tastingSheets' => $tastingSheets,
             'workshop' => $workshop,
-            'countValidateForm' => $countValidateForm
+            'countValidateForm' => $countValidateForm,
+            'formsValidated' => $formsValidated,
         ]);
     }
 
