@@ -38,9 +38,9 @@
     animation: blink 4s infinite;
 }
 @keyframes blink {
-    0% { opacity:0; }
+    0% { opacity:0.3; }
     50% { opacity:1; }
-    100% { opacity:0; }
+    100% { opacity:0.3; }
 }
 
 .iv-loader-preVote {
