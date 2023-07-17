@@ -20,7 +20,9 @@ $iv-check-border: 2px solid $iv-goldBM;
 $iv-check-background: $iv-main-white;
 /*$iv-mobile-assembly-card-name-font-size: 20px;*/
 
-
+ul{
+    padding-left: 0;
+}
 
 * {
     box-sizing: border-box;
@@ -62,6 +64,9 @@ a{
 
 .iv-color {
     color: $iv-goldBM;
+}
+.iv-taupe{
+    color: $iv-taupe;
 }
 
 .iv-dk-grey {
