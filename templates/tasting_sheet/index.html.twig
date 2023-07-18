@@ -3,6 +3,7 @@
 {% block title %}Dégustation{% endblock %}
 
 {% block body %}
+    {{ dump(tastings) }}
     {% embed "includes/helper.html.twig" %}
         {% block helper_content %}
             Sur cette page, vous êtes invités à remplir ces 4 fiches de dégustations. Vous devrez définir les vins selon des critères olfactifs, gustatifs et visuels avant de les noter.
@@ -17,11 +18,20 @@
             <ul>
                 {% for wine in workshop.wines %}
                     <li class="iv-card-li">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
+                        {% if tastings is not empty and loop.index0 < tastings|length and tastings[loop.index0].wine.id == wine.id %}
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
                                  alt="{{ wine.producer }}"
-                            class="iv-bg-img">
+                            class="iv-bg-img iv-wineTastingOk">
                         </a>
+                        {% else %}
+
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
+                                    <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
+                                         alt="{{ wine.producer }}"
+                                         class="iv-bg-img">
+                                </a>
+                        {% endif %}
                         <h2 class="iv-card-title">{{ wine.cepage.nameCepage }}</h2>
                     </li>
                 {% endfor %}

@@ -27,6 +27,7 @@ class TastingSheetController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response {
 
+        $tastings = $tastingSheetRepo->findBy(['workshop' => $workshop]);
         $tastingSheets = [];
         $forms = [];
         $tastingSheet = new TastingSheet();
@@ -85,7 +86,7 @@ class TastingSheetController extends AbstractController
 
                 $tastingSheetRepo->save($tastingSheet, true);
             }
-
+            $tastings = $tastingSheetRepo->findBy(['workshop' => $workshop,'user' => $this->getUser()]);
             $countValidateForm = $session->get('countValidateForm');
         }
 
@@ -93,7 +94,8 @@ class TastingSheetController extends AbstractController
             'forms' => $forms,
             'tastingSheets' => $tastingSheets,
             'workshop' => $workshop,
-            'countValidateForm' => $countValidateForm
+            'countValidateForm' => $countValidateForm,
+            'tastings' => $tastings,
         ]);
     }
 
