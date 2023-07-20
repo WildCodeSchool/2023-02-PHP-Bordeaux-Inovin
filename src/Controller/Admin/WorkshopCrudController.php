@@ -25,7 +25,8 @@ class WorkshopCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des ateliers')
             ->setDefaultSort([
                 'id' => 'DESC',
-            ]);
+            ])
+        ->setEntityLabelInSingular('un atelier');
     }
 
     public function configureFields(string $pageName): iterable

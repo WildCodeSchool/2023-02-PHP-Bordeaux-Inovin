@@ -20,7 +20,8 @@ class AromeCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter un arôme')
-            ->setPageTitle('index', 'Liste des arômes');
+            ->setPageTitle('index', 'Liste des arômes')
+            ->setEntityLabelInSingular('un arôme');
     }
 
     public function configureFields(string $pageName): iterable

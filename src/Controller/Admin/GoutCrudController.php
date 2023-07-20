@@ -18,6 +18,13 @@ class GoutCrudController extends AbstractCrudController
     {
         return Gout::class;
     }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Goûts par utilisateur')
+            ->showEntityActionsInlined()
+            ->setEntityLabelInSingular('un goût');
+    }
     public function configureActions(Actions $actions): Actions
     {
         return $actions
@@ -37,13 +44,5 @@ class GoutCrudController extends AbstractCrudController
         yield CollectionField::new('region', 'Régions');
 
         yield CollectionField::new('arome', 'Arômes');
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            // ...
-            ->showEntityActionsInlined()
-            ;
     }
 }
