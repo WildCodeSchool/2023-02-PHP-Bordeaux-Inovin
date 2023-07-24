@@ -19,7 +19,8 @@ class RegionCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter une région')
-            ->setPageTitle('index', 'Liste des régions');
+            ->setPageTitle('index', 'Liste des régions')
+            ->setEntityLabelInSingular('une région');
     }
 
     public function configureFields(string $pageName): iterable

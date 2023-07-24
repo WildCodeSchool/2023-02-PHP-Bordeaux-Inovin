@@ -19,7 +19,8 @@ class CepageCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter un cépage')
-            ->setPageTitle('index', 'Liste des cépages');
+            ->setPageTitle('index', 'Liste des cépages')
+            ->setEntityLabelInSingular('un cépage');
     }
 
     public function configureFields(string $pageName): iterable
