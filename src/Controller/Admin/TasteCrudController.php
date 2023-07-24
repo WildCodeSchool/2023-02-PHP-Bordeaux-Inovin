@@ -19,7 +19,8 @@ class TasteCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter une saveur')
-            ->setPageTitle('index', 'Liste des saveurs');
+            ->setPageTitle('index', 'Liste des saveurs')
+            ->setEntityLabelInSingular('une saveur');
     }
     public function configureFields(string $pageName): iterable
     {

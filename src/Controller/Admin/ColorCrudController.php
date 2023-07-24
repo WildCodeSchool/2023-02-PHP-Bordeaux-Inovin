@@ -19,7 +19,8 @@ class ColorCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('new', 'Ajouter une couleur')
-            ->setPageTitle('index', 'Liste des Couleurs');
+            ->setPageTitle('index', 'Liste des Couleurs')
+            ->setEntityLabelInSingular('une couleur');
     }
 
     public function configureFields(string $pageName): iterable
