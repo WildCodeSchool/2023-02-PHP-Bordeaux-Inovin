@@ -42,22 +42,6 @@ class DashboardController extends AbstractDashboardController
             setController(UserCrudController::class)
             ->generateUrl();
         return $this->redirect($url);
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -75,7 +59,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
 
         yield MenuItem::linkToCrud('liste des Goûts par utilisateur', 'fas fa-list', Gout::class);
-        yield MenuItem::linkToRoute('Les stats du Goût', '', 'app_admin_stat');
+        yield MenuItem::linkToRoute('Les stats du Goût', 'fa-pizza-slice', 'app_admin_stat');
 
         yield MenuItem::section('Ateliers');
 
@@ -84,7 +68,7 @@ class DashboardController extends AbstractDashboardController
                 ->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des ateliers', 'fas fa-list', Workshop::class)]);
 
-        yield MenuItem::section('Fiche de Gout client');
+        yield MenuItem::section('Fiche de Goût client');
 
         yield MenuItem::submenu('Arômes', 'fas fa-bar')->setSubItems([
             MenuItem::linkToCrud('Ajouter un arôme', 'fas fa-plus-circle', Arome::class)->setAction(crud::PAGE_NEW),
@@ -120,6 +104,5 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un vin', 'fas fa-plus-circle', Wine::class)
                 ->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des Vin', 'fas fa-list', Wine::class)]);
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

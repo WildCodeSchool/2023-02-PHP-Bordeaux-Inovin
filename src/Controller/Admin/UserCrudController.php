@@ -25,7 +25,7 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Liste des utilisateurs')
             ->showEntityActionsInlined()
-            ->setEntityLabelInSingular('utilisateur');
+            ->setEntityLabelInSingular('un utilisateur');
     }
 
     public function configureFields(string $pageName): iterable

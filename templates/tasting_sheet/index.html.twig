@@ -3,7 +3,6 @@
 {% block title %}Dégustation{% endblock %}
 
 {% block body %}
-
     {% embed "includes/helper.html.twig" %}
         {% block helper_content %}
             Sur cette page, vous êtes invités à remplir ces 4 fiches de dégustations. Vous devrez définir les vins selon des critères olfactifs, gustatifs et visuels avant de les noter.
@@ -17,24 +16,12 @@
         <section>
             <ul>
                 {% for wine in workshop.wines %}
-
-                    <li class="iv-card-li">
-                        {% if tastings is not empty and loop.index0 < tastings|length and tastings[loop.index0].wine.id == wine.id %}
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine">
+                    <li class="iv-card-li" >
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}" class="{{ loop.index0 in formsValidated ? "iv-tasting-sheet-disabled" : "" }}">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
                                  alt="{{ wine.producer }}"
-
-                            class="iv-bg-img iv-wineTastingOk" id="js-selected-wine">
-
+                                 class="iv-bg-img" id="js-selected-wine">
                         </a>
-                        {% else %}
-
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}">
-                                    <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
-                                         alt="{{ wine.producer }}"
-                                         class="iv-bg-img" id="js-selected-wine">
-                                </a>
-                        {% endif %}
                         <h2 class="iv-card-title">{{ wine.cepage.nameCepage }}</h2>
                     </li>
 
@@ -43,7 +30,7 @@
 
         </section>
         <div class="d-flex justify-content-center">
-{#  {{ app.session.get('countValidateForm') }} #}
+            {#  {{ app.session.get('countValidateForm') }} #}
             {%  if app.session.get('countValidateForm') >=4 %}
                 <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
             {% endif %}
@@ -52,19 +39,14 @@
 
     {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
-<script>
-    let wineSelected = document.getElementById('js-selected-wine');
-    /*wineSelected.forEach('click', (event)=> {
-        console.log(event);
-    })*/
-    const parent = wineSelected.parentElement
-    for (const child of parent.children) {
-        console.log(child);
-    }
-</script>
+    <script>
+        let wineSelected = document.getElementById('js-selected-wine');
+        /*wineSelected.forEach('click', (event)=> {
+            console.log(event);
+        })*/
+        const parent = wineSelected.parentElement
+        for (const child of parent.children) {
+            console.log(child);
+        }
+    </script>
 {% endblock %}
-
-
-
-
-

@@ -27,9 +27,9 @@ class TastingSheetController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response {
 
-        $tastings = $tastingSheetRepo->findBy(['workshop' => $workshop]);
         $tastingSheets = [];
         $forms = [];
+        $formsValidated = [];
         $tastingSheet = new TastingSheet();
 
         $formTypes = [
@@ -39,7 +39,7 @@ class TastingSheetController extends AbstractController
             $this->createForm(TastingSheetType4::class, $tastingSheet)
         ];
 
-        foreach ($formTypes as $form) {
+        foreach ($formTypes as $key => $form) {
             $form->handleRequest($request);
             $tastingSheets[] = $tastingSheet;
             $forms[] = $form->createView();
@@ -57,6 +57,13 @@ class TastingSheetController extends AbstractController
                     $session->set('countValidateForm', $count + 1);
                 } else {
                     $session->set('countValidateForm', 1);
+                }
+                if ($session->has('keysValidateForms')) {
+                    $keys = $session->get('keysValidateForms');
+                    $keys[] = $key;
+                    $session->set('keysValidateForms', $keys);
+                } else {
+                    $session->set('keysValidateForms', [$key]);
                 }
                 if ($form->get('scoreTastingSheet')->getData() === null) {
                     $this->addFlash(
@@ -86,8 +93,8 @@ class TastingSheetController extends AbstractController
 
                 $tastingSheetRepo->save($tastingSheet, true);
             }
-            $tastings = $tastingSheetRepo->findBy(['workshop' => $workshop,'user' => $this->getUser()]);
             $countValidateForm = $session->get('countValidateForm');
+            $formsValidated = $session->get('keysValidateForms');
         }
 
         return $this->render('tasting_sheet/index.html.twig', [
@@ -95,7 +102,8 @@ class TastingSheetController extends AbstractController
             'tastingSheets' => $tastingSheets,
             'workshop' => $workshop,
             'countValidateForm' => $countValidateForm,
-            'tastings' => $tastings,
+            'formsValidated' => $formsValidated,
+
         ]);
     }
 
@@ -110,7 +118,6 @@ class TastingSheetController extends AbstractController
         ]);
     }
 
-    //en test
     #[Route('/tastingSheet/{codeWorkshop}/addPercent', name: 'tasting_sheet_addPercent', methods: ['GET', 'POST'])]
     public function addPercent(TastingSheetRepository $tastingSheetRepo, Workshop $workshop): Response
     {
