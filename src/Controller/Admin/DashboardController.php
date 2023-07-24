@@ -75,6 +75,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
 
         yield MenuItem::linkToCrud('liste des Goûts par utilisateur', 'fas fa-list', Gout::class);
+        yield MenuItem::linkToRoute('Les stats du Goût', '', 'app_admin_stat');
 
         yield MenuItem::section('Ateliers');
 
@@ -119,6 +120,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un vin', 'fas fa-plus-circle', Wine::class)
                 ->setAction(crud::PAGE_NEW),
             MenuItem::linkToCrud('liste des Vin', 'fas fa-list', Wine::class)]);
-// yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

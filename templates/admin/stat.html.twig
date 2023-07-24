@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+  {% block stylesheet %}
+
+  {% endblock %}
+{% block title %}Vote assemblage{% endblock %}
+{% block body %}
+    {% embed "includes/helper.html.twig" %}
+        {% block helper_content %}
+            Sur cette page, vous êtes invités à patienter en attendant que chacun ait voté pour son assemblage préféré.
+        {% endblock %}
+    {% endembed %}
+    <h1 class="iv-title iv-title-workshop">INO VIN Dégustation</h1>
+
+    <div class="d-flex justify-content-center">
+        <div class="container" style="width: 30%; margin: 0 auto;">
+            <canvas id="color" width="100" height="50"></canvas>
+
+            <ul class="iv-form-container p-3 my-3">
+                {% for key, color in colors %}
+                    <li> {{ key }} : {{ color }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="container" style="width: 30%; margin: 0 auto;">
+            <canvas id="arome" width="100" height="50"></canvas>
+            <ul class="iv-form-container p-3 my-3">
+                {% for key, arome in aromes %}
+                    <li> {{ key }} : {{ arome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="container" style="width: 30%; margin: 0 auto;">
+            <canvas id="region" width="100" height="50"></canvas>
+            <ul class="iv-form-container p-3 my-3">
+                {% for key, region in regions %}
+                    <li> {{ key }} : {{ region }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascript %}
+<script src="
+https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
+"></script>
+<script>
+
+    /*Colors*/
+    let colors = document.getElementById('color');
+    let colorGrap = new Chart(colors, {
+    type: "pie",
+    data:{
+    labels: {{ colorName|raw }},
+        datasets: [{
+            label: "Colors",
+            data: {{ goutColorCount|raw }},
+            backgroundColor:["#ebd877", "#c70400", "#f27689"]
+        }]
+    }
+    });
+    /*Aromes*/
+    let aromes = document.getElementById('arome');
+    let aromeGrap = new Chart(aromes, {
+    type: "pie",
+        data:{
+            labels: {{ aromeName|raw }},
+        datasets: [{
+            label: "Aromes",
+            data: {{ goutAromeCount|raw }},
+            backgroundColor:["#F66C5C", "#38b542", "#ed651c", "#BA6210", "#f6f7d7", "#B17C50", "#42109A", "#934a0a"]
+        }]
+    }
+    });
+    /*Regions*/
+    let regions = document.getElementById('region');
+    let regionGrap = new Chart(regions, {
+    type: "pie",
+        data:{
+            labels: {{ regionName|raw }},
+        datasets: [{
+            label: "Regions",
+            data: {{ goutRegionCount|raw }},
+            backgroundColor:["#002395", "#D32620", "#7C001F", "#BA6210", "#E3884E", "#E8C222", "#8653e2", "#BA6210", "#0097E0", "#FF0000"]
+        }]
+    }
+    });
+</script>
+{% endblock %}
