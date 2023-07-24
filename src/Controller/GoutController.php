@@ -46,6 +46,7 @@ class GoutController extends AbstractController
     #[Route('/new', name: 'new')]
     public function new(Request $request, GoutRepository $goutRepository): Response
     {
+
         $gout = new Gout();
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
@@ -93,11 +94,19 @@ class GoutController extends AbstractController
     #[Route('/show', name: 'show')]
     public function show(GoutRepository $goutRepository, Request $request, SessionInterface $session): response
     {
+        $roleUser = $this->getUser()->getRoles();
+
+        if ('ROLE_ADMIN' == $roleUser[0]) {
+            return $this->redirectToRoute('admin');
+        }
+
         $session->set('countValidateForm', 0);
         $gout = $goutRepository->findOneBy(['user' => $this->getUser()]);
+
         if (!$gout) {
             return $this->redirectToRoute('gout_new');
         }
+
         $form = $this->createForm(GoutType::class, $gout);
         $form->handleRequest($request);
 
