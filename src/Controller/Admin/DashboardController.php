@@ -59,7 +59,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('liste des utilsateurs', 'fas fa-list', User::class);
 
         yield MenuItem::linkToCrud('liste des Goûts par utilisateur', 'fas fa-list', Gout::class);
-        yield MenuItem::linkToRoute('Les stats du Goût', 'fa-pizza-slice', 'app_admin_stat');
+        yield MenuItem::linkToRoute('Les stats du Goût', 'fas  fa-chart-line', 'app_admin_stat');
 
         yield MenuItem::section('Ateliers');
 
