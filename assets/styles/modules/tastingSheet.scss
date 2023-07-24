@@ -1,3 +1,12 @@
+.iv-tasting-sheet-disabled{
+    pointer-events: none;
+}
+
+.iv-tasting-sheet-disabled img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
 .iv-tasting-cards {
     width: 58%;
     display: flex;
