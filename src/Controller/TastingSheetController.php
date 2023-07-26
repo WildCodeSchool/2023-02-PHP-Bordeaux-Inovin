@@ -93,7 +93,6 @@ class TastingSheetController extends AbstractController
 
                 $tastingSheetRepo->save($tastingSheet, true);
             }
-
             $countValidateForm = $session->get('countValidateForm');
             $formsValidated = $session->get('keysValidateForms');
         }
@@ -104,6 +103,7 @@ class TastingSheetController extends AbstractController
             'workshop' => $workshop,
             'countValidateForm' => $countValidateForm,
             'formsValidated' => $formsValidated,
+
         ]);
     }
 
@@ -118,7 +118,6 @@ class TastingSheetController extends AbstractController
         ]);
     }
 
-    //en test
     #[Route('/tastingSheet/{codeWorkshop}/addPercent', name: 'tasting_sheet_addPercent', methods: ['GET', 'POST'])]
     public function addPercent(TastingSheetRepository $tastingSheetRepo, Workshop $workshop): Response
     {
