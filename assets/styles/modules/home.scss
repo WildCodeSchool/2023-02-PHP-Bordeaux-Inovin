@@ -124,28 +124,26 @@ hr {
 .iv-connexionHref {
     text-decoration: none;
 }
-.iv-image-logo-slide {
-    position: relative;
-    width: 50px;
-    left: 6px;
-    height: 50px;
-}
+
 
 .iv-logo-slider2 {
-    display: flex;
-    border-radius: 50%;
-    bottom: 83px;
-    left: 237px;
     position: relative;
-    width: 100px;
-    height: 100px;
+    display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
     background-color:$iv-background-color;
 }
 
-
-
+.iv-image-logo-slide {
+    position: absolute;
+    left: 18px;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
 
 .iv-falling-leaves {
     position: absolute;
