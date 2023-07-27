@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Workshop;
 use App\Entity\TastingSheet;
 use App\Form\TastingSheetType1;
@@ -110,11 +111,14 @@ class TastingSheetController extends AbstractController
     #[Route('/tasting-sheet/show/{id}', name: 'tasting_sheet_show', methods: ['GET'])]
     public function show(
         TastingSheetRepository $tastingSheetRepo,
+        User $user,
     ): Response {
 
-        $tastingSheets = $tastingSheetRepo->findBy([]);
+        $id = $this->getUser();
+        $tastingSheets = $tastingSheetRepo->findBy(['id' => $id]);
         return $this->render('tasting_sheet/show.html.twig', [
             'tasting_sheets' => $tastingSheets,
+            'user' => $user,
         ]);
     }
 
