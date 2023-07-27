@@ -32,10 +32,12 @@ class WineBlendRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findHighestScore(): ?WineBlend
+    public function findHighestScore(Workshop $workshop): ?WineBlend
     {
         return $this->createQueryBuilder('wb')
             ->orderBy('wb.scoreWineblend', 'DESC')
+            ->andWhere('wb.workshop = :workshop')
+            ->setParameter('workshop', $workshop)
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();

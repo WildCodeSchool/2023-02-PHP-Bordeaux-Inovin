@@ -19,7 +19,7 @@ class WinnerController extends AbstractController
     ): Response {
 
         $numberOfBlends = $wineBlendRepository->countByWorkshop($workshop);
-        $highestScore = $wineBlendRepository->findHighestScore();
+        $highestScore = $wineBlendRepository->findHighestScore($workshop);
 
         return $this->render('winner/show.html.twig', [
             'controller_name' => 'WinnerController',
