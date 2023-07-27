@@ -20,6 +20,7 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#wine{{ wine.id }}" class="{{ loop.index0 in formsValidated ? "iv-tasting-sheet-disabled" : "" }}">
                             <img src="{{ asset('build/images/inovin-tasting' ~ loop.index ~ '.jpg') }}"
                                  alt="{{ wine.producer }}"
+
                             class="iv-bg-img iv-box-shadow-taupe" id="js-selected-wine">
                         </a>
                         <h2 class="iv-card-title">{{ wine.cepage.nameCepage }}</h2>
@@ -30,7 +31,7 @@
 
         </section>
         <div class="d-flex justify-content-center">
-{#  {{ app.session.get('countValidateForm') }} #}
+            {#  {{ app.session.get('countValidateForm') }} #}
             {%  if app.session.get('countValidateForm') >=4 %}
                 <a href= "{{ path('tasting_sheet_addPercent', {codeWorkshop: workshop.codeWorkshop})}}" class="iv-text-decoration-none"><button type="submit" class="iv-btn">Assemblage</button></a>
             {% endif %}
@@ -39,19 +40,14 @@
 
     {% include "tasting_sheet/_modalFormTasting.html.twig" %}
 
-<script>
-    let wineSelected = document.getElementById('js-selected-wine');
-    /*wineSelected.forEach('click', (event)=> {
-        console.log(event);
-    })*/
-    const parent = wineSelected.parentElement
-    for (const child of parent.children) {
-        console.log(child);
-    }
-</script>
+    <script>
+        let wineSelected = document.getElementById('js-selected-wine');
+        /*wineSelected.forEach('click', (event)=> {
+            console.log(event);
+        })*/
+        const parent = wineSelected.parentElement
+        for (const child of parent.children) {
+            console.log(child);
+        }
+    </script>
 {% endblock %}
-
-
-
-
-

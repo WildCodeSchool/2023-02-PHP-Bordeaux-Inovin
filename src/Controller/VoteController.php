@@ -22,7 +22,6 @@ class VoteController extends AbstractController
         Workshop $workshop,
         WineBlendRepository $blendRepository,
         CalculatorVote $calculatorVote
-
     ): Response {
         $votesByWorkshop = $blendRepository->findBy(['workshop' => $workshop]);
         $voteFormBuilder = $this->createFormBuilder();
@@ -61,7 +60,6 @@ class VoteController extends AbstractController
             'votes' => $votesByWorkshop,
             'voteForm' => $voteFormBuilder->getForm(),
         ]);
-
     }
 
     #[Route('/loader', name: 'app_vote_loader')]
